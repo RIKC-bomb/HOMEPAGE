@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Credits | bomb LLC</title>
+  <meta name="robots" content="index, follow, noai, noimageai" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">bomb<span class="logo-dot">.</span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="../credits.html" data-lang="ja" class="lang-link">JP</a>
+    </nav>
+  </header>
+
+  <main class="legal">
+    <h1>Credits</h1>
+    <p class="legal-lead">Notes on the production and technology behind this site.</p>
+
+    <h2>Produced by</h2>
+    <p>bomb LLC</p>
+
+    <h2>Built with</h2>
+    <ul>
+      <li>HTML / CSS (lightweight, no external dependencies)</li>
+      <li>Fonts: each device's system fonts</li>
+      <li>Hosting: GitHub Pages</li>
+      <li>Analytics: Google Analytics</li>
+    </ul>
+
+    <p><a href="index.html" class="back-link">← Back to top</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo">bomb<span class="logo-dot">.</span></div>
+    <p class="copyright">&copy; <span id="year"></span> bomb LLC. All rights reserved.</p>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bomb LLC</title>
+  <meta name="description" content="Official website of bomb LLC." />
+  <!-- Allow search indexing, but signal no AI training -->
+  <meta name="robots" content="index, follow, noai, noimageai" />
+
+  <!-- Language routing: respect a manual choice of Japanese -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('lang') === 'ja') { location.replace('../'); }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google Analytics 4  * replace G-XXXXXXXXXX with your Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <a href="#top" class="logo">bomb<span class="logo-dot">.</span></a>
+    <nav class="nav">
+      <a href="#top">Home</a>
+      <a href="#about">Services</a>
+      <a href="#company">Company</a>
+      <a href="#contact">Contact</a>
+      <a href="../" class="lang-link" data-lang="ja">JP</a>
+    </nav>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section id="top" class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">bomb LLC</p>
+      <h1 class="hero-title">bomb LLC</h1>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Contact</a>
+        <a href="#about" class="btn btn-ghost">Our Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Services ===== -->
+  <section id="about" class="section">
+    <div class="section-head">
+      <p class="section-eyebrow">Services</p>
+      <h2 class="section-title">Services</h2>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="card-num">01</div>
+        <h3>Service 1</h3>
+        <p>Description of your service goes here — what you offer, to whom, and the value you deliver.</p>
+      </article>
+      <article class="card">
+        <div class="card-num">02</div>
+        <h3>Service 2</h3>
+        <p>Description of your service goes here. Highlighting strengths or track record helps.</p>
+      </article>
+      <article class="card">
+        <div class="card-num">03</div>
+        <h3>Service 3</h3>
+        <p>Description of your service goes here. Upcoming areas of business are fine too.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Company ===== -->
+  <section id="company" class="section section-alt">
+    <div class="section-head">
+      <p class="section-eyebrow">Company</p>
+      <h2 class="section-title">Company Profile</h2>
+    </div>
+    <table class="company-table">
+      <tbody>
+        <tr><th>Name</th><td>bomb LLC</td></tr>
+        <tr><th>Representative</th><td>(Name)</td></tr>
+        <tr><th>Founded</th><td>20XX</td></tr>
+        <tr><th>Address</th><td>(Address), Japan</td></tr>
+        <tr><th>Business</th><td>(Description)</td></tr>
+        <tr><th>Contact</th><td>info@example.com</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact" class="section contact">
+    <div class="section-head">
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="section-title">Contact</h2>
+    </div>
+    <p class="contact-lead">
+      For inquiries, please feel free to reach out via the email address below.
+    </p>
+    <a href="mailto:info@example.com" class="btn btn-primary btn-lg">info@example.com</a>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="footer-logo">bomb<span class="logo-dot">.</span></div>
+    <nav class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="credits.html">Credits</a>
+    </nav>
+    <div class="lang-switch">
+      <a href="../" data-lang="ja">日本語</a>
+      <span class="lang-sep">/</span>
+      <span class="lang-active">English</span>
+    </div>
+    <p class="copyright">&copy; <span id="year"></span> bomb LLC. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('[data-lang]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        try { localStorage.setItem('lang', this.getAttribute('data-lang')); } catch (e) {}
+      });
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

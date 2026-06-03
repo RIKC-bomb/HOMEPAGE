@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>クレジット | bomb合同会社</title>
+  <meta name="robots" content="index, follow, noai, noimageai" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">bomb<span class="logo-dot">.</span></a>
+    <nav class="nav">
+      <a href="index.html">ホーム</a>
+      <a href="en/credits.html" data-lang="en" class="lang-link">EN</a>
+    </nav>
+  </header>
+
+  <main class="legal">
+    <h1>クレジット</h1>
+    <p class="legal-lead">本サイトの制作・使用技術に関する表記です。</p>
+
+    <h2>制作</h2>
+    <p>bomb合同会社</p>
+
+    <h2>使用技術</h2>
+    <ul>
+      <li>HTML / CSS（外部依存なしの軽量構成）</li>
+      <li>フォント：各端末のシステムフォント</li>
+      <li>ホスティング：GitHub Pages</li>
+      <li>アクセス解析：Google Analytics</li>
+    </ul>
+
+    <p><a href="index.html" class="back-link">← トップへ戻る</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo">bomb<span class="logo-dot">.</span></div>
+    <p class="copyright">&copy; <span id="year"></span> bomb LLC. All rights reserved.</p>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
