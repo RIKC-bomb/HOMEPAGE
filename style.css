@@ -274,3 +274,29 @@ a { color: inherit; text-decoration: none; }
   .nav { gap: 14px; }
   .company-table th { width: 38%; }
 }
+
+/* ===== フルページ・スナップ（1画面ずつフリック/スクロール） ===== */
+/* :has(.hero) でトップページのみ有効。法務ページ等は通常スクロール */
+html:has(.hero) {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 56px;
+}
+.hero,
+.section,
+.site-footer {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.hero,
+.section {
+  min-height: 100svh;
+}
+.hero { justify-content: center; }
+/* 各パネルの中身を上下中央寄せ（レイアウトは保ったまま） */
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact .section-head,
+.contact .btn { align-self: center; }
