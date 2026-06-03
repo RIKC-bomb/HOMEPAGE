@@ -6,8 +6,12 @@
   <title>合同会社bomb</title>
   <meta name="description" content="合同会社bombのオフィシャルサイト。" />
   <meta name="robots" content="index, follow, noai, noimageai" />
+  <meta property="og:title" content="合同会社bomb" />
+  <meta property="og:site_name" content="合同会社bomb" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="合同会社bombのオフィシャルサイト。" />
 
-  <!-- 言語自動振り分け（ブラウザ言語ベース・手動選択を優先）。描画前に実行 -->
+  <!-- 言語自動振り分け（ブラウザ言語ベース・手動選択を優先） -->
   <script>
     (function () {
       try {
@@ -20,25 +24,56 @@
     })();
   </script>
 
-  <!-- リロードごとにフォントをランダム切替（和文） -->
+  <!-- リロードごとにフォントをランダム切替（和文・ゴシック/明朝/手書きを多数・可読性優先） -->
   <script>
     (function () {
       var fonts = [
-        { css: '"Yu Mincho", YuMincho, "Hiragino Mincho ProN", serif' },
         { css: '"Noto Sans JP", sans-serif', g: 'Noto+Sans+JP:wght@400;700;900' },
-        { css: '"Shippori Mincho", serif', g: 'Shippori+Mincho:wght@400;700;800' },
+        { css: '"Noto Serif JP", serif', g: 'Noto+Serif+JP:wght@400;700' },
         { css: '"Zen Kaku Gothic New", sans-serif', g: 'Zen+Kaku+Gothic+New:wght@400;700;900' },
-        { css: '"Yomogi", cursive', g: 'Yomogi' },
+        { css: '"Zen Old Mincho", serif', g: 'Zen+Old+Mincho:wght@400;700;900' },
+        { css: '"Shippori Mincho", serif', g: 'Shippori+Mincho:wght@400;700;800' },
+        { css: '"Zen Maru Gothic", sans-serif', g: 'Zen+Maru+Gothic:wght@400;700;900' },
+        { css: '"M PLUS 1p", sans-serif', g: 'M+PLUS+1p:wght@400;700;800' },
+        { css: '"M PLUS Rounded 1c", sans-serif', g: 'M+PLUS+Rounded+1c:wght@400;700' },
+        { css: '"BIZ UDPGothic", sans-serif', g: 'BIZ+UDPGothic:wght@400;700' },
+        { css: '"BIZ UDPMincho", serif', g: 'BIZ+UDPMincho' },
+        { css: '"IBM Plex Sans JP", sans-serif', g: 'IBM+Plex+Sans+JP:wght@400;700' },
+        { css: '"Murecho", sans-serif', g: 'Murecho:wght@400;700;800' },
+        { css: '"Kosugi Maru", sans-serif', g: 'Kosugi+Maru' },
+        { css: '"Sawarabi Mincho", serif', g: 'Sawarabi+Mincho' },
+        { css: '"Sawarabi Gothic", sans-serif', g: 'Sawarabi+Gothic' },
+        { css: '"Kaisei Decol", serif', g: 'Kaisei+Decol:wght@400;700' },
+        { css: '"Shippori Mincho B1", serif', g: 'Shippori+Mincho+B1:wght@400;700' },
         { css: '"Klee One", cursive', g: 'Klee+One:wght@400;600' },
-        { css: '"Zen Kurenaido", sans-serif', g: 'Zen+Kurenaido' }
+        { css: '"Yomogi", cursive', g: 'Yomogi' },
+        { css: '"Zen Kurenaido", sans-serif', g: 'Zen+Kurenaido' },
+        { css: '"Hina Mincho", serif', g: 'Hina+Mincho' },
+        { css: '"M PLUS 1", sans-serif', g: 'M+PLUS+1:wght@400;700;800' },
+        { css: '"M PLUS 2", sans-serif', g: 'M+PLUS+2:wght@400;700;800' },
+        { css: '"Zen Kaku Gothic Antique", sans-serif', g: 'Zen+Kaku+Gothic+Antique:wght@400;700;900' },
+        { css: '"BIZ UDGothic", sans-serif', g: 'BIZ+UDGothic:wght@400;700' },
+        { css: '"BIZ UDMincho", serif', g: 'BIZ+UDMincho' },
+        { css: '"Kosugi", sans-serif', g: 'Kosugi' },
+        { css: '"Kiwi Maru", serif', g: 'Kiwi+Maru:wght@400;500' },
+        { css: '"New Tegomin", serif', g: 'New+Tegomin' },
+        { css: '"Kaisei Opti", serif', g: 'Kaisei+Opti:wght@400;700' },
+        { css: '"Kaisei Tokumin", serif', g: 'Kaisei+Tokumin:wght@400;700' },
+        { css: '"Kaisei HarunoUmi", serif', g: 'Kaisei+HarunoUmi:wght@400;700' },
+        { css: '"Yuji Syuku", serif', g: 'Yuji+Syuku' },
+        { css: '"Yuji Boku", serif', g: 'Yuji+Boku' },
+        { css: '"Yusei Magic", sans-serif', g: 'Yusei+Magic' },
+        { css: '"Dela Gothic One", sans-serif', g: 'Dela+Gothic+One' },
+        { css: '"Reggae One", sans-serif', g: 'Reggae+One' },
+        { css: '"RocknRoll One", sans-serif', g: 'RocknRoll+One' },
+        { css: '"Potta One", sans-serif', g: 'Potta+One' },
+        { css: '"Stick", sans-serif', g: 'Stick' }
       ];
       var f = fonts[Math.floor(Math.random() * fonts.length)];
-      if (f.g) {
-        var l = document.createElement('link');
-        l.rel = 'stylesheet';
-        l.href = 'https://fonts.googleapis.com/css2?family=' + f.g + '&display=swap';
-        document.head.appendChild(l);
-      }
+      var l = document.createElement('link');
+      l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=' + f.g + '&display=swap';
+      document.head.appendChild(l);
       document.documentElement.style.setProperty('--font', f.css);
     })();
   </script>
@@ -63,104 +98,111 @@
     </nav>
   </header>
 
-  <!-- ===== ヒーロー ===== -->
-  <section id="top" class="hero">
-    <p class="hero-eyebrow">bomb LLC</p>
-    <h1 class="hero-title">bomb</h1>
-    <div class="hero-words">
-      <span>perspective</span>
-      <span>product</span>
-      <span>books</span>
-      <span>script</span>
-      <span>analytics</span>
-    </div>
-    <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">お問い合わせ</a>
-      <a href="#about" class="btn btn-ghost">事業内容を見る</a>
-    </div>
-  </section>
+  <!-- 横移動の矢印 -->
+  <button class="deck-arrow prev hidden" type="button" aria-label="前へ">&lsaquo;</button>
+  <button class="deck-arrow next" type="button" aria-label="次へ">&rsaquo;</button>
 
-  <!-- ===== 事業内容 ===== -->
-  <section id="about" class="section">
-    <div class="section-head">
-      <p class="section-eyebrow">Services</p>
-      <h2 class="section-title">事業内容</h2>
-    </div>
-    <div class="cards">
-      <article class="card">
-        <div class="card-num">01</div>
-        <h3>bomb perspective</h3>
-        <p>（サービス内容の説明が入ります）</p>
-      </article>
-      <article class="card">
-        <div class="card-num">02</div>
-        <h3>bomb product</h3>
-        <p>（サービス内容の説明が入ります）</p>
-      </article>
-      <article class="card">
-        <div class="card-num">03</div>
-        <h3>bomb books</h3>
-        <p>（サービス内容の説明が入ります）</p>
-      </article>
-      <article class="card">
-        <div class="card-num">04</div>
-        <h3>bomb script</h3>
-        <p>（サービス内容の説明が入ります）</p>
-      </article>
-      <article class="card">
-        <div class="card-num">05</div>
-        <h3>bomb analytics</h3>
-        <p>（サービス内容の説明が入ります）</p>
-      </article>
-    </div>
-  </section>
+  <!-- ===== 横スクロール（巻物）デッキ ===== -->
+  <div class="h-track">
+    <div class="h-sticky">
+      <div class="h-rail">
 
-  <!-- ===== 会社概要 ===== -->
-  <section id="company" class="section section-alt">
-    <div class="section-head">
-      <p class="section-eyebrow">About</p>
-      <h2 class="section-title">会社概要</h2>
-    </div>
-    <table class="company-table">
-      <tbody>
-        <tr><th>商号</th><td>合同会社bomb</td></tr>
-        <tr><th>代表社員</th><td>佐藤陸</td></tr>
-        <tr><th>設立</th><td>2026年4月1日</td></tr>
-        <tr><th>所在地</th><td>〒XXX-XXXX （住所）</td></tr>
-        <tr><th>事業内容</th><td>（事業内容を記載）</td></tr>
-        <tr><th>連絡先</th><td>info@example.com</td></tr>
-      </tbody>
-    </table>
-    <p class="company-note">私たちが見据えているもの — <a href="https://ja.wikipedia.org/wiki/%E5%9C%B0%E7%90%83%E3%81%AE%E6%9C%AA%E6%9D%A5" target="_blank" rel="noopener">地球の未来</a> ↗</p>
-  </section>
+        <!-- ヒーロー -->
+        <section id="top" class="panel hero">
+          <div class="wrap">
+            <p class="hero-eyebrow">bomb LLC</p>
+            <h1 class="hero-title">bomb</h1>
+            <div class="hero-words">
+              <span>perspective</span>
+              <span>product</span>
+              <span>books</span>
+              <span>script</span>
+              <span>analytics</span>
+            </div>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">お問い合わせ</a>
+              <a href="#about" class="btn btn-ghost">事業内容を見る</a>
+            </div>
+          </div>
+        </section>
 
-  <!-- ===== お問い合わせ ===== -->
-  <section id="contact" class="section contact">
-    <div class="section-head">
-      <p class="section-eyebrow">Contact</p>
-      <h2 class="section-title">お問い合わせ</h2>
-    </div>
-    <p class="contact-lead">
-      ご相談・ご依頼は、下記メールアドレスまでお気軽にご連絡ください。
-    </p>
-    <a href="mailto:info@example.com" class="btn btn-primary btn-lg">info@example.com</a>
-  </section>
+        <!-- 事業内容 -->
+        <section id="about" class="panel">
+          <div class="wrap">
+            <div class="section-head">
+              <p class="section-eyebrow">Services</p>
+              <h2 class="section-title">事業内容</h2>
+            </div>
+            <div class="cards">
+              <article class="card"><div class="card-num">01</div><h3>bomb perspective</h3><p>（説明）</p></article>
+              <article class="card"><div class="card-num">02</div><h3>bomb product</h3><p>（説明）</p></article>
+              <article class="card"><div class="card-num">03</div><h3>bomb books</h3><p>（説明）</p></article>
+              <article class="card"><div class="card-num">04</div><h3>bomb script</h3><p>（説明）</p></article>
+              <article class="card"><div class="card-num">05</div><h3>bomb analytics</h3><p>（説明）</p></article>
+            </div>
+          </div>
+        </section>
 
-  <!-- ===== フッター ===== -->
-  <footer class="site-footer">
-    <div class="footer-logo">bomb</div>
-    <nav class="footer-links">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="legal.html">Legal notices</a>
-      <a href="credits.html">Credits</a>
-    </nav>
-    <div class="lang-switch">
-      <span class="lang-active">日本語</span>
-      <span class="lang-sep">/</span>
-      <a href="en/" data-lang="en">English</a>
+        <!-- 会社概要 -->
+        <section id="company" class="panel panel-alt">
+          <div class="wrap">
+            <div class="section-head">
+              <p class="section-eyebrow">About</p>
+              <h2 class="section-title">会社概要</h2>
+            </div>
+            <table class="company-table">
+              <tbody>
+                <tr><th>商号</th><td>合同会社bomb</td></tr>
+                <tr><th>代表社員</th><td>佐藤陸</td></tr>
+                <tr><th>設立</th><td>2026年4月1日</td></tr>
+                <tr><th>所在地</th><td>〒XXX-XXXX （住所）</td></tr>
+                <tr><th>事業内容</th><td>（事業内容を記載）</td></tr>
+                <tr><th>連絡先</th><td>info@example.com</td></tr>
+              </tbody>
+            </table>
+            <p class="company-note">私たちが見据えているもの — <a href="https://ja.wikipedia.org/wiki/%E5%9C%B0%E7%90%83%E3%81%AE%E6%9C%AA%E6%9D%A5" target="_blank" rel="noopener">地球の未来</a> ↗</p>
+          </div>
+        </section>
+
+        <!-- お問い合わせ -->
+        <section id="contact" class="panel contact">
+          <div class="wrap">
+            <div class="section-head">
+              <p class="section-eyebrow">Contact</p>
+              <h2 class="section-title">お問い合わせ</h2>
+            </div>
+            <p class="contact-lead">ご相談・ご依頼は、下記メールアドレスまでお気軽にご連絡ください。</p>
+            <a href="mailto:info@example.com" class="btn btn-primary btn-lg">info@example.com</a>
+          </div>
+        </section>
+
+        <!-- フッター -->
+        <footer class="panel site-footer">
+          <div class="wrap">
+            <div class="footer-logo">bomb</div>
+            <nav class="footer-links">
+              <a href="privacy.html">Privacy Policy</a>
+              <a href="legal.html">Legal notices</a>
+              <a href="credits.html">Credits</a>
+            </nav>
+            <div class="lang-switch">
+              <span class="lang-active">日本語</span>
+              <span class="lang-sep">/</span>
+              <a href="en/" data-lang="en">English</a>
+            </div>
+            <p class="copyright">&copy; <span id="year"></span> bomb LLC. All rights reserved.</p>
+          </div>
+        </footer>
+
+      </div>
     </div>
-    <p class="copyright">&copy; <span id="year"></span> bomb LLC. All rights reserved.</p>
-  </footer>
+  </div>
+
+  <!-- ページ位置ドット -->
+  <nav class="dots" aria-label="セクション"></nav>
+
+  <!-- 横移動のヒント -->
+  <div class="scroll-hint">スクロールで横に動きます →</div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -169,15 +211,7 @@
         try { localStorage.setItem('lang', this.getAttribute('data-lang')); } catch (e) {}
       });
     });
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
   </script>
+  <script src="deck.js"></script>
 </body>
 </html>

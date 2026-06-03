@@ -6,6 +6,9 @@
   <title>bomb LLC</title>
   <meta name="description" content="Official website of bomb LLC." />
   <meta name="robots" content="index, follow, noai, noimageai" />
+  <meta property="og:title" content="bomb LLC" />
+  <meta property="og:site_name" content="bomb LLC" />
+  <meta property="og:type" content="website" />
 
   <!-- Language routing: respect a manual choice of Japanese -->
   <script>
@@ -16,7 +19,7 @@
     })();
   </script>
 
-  <!-- Random handwriting font on every reload (English) -->
+  <!-- Random handwriting font on every reload (large pool) -->
   <script>
     (function () {
       var fonts = [
@@ -24,8 +27,38 @@
         { css: '"Architects Daughter", cursive', g: 'Architects+Daughter' },
         { css: '"Patrick Hand", cursive', g: 'Patrick+Hand' },
         { css: '"Shadows Into Light", cursive', g: 'Shadows+Into+Light' },
-        { css: '"Kalam", cursive', g: 'Kalam:wght@400;700' },
-        { css: '"Gloria Hallelujah", cursive', g: 'Gloria+Hallelujah' }
+        { css: '"Kalam", cursive', g: 'Kalam:wght@300;400;700' },
+        { css: '"Gloria Hallelujah", cursive', g: 'Gloria+Hallelujah' },
+        { css: '"Indie Flower", cursive', g: 'Indie+Flower' },
+        { css: '"Caveat Brush", cursive', g: 'Caveat+Brush' },
+        { css: '"Gochi Hand", cursive', g: 'Gochi+Hand' },
+        { css: '"Reenie Beanie", cursive', g: 'Reenie+Beanie' },
+        { css: '"Nanum Pen Script", cursive', g: 'Nanum+Pen+Script' },
+        { css: '"Permanent Marker", cursive', g: 'Permanent+Marker' },
+        { css: '"Sriracha", cursive', g: 'Sriracha' },
+        { css: '"Handlee", cursive', g: 'Handlee' },
+        { css: '"Coming Soon", cursive', g: 'Coming+Soon' },
+        { css: '"Just Another Hand", cursive', g: 'Just+Another+Hand' },
+        { css: '"Dancing Script", cursive', g: 'Dancing+Script:wght@400;700' },
+        { css: '"Pacifico", cursive', g: 'Pacifico' },
+        { css: '"Satisfy", cursive', g: 'Satisfy' },
+        { css: '"Kaushan Script", cursive', g: 'Kaushan+Script' },
+        { css: '"Gaegu", cursive', g: 'Gaegu:wght@300;400;700' },
+        { css: '"Neucha", cursive', g: 'Neucha' },
+        { css: '"Schoolbell", cursive', g: 'Schoolbell' },
+        { css: '"Walter Turncoat", cursive', g: 'Walter+Turncoat' },
+        { css: '"Short Stack", cursive', g: 'Short+Stack' },
+        { css: '"Sue Ellen Francisco", cursive', g: 'Sue+Ellen+Francisco' },
+        { css: '"Cookie", cursive', g: 'Cookie' },
+        { css: '"Marck Script", cursive', g: 'Marck+Script' },
+        { css: '"Homemade Apple", cursive', g: 'Homemade+Apple' },
+        { css: '"Rock Salt", cursive', g: 'Rock+Salt' },
+        { css: '"La Belle Aurore", cursive', g: 'La+Belle+Aurore' },
+        { css: '"Mansalva", cursive', g: 'Mansalva' },
+        { css: '"Delius", cursive', g: 'Delius' },
+        { css: '"Itim", cursive', g: 'Itim' },
+        { css: '"Comforter", cursive', g: 'Comforter' },
+        { css: '"Bad Script", cursive', g: 'Bad+Script' }
       ];
       var f = fonts[Math.floor(Math.random() * fonts.length)];
       var l = document.createElement('link');
@@ -48,7 +81,6 @@
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-  <!-- ===== Header ===== -->
   <header class="site-header">
     <a href="#top" class="logo">bomb</a>
     <nav class="nav">
@@ -56,104 +88,101 @@
     </nav>
   </header>
 
-  <!-- ===== Hero ===== -->
-  <section id="top" class="hero">
-    <p class="hero-eyebrow">bomb LLC</p>
-    <h1 class="hero-title">bomb</h1>
-    <div class="hero-words">
-      <span>perspective</span>
-      <span>product</span>
-      <span>books</span>
-      <span>script</span>
-      <span>analytics</span>
-    </div>
-    <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">Contact</a>
-      <a href="#about" class="btn btn-ghost">Our Services</a>
-    </div>
-  </section>
+  <button class="deck-arrow prev hidden" type="button" aria-label="Previous">&lsaquo;</button>
+  <button class="deck-arrow next" type="button" aria-label="Next">&rsaquo;</button>
 
-  <!-- ===== Services ===== -->
-  <section id="about" class="section">
-    <div class="section-head">
-      <p class="section-eyebrow">Services</p>
-      <h2 class="section-title">Services</h2>
-    </div>
-    <div class="cards">
-      <article class="card">
-        <div class="card-num">01</div>
-        <h3>bomb perspective</h3>
-        <p>(Description coming soon.)</p>
-      </article>
-      <article class="card">
-        <div class="card-num">02</div>
-        <h3>bomb product</h3>
-        <p>(Description coming soon.)</p>
-      </article>
-      <article class="card">
-        <div class="card-num">03</div>
-        <h3>bomb books</h3>
-        <p>(Description coming soon.)</p>
-      </article>
-      <article class="card">
-        <div class="card-num">04</div>
-        <h3>bomb script</h3>
-        <p>(Description coming soon.)</p>
-      </article>
-      <article class="card">
-        <div class="card-num">05</div>
-        <h3>bomb analytics</h3>
-        <p>(Description coming soon.)</p>
-      </article>
-    </div>
-  </section>
+  <div class="h-track">
+    <div class="h-sticky">
+      <div class="h-rail">
 
-  <!-- ===== Company ===== -->
-  <section id="company" class="section section-alt">
-    <div class="section-head">
-      <p class="section-eyebrow">About</p>
-      <h2 class="section-title">Company Profile</h2>
-    </div>
-    <table class="company-table">
-      <tbody>
-        <tr><th>Name</th><td>bomb LLC</td></tr>
-        <tr><th>Representative</th><td>Riku Sato</td></tr>
-        <tr><th>Founded</th><td>April 1, 2026</td></tr>
-        <tr><th>Address</th><td>(Address), Japan</td></tr>
-        <tr><th>Business</th><td>(Description)</td></tr>
-        <tr><th>Contact</th><td>info@example.com</td></tr>
-      </tbody>
-    </table>
-    <p class="company-note">What we look toward — <a href="https://en.wikipedia.org/wiki/Future_of_Earth" target="_blank" rel="noopener">The Future of the Earth</a> ↗</p>
-  </section>
+        <section id="top" class="panel hero">
+          <div class="wrap">
+            <p class="hero-eyebrow">bomb LLC</p>
+            <h1 class="hero-title">bomb</h1>
+            <div class="hero-words">
+              <span>perspective</span>
+              <span>product</span>
+              <span>books</span>
+              <span>script</span>
+              <span>analytics</span>
+            </div>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Contact</a>
+              <a href="#about" class="btn btn-ghost">Our Services</a>
+            </div>
+          </div>
+        </section>
 
-  <!-- ===== Contact ===== -->
-  <section id="contact" class="section contact">
-    <div class="section-head">
-      <p class="section-eyebrow">Contact</p>
-      <h2 class="section-title">Contact</h2>
-    </div>
-    <p class="contact-lead">
-      For inquiries, please feel free to reach out via the email address below.
-    </p>
-    <a href="mailto:info@example.com" class="btn btn-primary btn-lg">info@example.com</a>
-  </section>
+        <section id="about" class="panel">
+          <div class="wrap">
+            <div class="section-head">
+              <p class="section-eyebrow">Services</p>
+              <h2 class="section-title">Services</h2>
+            </div>
+            <div class="cards">
+              <article class="card"><div class="card-num">01</div><h3>bomb perspective</h3><p>(Coming soon.)</p></article>
+              <article class="card"><div class="card-num">02</div><h3>bomb product</h3><p>(Coming soon.)</p></article>
+              <article class="card"><div class="card-num">03</div><h3>bomb books</h3><p>(Coming soon.)</p></article>
+              <article class="card"><div class="card-num">04</div><h3>bomb script</h3><p>(Coming soon.)</p></article>
+              <article class="card"><div class="card-num">05</div><h3>bomb analytics</h3><p>(Coming soon.)</p></article>
+            </div>
+          </div>
+        </section>
 
-  <!-- ===== Footer ===== -->
-  <footer class="site-footer">
-    <div class="footer-logo">bomb</div>
-    <nav class="footer-links">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="legal.html">Legal notices</a>
-      <a href="credits.html">Credits</a>
-    </nav>
-    <div class="lang-switch">
-      <a href="../" data-lang="ja">日本語</a>
-      <span class="lang-sep">/</span>
-      <span class="lang-active">English</span>
+        <section id="company" class="panel panel-alt">
+          <div class="wrap">
+            <div class="section-head">
+              <p class="section-eyebrow">About</p>
+              <h2 class="section-title">Company Profile</h2>
+            </div>
+            <table class="company-table">
+              <tbody>
+                <tr><th>Name</th><td>bomb LLC</td></tr>
+                <tr><th>Representative</th><td>Riku Sato</td></tr>
+                <tr><th>Founded</th><td>April 1, 2026</td></tr>
+                <tr><th>Address</th><td>(Address), Japan</td></tr>
+                <tr><th>Business</th><td>(Description)</td></tr>
+                <tr><th>Contact</th><td>info@example.com</td></tr>
+              </tbody>
+            </table>
+            <p class="company-note">What we look toward — <a href="https://en.wikipedia.org/wiki/Future_of_Earth" target="_blank" rel="noopener">The Future of the Earth</a> ↗</p>
+          </div>
+        </section>
+
+        <section id="contact" class="panel contact">
+          <div class="wrap">
+            <div class="section-head">
+              <p class="section-eyebrow">Contact</p>
+              <h2 class="section-title">Contact</h2>
+            </div>
+            <p class="contact-lead">For inquiries, please feel free to reach out via the email address below.</p>
+            <a href="mailto:info@example.com" class="btn btn-primary btn-lg">info@example.com</a>
+          </div>
+        </section>
+
+        <footer class="panel site-footer">
+          <div class="wrap">
+            <div class="footer-logo">bomb</div>
+            <nav class="footer-links">
+              <a href="privacy.html">Privacy Policy</a>
+              <a href="legal.html">Legal notices</a>
+              <a href="credits.html">Credits</a>
+            </nav>
+            <div class="lang-switch">
+              <a href="../" data-lang="ja">日本語</a>
+              <span class="lang-sep">/</span>
+              <span class="lang-active">English</span>
+            </div>
+            <p class="copyright">&copy; <span id="year"></span> bomb LLC. All rights reserved.</p>
+          </div>
+        </footer>
+
+      </div>
     </div>
-    <p class="copyright">&copy; <span id="year"></span> bomb LLC. All rights reserved.</p>
-  </footer>
+  </div>
+
+  <nav class="dots" aria-label="Sections"></nav>
+  <div class="scroll-hint">scroll to move sideways →</div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -162,15 +191,7 @@
         try { localStorage.setItem('lang', this.getAttribute('data-lang')); } catch (e) {}
       });
     });
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
   </script>
+  <script src="../deck.js"></script>
 </body>
 </html>
