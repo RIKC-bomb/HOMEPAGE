@@ -20,6 +20,29 @@
     })();
   </script>
 
+  <!-- リロードごとにフォントをランダム切替（和文） -->
+  <script>
+    (function () {
+      var fonts = [
+        { css: '"Yu Mincho", YuMincho, "Hiragino Mincho ProN", serif' },
+        { css: '"Noto Sans JP", sans-serif', g: 'Noto+Sans+JP:wght@400;700;900' },
+        { css: '"Shippori Mincho", serif', g: 'Shippori+Mincho:wght@400;700;800' },
+        { css: '"Zen Kaku Gothic New", sans-serif', g: 'Zen+Kaku+Gothic+New:wght@400;700;900' },
+        { css: '"Yomogi", cursive', g: 'Yomogi' },
+        { css: '"Klee One", cursive', g: 'Klee+One:wght@400;600' },
+        { css: '"Zen Kurenaido", sans-serif', g: 'Zen+Kurenaido' }
+      ];
+      var f = fonts[Math.floor(Math.random() * fonts.length)];
+      if (f.g) {
+        var l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = 'https://fonts.googleapis.com/css2?family=' + f.g + '&display=swap';
+        document.head.appendChild(l);
+      }
+      document.documentElement.style.setProperty('--font', f.css);
+    })();
+  </script>
+
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSG4890EV9"></script>
   <script>

@@ -14,8 +14,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  /* 游明朝系（端末標準フォントで軽量・外部読み込みなし） */
-  font-family: "Yu Mincho", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS PMincho", serif;
+  /* リロードごとにJSが --font を差し替え。未設定時は游明朝系にフォールバック */
+  font-family: var(--font, "Yu Mincho", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS PMincho", serif);
   color: var(--ink);
   background: var(--bg);
   line-height: 1.9;
