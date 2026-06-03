@@ -1,4 +1,4 @@
-// ネイティブ横スクロール。PCはホイール(縦)を横へ変換、スマホは横スワイプで滑らかに。
+// 連続・ぬるぬる横スクロール。ホイール/トラックパッドはイージング、スマホはネイティブ慣性。
 (function () {
   var deck = document.querySelector('.deck');
   if (!deck) return;
@@ -9,6 +9,11 @@
   var hint = document.querySelector('.scroll-hint');
   var dots = [];
 
+  var targetX = deck.scrollLeft;
+  var raf = null;
+  var animating = false;
+
+  function clampX(x) { return Math.max(0, Math.min(deck.scrollWidth - deck.clientWidth, x)); }
   function index() { return Math.round(deck.scrollLeft / deck.clientWidth); }
 
   function update() {
@@ -19,18 +24,45 @@
     if (hint && deck.scrollLeft > 12) hint.classList.add('gone');
   }
 
+  function loop() {
+    var diff = targetX - deck.scrollLeft;
+    if (Math.abs(diff) < 0.5) {
+      deck.scrollLeft = targetX;
+      animating = false; raf = null;
+      update();
+      return;
+    }
+    deck.scrollLeft += diff * 0.16; // イージング係数（小さいほどゆっくり滑る）
+    update();
+    raf = requestAnimationFrame(loop);
+  }
+  function start() { if (!animating) { animating = true; raf = requestAnimationFrame(loop); } }
+
   function go(i) {
     i = Math.max(0, Math.min(panels.length - 1, i));
-    deck.scrollTo({ left: i * deck.clientWidth, behavior: 'smooth' });
+    targetX = clampX(i * deck.clientWidth);
+    start();
   }
 
-  // マウスホイール（縦回転）→ 横スクロールへ変換
+  // ホイール／トラックパッド（縦回転も横へ）→ イージングで滑らかに
   deck.addEventListener('wheel', function (e) {
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      deck.scrollLeft += e.deltaY;
-      e.preventDefault();
-    }
+    var d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+    if (e.deltaMode === 1) d *= 16; // 行単位の場合はpxへ概算
+    targetX = clampX(targetX + d);
+    e.preventDefault();
+    start();
   }, { passive: false });
+
+  // タッチ中はネイティブの慣性スクロールに任せる
+  deck.addEventListener('touchstart', function () {
+    if (raf) { cancelAnimationFrame(raf); raf = null; animating = false; }
+    targetX = deck.scrollLeft;
+  }, { passive: true });
+
+  deck.addEventListener('scroll', function () {
+    if (!animating) targetX = deck.scrollLeft;
+    window.requestAnimationFrame(update);
+  }, { passive: true });
 
   if (dotsWrap) {
     panels.forEach(function (p, i) {
@@ -46,7 +78,6 @@
   if (prevBtn) prevBtn.addEventListener('click', function () { go(index() - 1); });
   if (nextBtn) nextBtn.addEventListener('click', function () { go(index() + 1); });
 
-  // ページ内リンク（#about 等）→ 該当パネルへ横移動
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var id = this.getAttribute('href').slice(1);
@@ -57,12 +88,11 @@
     });
   });
 
-  deck.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
-  window.addEventListener('resize', update);
   window.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight') { e.preventDefault(); go(index() + 1); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); go(index() - 1); }
   });
+  window.addEventListener('resize', function () { targetX = clampX(targetX); update(); });
 
   update();
 })();
