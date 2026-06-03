@@ -1,66 +1,71 @@
-// 連続・ぬるぬる横スクロール。ホイール/トラックパッドはイージング、スマホはネイティブ慣性。
+// 縦スクロール→横移動はCSS(スクロール駆動アニメ)。PCホイールに強めの慣性(イージング)を付与。
 (function () {
-  var deck = document.querySelector('.deck');
-  if (!deck) return;
-  var panels = Array.prototype.slice.call(deck.querySelectorAll('.panel'));
+  var track = document.querySelector('.scroll-track');
+  if (!track) return;
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+  var n = panels.length;
   var dotsWrap = document.querySelector('.dots');
   var prevBtn = document.querySelector('.deck-arrow.prev');
   var nextBtn = document.querySelector('.deck-arrow.next');
   var hint = document.querySelector('.scroll-hint');
   var dots = [];
 
-  var targetX = deck.scrollLeft;
-  var raf = null;
-  var animating = false;
+  var EASE = 0.075;  // 小さいほど長く滑る
+  var SPEED = 1.15;  // ホイール1刻みの移動量
+  var targetY = window.scrollY, animating = false, raf = null, touching = false;
 
-  function clampX(x) { return Math.max(0, Math.min(deck.scrollWidth - deck.clientWidth, x)); }
-  function index() { return Math.round(deck.scrollLeft / deck.clientWidth); }
+  function maxScroll() { return Math.max(1, document.documentElement.scrollHeight - window.innerHeight); }
+  function clampY(y) { return Math.max(0, Math.min(maxScroll(), y)); }
+  function index() { return Math.round((window.scrollY / maxScroll()) * (n - 1)); }
 
   function update() {
     var i = index();
     for (var k = 0; k < dots.length; k++) dots[k].classList.toggle('active', k === i);
-    if (prevBtn) prevBtn.classList.toggle('hidden', deck.scrollLeft <= 2);
-    if (nextBtn) nextBtn.classList.toggle('hidden', deck.scrollLeft >= deck.scrollWidth - deck.clientWidth - 2);
-    if (hint && deck.scrollLeft > 12) hint.classList.add('gone');
+    if (prevBtn) prevBtn.classList.toggle('hidden', window.scrollY <= 2);
+    if (nextBtn) nextBtn.classList.toggle('hidden', window.scrollY >= maxScroll() - 2);
+    if (hint && window.scrollY > 12) hint.classList.add('gone');
   }
 
   function loop() {
-    var diff = targetX - deck.scrollLeft;
+    var cur = window.scrollY;
+    var diff = targetY - cur;
     if (Math.abs(diff) < 0.5) {
-      deck.scrollLeft = targetX;
-      animating = false; raf = null;
-      update();
+      window.scrollTo(0, Math.round(targetY));
+      animating = false; raf = null; update();
       return;
     }
-    deck.scrollLeft += diff * 0.16; // イージング係数（小さいほどゆっくり滑る）
+    window.scrollTo(0, cur + diff * EASE);
     update();
     raf = requestAnimationFrame(loop);
   }
   function start() { if (!animating) { animating = true; raf = requestAnimationFrame(loop); } }
 
   function go(i) {
-    i = Math.max(0, Math.min(panels.length - 1, i));
-    targetX = clampX(i * deck.clientWidth);
+    i = Math.max(0, Math.min(n - 1, i));
+    targetY = clampY((i / (n - 1)) * maxScroll());
     start();
   }
 
-  // ホイール／トラックパッド（縦回転も横へ）→ イージングで滑らかに
-  deck.addEventListener('wheel', function (e) {
+  // PCホイール/トラックパッド → 慣性つきで縦スクロール（CSSが横へ変換）
+  window.addEventListener('wheel', function (e) {
+    if (touching) return;
     var d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-    if (e.deltaMode === 1) d *= 16; // 行単位の場合はpxへ概算
-    targetX = clampX(targetX + d);
+    if (e.deltaMode === 1) d *= 16;
+    targetY = clampY(targetY + d * SPEED);
     e.preventDefault();
     start();
   }, { passive: false });
 
-  // タッチ中はネイティブの慣性スクロールに任せる
-  deck.addEventListener('touchstart', function () {
+  // スマホはネイティブ慣性に委譲
+  window.addEventListener('touchstart', function () {
+    touching = true;
     if (raf) { cancelAnimationFrame(raf); raf = null; animating = false; }
-    targetX = deck.scrollLeft;
+    targetY = window.scrollY;
   }, { passive: true });
+  window.addEventListener('touchend', function () { touching = false; targetY = window.scrollY; }, { passive: true });
 
-  deck.addEventListener('scroll', function () {
-    if (!animating) targetX = deck.scrollLeft;
+  window.addEventListener('scroll', function () {
+    if (!animating) targetY = window.scrollY;
     window.requestAnimationFrame(update);
   }, { passive: true });
 
@@ -89,10 +94,10 @@
   });
 
   window.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowRight') { e.preventDefault(); go(index() + 1); }
-    else if (e.key === 'ArrowLeft') { e.preventDefault(); go(index() - 1); }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); go(index() + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(index() - 1); }
   });
-  window.addEventListener('resize', function () { targetX = clampX(targetX); update(); });
+  window.addEventListener('resize', function () { targetY = clampY(targetY); update(); });
 
   update();
 })();

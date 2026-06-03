@@ -38,6 +38,8 @@ a { color: inherit; text-decoration: none; }
 }
 .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: 0.02em; }
 .nav { display: flex; gap: clamp(16px, 3vw, 36px); align-items: center; }
+.nav a { font-size: 0.9rem; font-weight: 600; color: var(--muted); transition: color 0.2s; }
+.nav a:hover { color: var(--ink); }
 
 /* ===== ボタン ===== */
 .btn {
@@ -55,18 +57,10 @@ a { color: inherit; text-decoration: none; }
 .btn-ghost:hover { background: var(--ink); color: #fff; }
 .btn-lg { padding: 18px 40px; font-size: 1.05rem; }
 
-/* ===== 横スクロール（巻物）デッキ：ネイティブ横スクロールで滑らかに ===== */
-.deck {
-  display: flex;
-  width: 100vw;
-  height: 100svh;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-}
-.deck::-webkit-scrollbar { display: none; }
+/* ===== 横スクロール（巻物）：CSSスクロール駆動で 縦スク→横移動＆滑らか ===== */
+.scroll-track { position: relative; }
+.scroll-sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.rail { display: flex; height: 100svh; width: max-content; }
 .panel {
   flex: 0 0 100vw;
   width: 100vw;
@@ -80,6 +74,23 @@ a { color: inherit; text-decoration: none; }
 }
 .panel-alt { background: #fafafa; }
 .wrap { width: 100%; max-width: var(--max); }
+
+@supports (animation-timeline: scroll()) {
+  .scroll-track { height: 500svh; } /* 5パネル分の縦スクロール量 */
+  .rail {
+    animation: rail-move linear both;
+    animation-timeline: scroll(root block);
+  }
+  @keyframes rail-move {
+    to { transform: translateX(calc(-100% + 100vw)); }
+  }
+}
+@supports not (animation-timeline: scroll()) {
+  /* 非対応ブラウザは縦積みにフォールバック */
+  .scroll-sticky { position: static; height: auto; overflow: visible; }
+  .rail { display: block; width: auto; height: auto; }
+  .panel { width: 100%; }
+}
 
 /* ===== ヒーロー ===== */
 .hero { text-align: center; }
