@@ -1,0 +1,210 @@
+/* ===== ベース ===== */
+:root {
+  --bg: #ffffff;
+  --ink: #0a0a0a;
+  --muted: #6b6b6b;
+  --line: #ececec;
+  --accent: #ff3b2f; /* bombらしい赤。ブランドカラーに合わせて変更OK */
+  --accent-dark: #d92114;
+  --max: 1080px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ===== ヘッダー ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(20px, 5vw, 48px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-family: "Outfit", sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.logo-dot { color: var(--accent); }
+
+.nav { display: flex; gap: clamp(16px, 3vw, 36px); }
+.nav a {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.nav a:hover { color: var(--ink); }
+
+/* ===== ボタン ===== */
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(255, 59, 47, 0.28);
+}
+.btn-primary:hover { background: var(--accent-dark); }
+.btn-ghost {
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+}
+.btn-ghost:hover { background: var(--ink); color: #fff; }
+.btn-lg { padding: 18px 40px; font-size: 1.05rem; }
+
+/* ===== ヒーロー ===== */
+.hero {
+  padding: clamp(80px, 14vw, 160px) clamp(20px, 5vw, 48px);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.hero-eyebrow {
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+}
+.hero-lead {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ===== セクション共通 ===== */
+.section {
+  padding: clamp(64px, 10vw, 120px) clamp(20px, 5vw, 48px);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.section-alt {
+  max-width: none;
+  background: #fafafa;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.section-alt > * { max-width: var(--max); margin-left: auto; margin-right: auto; }
+.section-head { margin-bottom: 48px; }
+.section-eyebrow {
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+}
+
+/* ===== カード ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+.card {
+  padding: 36px 30px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  transition: transform 0.2s, box-shadow 0.25s, border-color 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  border-color: transparent;
+}
+.card-num {
+  font-family: "Outfit", sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+.card p { color: var(--muted); font-size: 0.95rem; }
+
+/* ===== 会社概要テーブル ===== */
+.company-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.company-table th,
+.company-table td {
+  text-align: left;
+  padding: 18px 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.company-table th {
+  width: 30%;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.company-table td { color: var(--muted); }
+
+/* ===== お問い合わせ ===== */
+.contact { text-align: center; }
+.contact .section-head { display: inline-block; text-align: left; }
+.contact-lead { color: var(--muted); margin-bottom: 32px; }
+
+/* ===== フッター ===== */
+.site-footer {
+  text-align: center;
+  padding: 56px 24px;
+  border-top: 1px solid var(--line);
+}
+.footer-logo {
+  font-family: "Outfit", sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+.copyright { color: var(--muted); font-size: 0.85rem; }
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 560px) {
+  .nav { gap: 14px; }
+  .nav a { font-size: 0.82rem; }
+  .company-table th { width: 38%; }
+}
