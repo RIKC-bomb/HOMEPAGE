@@ -3,15 +3,1063 @@
   "children": [
     {
       "type": "frame",
-      "id": "bi8Au",
-      "x": 0,
+      "id": "P40tf",
+      "x": 880,
       "y": 0,
-      "name": "Frame",
-      "clip": true,
-      "width": 800,
-      "height": 600,
-      "fill": "#FFFFFF",
-      "layout": "none"
+      "name": "bomb-site (Desktop)",
+      "width": 1440,
+      "fill": "#ffffff",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "AOoMf",
+          "name": "Header",
+          "width": "fill_container",
+          "fill": "#ffffff",
+          "stroke": "#ececec",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "padding": [
+            18,
+            48
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "OS5jp",
+              "name": "Logo",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "T1ny2d",
+                  "name": "Logo bomb",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 24,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "oLGIE",
+              "name": "Nav",
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "FBwwA",
+                  "name": "ホーム",
+                  "fill": "#6b6b6b",
+                  "content": "Home",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 15,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "EoS3v",
+                  "name": "事業内容",
+                  "fill": "#6b6b6b",
+                  "content": "Services",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 15,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "PhSI8",
+                  "name": "会社概要",
+                  "fill": "#6b6b6b",
+                  "content": "Company",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 15,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "mRrQr",
+                  "name": "お問い合わせ",
+                  "fill": "#6b6b6b",
+                  "content": "Contact",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 15,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "cfdgg",
+                  "name": "EN pill",
+                  "cornerRadius": 999,
+                  "stroke": "#ececec",
+                  "strokeWidth": 1,
+                  "padding": [
+                    3,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dpONg",
+                      "name": "EN",
+                      "fill": "#6b6b6b",
+                      "content": "EN",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "w5FSaq",
+          "name": "Hero",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            120,
+            48
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "DE6sI",
+              "name": "Eyebrow",
+              "fill": "#ff3b2f",
+              "content": "bomb LLC",
+              "textAlign": "center",
+              "fontFamily": "Shippori Mincho",
+              "fontSize": 14,
+              "fontWeight": "600",
+              "letterSpacing": 3
+            },
+            {
+              "type": "text",
+              "id": "h67nK",
+              "name": "Title",
+              "fill": "#0a0a0a",
+              "content": "bomb",
+              "textAlign": "center",
+              "fontFamily": "Shippori Mincho",
+              "fontSize": 112,
+              "fontWeight": "900"
+            },
+            {
+              "type": "frame",
+              "id": "M8VKV",
+              "name": "Word Row",
+              "gap": 20,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tROlC",
+                  "name": "Word perspective",
+                  "fill": "#6b6b6b",
+                  "content": "perspective",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "ShUt4",
+                  "name": "Word book",
+                  "fill": "#6b6b6b",
+                  "content": "book",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "mnY2V",
+                  "name": "Word blog",
+                  "fill": "#6b6b6b",
+                  "content": "blog",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "iSMZ9",
+                  "name": "Word script",
+                  "fill": "#6b6b6b",
+                  "content": "script",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "i828TY",
+              "name": "Actions",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "O4th9F",
+                  "name": "Btn Primary",
+                  "fill": "#ff3b2f",
+                  "cornerRadius": 999,
+                  "padding": [
+                    14,
+                    28
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pd7ur",
+                      "name": "Btn Primary Label",
+                      "fill": "#ffffff",
+                      "content": "お問い合わせ",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "rFOc7",
+                  "name": "Btn Ghost",
+                  "cornerRadius": 999,
+                  "stroke": "#0a0a0a",
+                  "strokeWidth": 1,
+                  "padding": [
+                    14,
+                    28
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Av8T4",
+                      "name": "Btn Ghost Label",
+                      "fill": "#0a0a0a",
+                      "content": "事業内容を見る",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "AeJ0S",
+          "name": "Services",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            110,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "G7Xzh4",
+              "name": "Services Head",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "m1uF2",
+                  "name": "Services Eyebrow",
+                  "fill": "#ff3b2f",
+                  "content": "Services",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "f3IZk",
+                  "name": "Services Title",
+                  "fill": "#0a0a0a",
+                  "content": "事業内容",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 42,
+                  "fontWeight": "900"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "SEt9A",
+              "name": "Cards",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "k5Znuv",
+                  "name": "Card 01",
+                  "width": "fill_container",
+                  "fill": "#ffffff",
+                  "cornerRadius": 20,
+                  "stroke": "#ececec",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    36,
+                    30
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "nKXZ8",
+                      "name": "Num 01",
+                      "fill": "#ff3b2f",
+                      "content": "01",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 18,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "G07DYu",
+                      "name": "Title 01",
+                      "fill": "#0a0a0a",
+                      "content": "サービス名①",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "LJUdU",
+                      "name": "Desc 01",
+                      "fill": "#6b6b6b",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "ここに事業・サービスの説明が入ります。何を、誰に、どんな価値を届けるのかを書きます。",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "x0byhi",
+                  "name": "Card 02",
+                  "width": "fill_container",
+                  "fill": "#ffffff",
+                  "cornerRadius": 20,
+                  "stroke": "#ececec",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    36,
+                    30
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "DE4Bh",
+                      "name": "Num 02",
+                      "fill": "#ff3b2f",
+                      "content": "02",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 18,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rrrIh",
+                      "name": "Title 02",
+                      "fill": "#0a0a0a",
+                      "content": "サービス名②",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "L5WFPe",
+                      "name": "Desc 02",
+                      "fill": "#6b6b6b",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "ここに事業・サービスの説明が入ります。具体的な強みや実績を書くと伝わりやすいです。",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "hped8",
+                  "name": "Card 03",
+                  "width": "fill_container",
+                  "fill": "#ffffff",
+                  "cornerRadius": 20,
+                  "stroke": "#ececec",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    36,
+                    30
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qjcSP",
+                      "name": "Num 03",
+                      "fill": "#ff3b2f",
+                      "content": "03",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 18,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ygO0N",
+                      "name": "Title 03",
+                      "fill": "#0a0a0a",
+                      "content": "サービス名③",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "z9TKg",
+                      "name": "Desc 03",
+                      "fill": "#6b6b6b",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "ここに事業・サービスの説明が入ります。今後展開予定の領域などもOKです。",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "J9jFRV",
+          "name": "Company",
+          "width": "fill_container",
+          "fill": "#fafafa",
+          "stroke": "#ececec",
+          "strokeWidth": {
+            "top": 1,
+            "bottom": 1
+          },
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            110,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "JiX1c",
+              "name": "Company Head",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "P2urj2",
+                  "name": "Company Eyebrow",
+                  "fill": "#ff3b2f",
+                  "content": "Company",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "y5zDOh",
+                  "name": "Company Title",
+                  "fill": "#0a0a0a",
+                  "content": "会社概要",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 42,
+                  "fontWeight": "900"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "v0Q5Gk",
+              "name": "Company Table",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "z6svw",
+                  "name": "Row 商号",
+                  "width": "fill_container",
+                  "stroke": "#ececec",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "padding": [
+                    18,
+                    8
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "RAAvZ",
+                      "name": "th 商号",
+                      "width": 340,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "TIjHn",
+                          "name": "th text 商号",
+                          "fill": "#0a0a0a",
+                          "content": "商号",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GZMZK",
+                      "name": "td 商号",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "NA2L9",
+                          "name": "td text 商号",
+                          "fill": "#6b6b6b",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "合同会社bomb",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "P3VDJf",
+                  "name": "Row 代表社員",
+                  "width": "fill_container",
+                  "stroke": "#ececec",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "padding": [
+                    18,
+                    8
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "l2BQc",
+                      "name": "th 代表社員",
+                      "width": 340,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pUG8s",
+                          "name": "th text 代表社員",
+                          "fill": "#0a0a0a",
+                          "content": "代表社員",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "A5V1Sb",
+                      "name": "td 代表社員",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "C0DDA",
+                          "name": "td text 代表社員",
+                          "fill": "#6b6b6b",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "（代表者名）",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vdNow",
+                  "name": "Row 設立",
+                  "width": "fill_container",
+                  "stroke": "#ececec",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "padding": [
+                    18,
+                    8
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "yQfXJ",
+                      "name": "th 設立",
+                      "width": 340,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "XrD2p",
+                          "name": "th text 設立",
+                          "fill": "#0a0a0a",
+                          "content": "設立",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Zg9ta",
+                      "name": "td 設立",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ilLks",
+                          "name": "td text 設立",
+                          "fill": "#6b6b6b",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "2026年4月1日",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "liOEd",
+                  "name": "Row 所在地",
+                  "width": "fill_container",
+                  "stroke": "#ececec",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "padding": [
+                    18,
+                    8
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "QBAwM",
+                      "name": "th 所在地",
+                      "width": 340,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "eYN3h",
+                          "name": "th text 所在地",
+                          "fill": "#0a0a0a",
+                          "content": "所在地",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "JndIP",
+                      "name": "td 所在地",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "PFKyB",
+                          "name": "td text 所在地",
+                          "fill": "#6b6b6b",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "〒XXX-XXXX （住所）",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "RyJeT",
+                  "name": "Row 事業内容",
+                  "width": "fill_container",
+                  "stroke": "#ececec",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "padding": [
+                    18,
+                    8
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "KzVBa",
+                      "name": "th 事業内容",
+                      "width": 340,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Ud2BT",
+                          "name": "th text 事業内容",
+                          "fill": "#0a0a0a",
+                          "content": "事業内容",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ssqep",
+                      "name": "td 事業内容",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "A24B2z",
+                          "name": "td text 事業内容",
+                          "fill": "#6b6b6b",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "（事業内容を記載）",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nxgIT",
+                  "name": "Row 連絡先",
+                  "width": "fill_container",
+                  "stroke": "#ececec",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "padding": [
+                    18,
+                    8
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "gKXor",
+                      "name": "th 連絡先",
+                      "width": 340,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "FfsRh",
+                          "name": "th text 連絡先",
+                          "fill": "#0a0a0a",
+                          "content": "連絡先",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "VTXMq",
+                      "name": "td 連絡先",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ebloZ",
+                          "name": "td text 連絡先",
+                          "fill": "#6b6b6b",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "info@example.com",
+                          "fontFamily": "Shippori Mincho",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "J5Qtq3",
+          "name": "Contact",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            110,
+            48
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "HZBBD",
+              "name": "Contact Head",
+              "layout": "vertical",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "q8RKL",
+                  "name": "Contact Eyebrow",
+                  "fill": "#ff3b2f",
+                  "content": "Contact",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "w6Ba97",
+                  "name": "Contact Title",
+                  "fill": "#0a0a0a",
+                  "content": "お問い合わせ",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 42,
+                  "fontWeight": "900"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "G7ont",
+              "name": "Contact Lead",
+              "fill": "#6b6b6b",
+              "textGrowth": "fixed-width",
+              "width": 560,
+              "content": "ご相談・ご依頼は、下記メールアドレスまでお気軽にご連絡ください。",
+              "lineHeight": 1.8,
+              "textAlign": "center",
+              "fontFamily": "Shippori Mincho",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "M064km",
+              "name": "Email Button",
+              "fill": "#ff3b2f",
+              "cornerRadius": 999,
+              "padding": [
+                18,
+                40
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "J14nKP",
+                  "name": "Email Label",
+                  "fill": "#ffffff",
+                  "content": "info@example.com",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "a4CDw",
+          "name": "Footer",
+          "width": "fill_container",
+          "stroke": "#ececec",
+          "strokeWidth": {
+            "top": 1
+          },
+          "layout": "vertical",
+          "gap": 14,
+          "padding": [
+            56,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "L7L0M",
+              "name": "Footer Logo",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "W7CPUi",
+                  "name": "Footer bomb",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 22,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "LjpCD",
+              "name": "Footer Links",
+              "gap": 22,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZEK09",
+                  "name": "プライバシーポリシー",
+                  "fill": "#6b6b6b",
+                  "content": "プライバシーポリシー",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "aa8Pp",
+                  "name": "クレジット",
+                  "fill": "#6b6b6b",
+                  "content": "クレジット",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "abmGQ",
+              "name": "Lang Switch",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "eXXTB",
+                  "name": "Lang JP",
+                  "fill": "#0a0a0a",
+                  "content": "日本語",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "ze9Q5",
+                  "name": "Lang Sep",
+                  "fill": "#cccccc",
+                  "content": "/",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "P7LjO",
+                  "name": "Lang EN",
+                  "fill": "#6b6b6b",
+                  "content": "English",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "D5n6r",
+              "name": "Copyright",
+              "fill": "#6b6b6b",
+              "content": "© 2026 bomb LLC. All rights reserved.",
+              "fontFamily": "Shippori Mincho",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

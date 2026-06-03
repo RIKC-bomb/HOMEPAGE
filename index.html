@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>合同会社bomb</title>
   <meta name="description" content="合同会社bombのオフィシャルサイト。" />
-  <!-- 検索は許可しつつ、AI学習を拒否するシグナル -->
   <meta name="robots" content="index, follow, noai, noimageai" />
 
   <!-- 言語自動振り分け（ブラウザ言語ベース・手動選択を優先）。描画前に実行 -->
@@ -21,7 +20,7 @@
     })();
   </script>
 
-  <!-- Google Analytics 4 ※ G-VSG4890EV9 を発行された測定IDに差し替え -->
+  <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSG4890EV9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -35,25 +34,26 @@
 <body>
   <!-- ===== ヘッダー ===== -->
   <header class="site-header">
-    <a href="#top" class="logo">bomb<span class="logo-dot">.</span></a>
+    <a href="#top" class="logo">bomb</a>
     <nav class="nav">
-      <a href="#top">ホーム</a>
-      <a href="#about">事業内容</a>
-      <a href="#company">会社概要</a>
-      <a href="#contact">お問い合わせ</a>
       <a href="en/" class="lang-link" data-lang="en">EN</a>
     </nav>
   </header>
 
   <!-- ===== ヒーロー ===== -->
   <section id="top" class="hero">
-    <div class="hero-inner">
-      <p class="hero-eyebrow">bomb LLC</p>
-      <h1 class="hero-title">bomb</h1>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">お問い合わせ</a>
-        <a href="#about" class="btn btn-ghost">事業内容を見る</a>
-      </div>
+    <p class="hero-eyebrow">bomb LLC</p>
+    <h1 class="hero-title">bomb</h1>
+    <div class="hero-words">
+      <span>perspective</span>
+      <span>product</span>
+      <span>books</span>
+      <span>script</span>
+      <span>analytics</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">お問い合わせ</a>
+      <a href="#about" class="btn btn-ghost">事業内容を見る</a>
     </div>
   </section>
 
@@ -66,18 +66,28 @@
     <div class="cards">
       <article class="card">
         <div class="card-num">01</div>
-        <h3>サービス名①</h3>
-        <p>ここに事業・サービスの説明が入ります。何を、誰に、どんな価値を届けるのかを書きます。</p>
+        <h3>bomb perspective</h3>
+        <p>（サービス内容の説明が入ります）</p>
       </article>
       <article class="card">
         <div class="card-num">02</div>
-        <h3>サービス名②</h3>
-        <p>ここに事業・サービスの説明が入ります。具体的な強みや実績を書くと伝わりやすいです。</p>
+        <h3>bomb product</h3>
+        <p>（サービス内容の説明が入ります）</p>
       </article>
       <article class="card">
         <div class="card-num">03</div>
-        <h3>サービス名③</h3>
-        <p>ここに事業・サービスの説明が入ります。今後展開予定の領域などもOKです。</p>
+        <h3>bomb books</h3>
+        <p>（サービス内容の説明が入ります）</p>
+      </article>
+      <article class="card">
+        <div class="card-num">04</div>
+        <h3>bomb script</h3>
+        <p>（サービス内容の説明が入ります）</p>
+      </article>
+      <article class="card">
+        <div class="card-num">05</div>
+        <h3>bomb analytics</h3>
+        <p>（サービス内容の説明が入ります）</p>
       </article>
     </div>
   </section>
@@ -85,7 +95,7 @@
   <!-- ===== 会社概要 ===== -->
   <section id="company" class="section section-alt">
     <div class="section-head">
-      <p class="section-eyebrow">Company</p>
+      <p class="section-eyebrow">About</p>
       <h2 class="section-title">会社概要</h2>
     </div>
     <table class="company-table">
@@ -114,10 +124,11 @@
 
   <!-- ===== フッター ===== -->
   <footer class="site-footer">
-    <div class="footer-logo">bomb<span class="logo-dot">.</span></div>
+    <div class="footer-logo">bomb</div>
     <nav class="footer-links">
-      <a href="privacy.html">プライバシーポリシー</a>
-      <a href="credits.html">クレジット</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="legal.html">Legal notices</a>
+      <a href="credits.html">Credits</a>
     </nav>
     <div class="lang-switch">
       <span class="lang-active">日本語</span>
@@ -128,15 +139,12 @@
   </footer>
 
   <script>
-    // フッターの年を自動更新
     document.getElementById('year').textContent = new Date().getFullYear();
-    // 言語の手動選択を記憶
     document.querySelectorAll('[data-lang]').forEach(function (a) {
       a.addEventListener('click', function () {
         try { localStorage.setItem('lang', this.getAttribute('data-lang')); } catch (e) {}
       });
     });
-    // ページ内リンクはスムーズスクロール
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         var target = document.querySelector(this.getAttribute('href'));

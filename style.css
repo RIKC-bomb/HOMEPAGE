@@ -4,8 +4,8 @@
   --ink: #0a0a0a;
   --muted: #6b6b6b;
   --line: #ececec;
-  --accent: #ff3b2f; /* bombらしい赤。ブランドカラーに合わせて変更OK */
-  --accent-dark: #d92114;
+  --accent: #2b47d9; /* ロイヤルブルー */
+  --accent-dark: #1e34b0;
   --max: 1080px;
 }
 
@@ -14,10 +14,11 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
+  /* 游明朝系（端末標準フォントで軽量・外部読み込みなし） */
+  font-family: "Yu Mincho", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS PMincho", serif;
   color: var(--ink);
   background: var(--bg);
-  line-height: 1.8;
+  line-height: 1.9;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -38,14 +39,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 .logo {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   font-weight: 800;
   font-size: 1.5rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
 }
-.logo-dot { color: var(--accent); }
 
-.nav { display: flex; gap: clamp(16px, 3vw, 36px); }
+.nav { display: flex; gap: clamp(16px, 3vw, 36px); align-items: center; }
 .nav a {
   font-size: 0.92rem;
   font-weight: 500;
@@ -67,7 +66,7 @@ a { color: inherit; text-decoration: none; }
 .btn-primary {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 8px 24px rgba(255, 59, 47, 0.28);
+  box-shadow: 0 8px 24px rgba(43, 71, 217, 0.28);
 }
 .btn-primary:hover { background: var(--accent-dark); }
 .btn-ghost {
@@ -77,35 +76,40 @@ a { color: inherit; text-decoration: none; }
 .btn-ghost:hover { background: var(--ink); color: #fff; }
 .btn-lg { padding: 18px 40px; font-size: 1.05rem; }
 
-/* ===== ヒーロー ===== */
+/* ===== ヒーロー（中央寄せ） ===== */
 .hero {
-  padding: clamp(80px, 14vw, 160px) clamp(20px, 5vw, 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 22px;
+  padding: clamp(90px, 15vw, 180px) clamp(20px, 5vw, 48px);
   max-width: var(--max);
   margin: 0 auto;
 }
 .hero-eyebrow {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--accent);
   font-size: 0.85rem;
-  margin-bottom: 20px;
 }
 .hero-title {
-  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  font-size: clamp(3.5rem, 13vw, 8rem);
   font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin-bottom: 28px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
 }
-.hero-lead {
+.hero-words {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 22px;
   color: var(--muted);
-  font-size: clamp(1rem, 2.2vw, 1.15rem);
-  margin-bottom: 40px;
-  max-width: 600px;
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  letter-spacing: 0.04em;
 }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
 
 /* ===== セクション共通 ===== */
 .section {
@@ -122,7 +126,6 @@ a { color: inherit; text-decoration: none; }
 .section-alt > * { max-width: var(--max); margin-left: auto; margin-right: auto; }
 .section-head { margin-bottom: 48px; }
 .section-eyebrow {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -139,13 +142,13 @@ a { color: inherit; text-decoration: none; }
 /* ===== カード ===== */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 .card {
-  padding: 36px 30px;
+  padding: 32px 26px;
   border: 1px solid var(--line);
-  border-radius: 20px;
+  border-radius: 18px;
   transition: transform 0.2s, box-shadow 0.25s, border-color 0.2s;
 }
 .card:hover {
@@ -154,14 +157,13 @@ a { color: inherit; text-decoration: none; }
   border-color: transparent;
 }
 .card-num {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--accent);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
-.card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
-.card p { color: var(--muted); font-size: 0.95rem; }
+.card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+.card p { color: var(--muted); font-size: 0.92rem; }
 
 /* ===== 会社概要テーブル ===== */
 .company-table {
@@ -195,19 +197,11 @@ a { color: inherit; text-decoration: none; }
   border-top: 1px solid var(--line);
 }
 .footer-logo {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   font-weight: 800;
   font-size: 1.4rem;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 .copyright { color: var(--muted); font-size: 0.85rem; }
-
-/* ===== レスポンシブ ===== */
-@media (max-width: 560px) {
-  .nav { gap: 14px; }
-  .nav a { font-size: 0.82rem; }
-  .company-table th { width: 38%; }
-}
 
 /* ===== 言語切替リンク（ヘッダー） ===== */
 .lang-link {
@@ -244,7 +238,7 @@ a { color: inherit; text-decoration: none; }
 .lang-switch a { color: var(--muted); }
 .lang-switch a:hover { color: var(--accent); }
 
-/* ===== 法務・テキストページ（プライバシー/クレジット） ===== */
+/* ===== 法務・テキストページ ===== */
 .legal {
   max-width: 760px;
   margin: 0 auto;
@@ -271,4 +265,10 @@ a { color: inherit; text-decoration: none; }
   margin-top: 28px;
   text-decoration: none !important;
   font-weight: 700;
+}
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 560px) {
+  .nav { gap: 14px; }
+  .company-table th { width: 38%; }
 }
