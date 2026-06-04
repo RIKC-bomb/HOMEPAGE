@@ -54,46 +54,6 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "FBwwA",
-                  "name": "ホーム",
-                  "fill": "#6b6b6b",
-                  "content": "Home",
-                  "fontFamily": "Shippori Mincho",
-                  "fontSize": 15,
-                  "fontWeight": "500"
-                },
-                {
-                  "type": "text",
-                  "id": "EoS3v",
-                  "name": "事業内容",
-                  "fill": "#6b6b6b",
-                  "content": "Services",
-                  "fontFamily": "Shippori Mincho",
-                  "fontSize": 15,
-                  "fontWeight": "500"
-                },
-                {
-                  "type": "text",
-                  "id": "PhSI8",
-                  "name": "会社概要",
-                  "fill": "#6b6b6b",
-                  "content": "Company",
-                  "fontFamily": "Shippori Mincho",
-                  "fontSize": 15,
-                  "fontWeight": "500"
-                },
-                {
-                  "type": "text",
-                  "id": "mRrQr",
-                  "name": "お問い合わせ",
-                  "fill": "#6b6b6b",
-                  "content": "Contact",
-                  "fontFamily": "Shippori Mincho",
-                  "fontSize": 15,
-                  "fontWeight": "500"
-                },
-                {
                   "type": "frame",
                   "id": "cfdgg",
                   "name": "EN pill",
@@ -139,7 +99,7 @@
               "type": "text",
               "id": "DE6sI",
               "name": "Eyebrow",
-              "fill": "#ff3b2f",
+              "fill": "#2B47D9",
               "content": "bomb LLC",
               "textAlign": "center",
               "fontFamily": "Shippori Mincho",
@@ -182,7 +142,7 @@
                   "id": "ShUt4",
                   "name": "Word book",
                   "fill": "#6b6b6b",
-                  "content": "book",
+                  "content": "product",
                   "fontFamily": "Shippori Mincho",
                   "fontSize": 18,
                   "fontWeight": "normal",
@@ -193,7 +153,7 @@
                   "id": "mnY2V",
                   "name": "Word blog",
                   "fill": "#6b6b6b",
-                  "content": "blog",
+                  "content": "books",
                   "fontFamily": "Shippori Mincho",
                   "fontSize": 18,
                   "fontWeight": "normal",
@@ -205,6 +165,17 @@
                   "name": "Word script",
                   "fill": "#6b6b6b",
                   "content": "script",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "yGPV0",
+                  "name": "Word analytics",
+                  "fill": "#6b6b6b",
+                  "content": "analytics",
                   "fontFamily": "Shippori Mincho",
                   "fontSize": 18,
                   "fontWeight": "normal",
@@ -222,7 +193,7 @@
                   "type": "frame",
                   "id": "O4th9F",
                   "name": "Btn Primary",
-                  "fill": "#ff3b2f",
+                  "fill": "#2B47D9",
                   "cornerRadius": 999,
                   "padding": [
                     14,
@@ -294,7 +265,7 @@
                   "type": "text",
                   "id": "m1uF2",
                   "name": "Services Eyebrow",
-                  "fill": "#ff3b2f",
+                  "fill": "#2B47D9",
                   "content": "Services",
                   "fontFamily": "Shippori Mincho",
                   "fontSize": 13,
@@ -322,153 +293,265 @@
               "children": [
                 {
                   "type": "frame",
-                  "id": "k5Znuv",
-                  "name": "Card 01",
+                  "id": "AIVH6",
+                  "name": "Card bomb perspective",
                   "width": "fill_container",
                   "fill": "#ffffff",
-                  "cornerRadius": 20,
+                  "cornerRadius": 18,
                   "stroke": "#ececec",
                   "strokeWidth": 1,
                   "layout": "vertical",
-                  "gap": 12,
+                  "gap": 10,
                   "padding": [
-                    36,
-                    30
+                    28,
+                    24
                   ],
                   "children": [
                     {
                       "type": "text",
-                      "id": "nKXZ8",
+                      "id": "e4CCF",
                       "name": "Num 01",
-                      "fill": "#ff3b2f",
+                      "fill": "#2B47D9",
                       "content": "01",
                       "fontFamily": "Shippori Mincho",
-                      "fontSize": 18,
-                      "fontWeight": "800"
-                    },
-                    {
-                      "type": "text",
-                      "id": "G07DYu",
-                      "name": "Title 01",
-                      "fill": "#0a0a0a",
-                      "content": "サービス名①",
-                      "fontFamily": "Shippori Mincho",
-                      "fontSize": 20,
+                      "fontSize": 16,
                       "fontWeight": "700"
                     },
                     {
                       "type": "text",
-                      "id": "LJUdU",
-                      "name": "Desc 01",
+                      "id": "w51oq8",
+                      "name": "Title bomb perspective",
+                      "fill": "#0a0a0a",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "bomb perspective",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hqAN1",
+                      "name": "Desc bomb perspective",
                       "fill": "#6b6b6b",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "ここに事業・サービスの説明が入ります。何を、誰に、どんな価値を届けるのかを書きます。",
+                      "content": "（サービス内容の説明が入ります）",
                       "lineHeight": 1.7,
                       "fontFamily": "Shippori Mincho",
-                      "fontSize": 15,
+                      "fontSize": 13,
                       "fontWeight": "normal"
                     }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "x0byhi",
-                  "name": "Card 02",
+                  "id": "PnXrf",
+                  "name": "Card bomb product",
                   "width": "fill_container",
                   "fill": "#ffffff",
-                  "cornerRadius": 20,
+                  "cornerRadius": 18,
                   "stroke": "#ececec",
                   "strokeWidth": 1,
                   "layout": "vertical",
-                  "gap": 12,
+                  "gap": 10,
                   "padding": [
-                    36,
-                    30
+                    28,
+                    24
                   ],
                   "children": [
                     {
                       "type": "text",
-                      "id": "DE4Bh",
+                      "id": "dvx1v",
                       "name": "Num 02",
-                      "fill": "#ff3b2f",
+                      "fill": "#2B47D9",
                       "content": "02",
                       "fontFamily": "Shippori Mincho",
-                      "fontSize": 18,
-                      "fontWeight": "800"
-                    },
-                    {
-                      "type": "text",
-                      "id": "rrrIh",
-                      "name": "Title 02",
-                      "fill": "#0a0a0a",
-                      "content": "サービス名②",
-                      "fontFamily": "Shippori Mincho",
-                      "fontSize": 20,
+                      "fontSize": 16,
                       "fontWeight": "700"
                     },
                     {
                       "type": "text",
-                      "id": "L5WFPe",
-                      "name": "Desc 02",
+                      "id": "ZSSeI",
+                      "name": "Title bomb product",
+                      "fill": "#0a0a0a",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "bomb product",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Agpqx",
+                      "name": "Desc bomb product",
                       "fill": "#6b6b6b",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "ここに事業・サービスの説明が入ります。具体的な強みや実績を書くと伝わりやすいです。",
+                      "content": "（サービス内容の説明が入ります）",
                       "lineHeight": 1.7,
                       "fontFamily": "Shippori Mincho",
-                      "fontSize": 15,
+                      "fontSize": 13,
                       "fontWeight": "normal"
                     }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "hped8",
-                  "name": "Card 03",
+                  "id": "L6HYT",
+                  "name": "Card bomb books",
                   "width": "fill_container",
                   "fill": "#ffffff",
-                  "cornerRadius": 20,
+                  "cornerRadius": 18,
                   "stroke": "#ececec",
                   "strokeWidth": 1,
                   "layout": "vertical",
-                  "gap": 12,
+                  "gap": 10,
                   "padding": [
-                    36,
-                    30
+                    28,
+                    24
                   ],
                   "children": [
                     {
                       "type": "text",
-                      "id": "qjcSP",
+                      "id": "XpHwp",
                       "name": "Num 03",
-                      "fill": "#ff3b2f",
+                      "fill": "#2B47D9",
                       "content": "03",
                       "fontFamily": "Shippori Mincho",
-                      "fontSize": 18,
-                      "fontWeight": "800"
-                    },
-                    {
-                      "type": "text",
-                      "id": "ygO0N",
-                      "name": "Title 03",
-                      "fill": "#0a0a0a",
-                      "content": "サービス名③",
-                      "fontFamily": "Shippori Mincho",
-                      "fontSize": 20,
+                      "fontSize": 16,
                       "fontWeight": "700"
                     },
                     {
                       "type": "text",
-                      "id": "z9TKg",
-                      "name": "Desc 03",
+                      "id": "t7YTxa",
+                      "name": "Title bomb books",
+                      "fill": "#0a0a0a",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "bomb books",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "szjvt",
+                      "name": "Desc bomb books",
                       "fill": "#6b6b6b",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "ここに事業・サービスの説明が入ります。今後展開予定の領域などもOKです。",
+                      "content": "（サービス内容の説明が入ります）",
                       "lineHeight": 1.7,
                       "fontFamily": "Shippori Mincho",
-                      "fontSize": 15,
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EOAjw",
+                  "name": "Card bomb script",
+                  "width": "fill_container",
+                  "fill": "#ffffff",
+                  "cornerRadius": 18,
+                  "stroke": "#ececec",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": [
+                    28,
+                    24
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "v5S4U8",
+                      "name": "Num 04",
+                      "fill": "#2B47D9",
+                      "content": "04",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "RNMiO",
+                      "name": "Title bomb script",
+                      "fill": "#0a0a0a",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "bomb script",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "q2ksot",
+                      "name": "Desc bomb script",
+                      "fill": "#6b6b6b",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "（サービス内容の説明が入ります）",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XOf2B",
+                  "name": "Card bomb analytics",
+                  "width": "fill_container",
+                  "fill": "#ffffff",
+                  "cornerRadius": 18,
+                  "stroke": "#ececec",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": [
+                    28,
+                    24
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ub00w",
+                      "name": "Num 05",
+                      "fill": "#2B47D9",
+                      "content": "05",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "GW34A",
+                      "name": "Title bomb analytics",
+                      "fill": "#0a0a0a",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "bomb analytics",
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "pV8tq",
+                      "name": "Desc bomb analytics",
+                      "fill": "#6b6b6b",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "（サービス内容の説明が入ります）",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Shippori Mincho",
+                      "fontSize": 13,
                       "fontWeight": "normal"
                     }
                   ]
@@ -506,8 +589,8 @@
                   "type": "text",
                   "id": "P2urj2",
                   "name": "Company Eyebrow",
-                  "fill": "#ff3b2f",
-                  "content": "Company",
+                  "fill": "#2B47D9",
+                  "content": "About",
                   "fontFamily": "Shippori Mincho",
                   "fontSize": 13,
                   "fontWeight": "600",
@@ -631,7 +714,7 @@
                           "fill": "#6b6b6b",
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
-                          "content": "（代表者名）",
+                          "content": "佐藤陸",
                           "fontFamily": "Shippori Mincho",
                           "fontSize": 15,
                           "fontWeight": "normal"
@@ -885,7 +968,7 @@
                   "type": "text",
                   "id": "q8RKL",
                   "name": "Contact Eyebrow",
-                  "fill": "#ff3b2f",
+                  "fill": "#2B47D9",
                   "content": "Contact",
                   "fontFamily": "Shippori Mincho",
                   "fontSize": 13,
@@ -922,7 +1005,7 @@
               "type": "frame",
               "id": "M064km",
               "name": "Email Button",
-              "fill": "#ff3b2f",
+              "fill": "#2B47D9",
               "cornerRadius": 999,
               "padding": [
                 18,
@@ -989,9 +1072,19 @@
                 {
                   "type": "text",
                   "id": "ZEK09",
-                  "name": "プライバシーポリシー",
+                  "name": "Privacy Policy",
                   "fill": "#6b6b6b",
-                  "content": "プライバシーポリシー",
+                  "content": "Privacy Policy",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "mKEWe",
+                  "name": "Legal notices",
+                  "fill": "#6b6b6b",
+                  "content": "Legal notices",
                   "fontFamily": "Shippori Mincho",
                   "fontSize": 14,
                   "fontWeight": "normal"
@@ -999,9 +1092,9 @@
                 {
                   "type": "text",
                   "id": "aa8Pp",
-                  "name": "クレジット",
+                  "name": "Credits",
                   "fill": "#6b6b6b",
-                  "content": "クレジット",
+                  "content": "Credits",
                   "fontFamily": "Shippori Mincho",
                   "fontSize": 14,
                   "fontWeight": "normal"
@@ -1056,6 +1149,697 @@
               "fontFamily": "Shippori Mincho",
               "fontSize": 13,
               "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "fZZpl",
+      "x": 2400,
+      "y": 0,
+      "name": "Font比較ボード",
+      "fill": "#ffffff",
+      "cornerRadius": 20,
+      "stroke": "#ececec",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 28,
+      "padding": 56,
+      "children": [
+        {
+          "type": "text",
+          "id": "oLlLY",
+          "name": "Board Title",
+          "fill": "#0a0a0a",
+          "content": "フォント比較",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 26,
+          "fontWeight": "900"
+        },
+        {
+          "type": "frame",
+          "id": "zTKCr",
+          "name": "Columns",
+          "gap": 32,
+          "children": [
+            {
+              "type": "frame",
+              "id": "G7AkVv",
+              "name": "Col Shippori Mincho",
+              "width": 360,
+              "cornerRadius": 16,
+              "stroke": "#ececec",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Lk9jZ",
+                  "name": "Label Shippori Mincho",
+                  "fill": "#2b47d9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Shippori Mincho｜明朝（現状・游明朝風）",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "srmZh",
+                  "name": "Big Shippori Mincho",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 60,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "q69VdY",
+                  "name": "Head Shippori Mincho",
+                  "fill": "#0a0a0a",
+                  "content": "事業内容 / 会社概要",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 21,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "Hu1ax",
+                  "name": "Body Shippori Mincho",
+                  "fill": "#333333",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "合同会社bombは、新しい価値を生み出す会社です。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "D7oAaF",
+                  "name": "Rep Shippori Mincho",
+                  "fill": "#6b6b6b",
+                  "content": "代表社員　佐藤陸",
+                  "fontFamily": "Shippori Mincho",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "M8Hv3",
+              "name": "Col Zen Kaku Gothic New",
+              "width": 360,
+              "cornerRadius": 16,
+              "stroke": "#ececec",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "K3xNnY",
+                  "name": "Label Zen Kaku Gothic New",
+                  "fill": "#2b47d9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Zen Kaku Gothic New｜ゴシック（小塚風）",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "nC1qh",
+                  "name": "Big Zen Kaku Gothic New",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 60,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "vnoMC",
+                  "name": "Head Zen Kaku Gothic New",
+                  "fill": "#0a0a0a",
+                  "content": "事業内容 / 会社概要",
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 21,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "wYawB",
+                  "name": "Body Zen Kaku Gothic New",
+                  "fill": "#333333",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "合同会社bombは、新しい価値を生み出す会社です。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "vg8y5",
+                  "name": "Rep Zen Kaku Gothic New",
+                  "fill": "#6b6b6b",
+                  "content": "代表社員　佐藤陸",
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sZgzV",
+              "name": "Col Noto Sans JP",
+              "width": 360,
+              "cornerRadius": 16,
+              "stroke": "#ececec",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "z7kbP",
+                  "name": "Label Noto Sans JP",
+                  "fill": "#2b47d9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Noto Sans JP｜ゴシック（標準）",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "md2NQ",
+                  "name": "Big Noto Sans JP",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 60,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "EFIPl",
+                  "name": "Head Noto Sans JP",
+                  "fill": "#0a0a0a",
+                  "content": "事業内容 / 会社概要",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 21,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "O4psYs",
+                  "name": "Body Noto Sans JP",
+                  "fill": "#333333",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "合同会社bombは、新しい価値を生み出す会社です。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Fpdho",
+                  "name": "Rep Noto Sans JP",
+                  "fill": "#6b6b6b",
+                  "content": "代表社員　佐藤陸",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "FWNcS",
+          "name": "HW Title",
+          "fill": "#0a0a0a",
+          "content": "手書き風",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "c449J",
+          "name": "Columns HW",
+          "gap": 32,
+          "children": [
+            {
+              "type": "frame",
+              "id": "YDRQJ",
+              "name": "Col Yomogi",
+              "width": 360,
+              "cornerRadius": 16,
+              "stroke": "#ececec",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "nccY2",
+                  "name": "Label Yomogi",
+                  "fill": "#2b47d9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Yomogi｜手書き風（やわらか）",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "LcvKn",
+                  "name": "Big Yomogi",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Yomogi",
+                  "fontSize": 60,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "IpwID",
+                  "name": "Head Yomogi",
+                  "fill": "#0a0a0a",
+                  "content": "事業内容 / 会社概要",
+                  "fontFamily": "Yomogi",
+                  "fontSize": 21,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "hAbWD",
+                  "name": "Body Yomogi",
+                  "fill": "#333333",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "合同会社bombは、新しい価値を生み出す会社です。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "Yomogi",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "K3kC0W",
+                  "name": "Rep Yomogi",
+                  "fill": "#6b6b6b",
+                  "content": "代表社員　佐藤陸",
+                  "fontFamily": "Yomogi",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "d1j7o",
+              "name": "Col Klee One",
+              "width": 360,
+              "cornerRadius": 16,
+              "stroke": "#ececec",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "s4wVg",
+                  "name": "Label Klee One",
+                  "fill": "#2b47d9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Klee One｜手書き風（ペン字）",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "iHLOI",
+                  "name": "Big Klee One",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Klee One",
+                  "fontSize": 60,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "W8khi",
+                  "name": "Head Klee One",
+                  "fill": "#0a0a0a",
+                  "content": "事業内容 / 会社概要",
+                  "fontFamily": "Klee One",
+                  "fontSize": 21,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "E3B1it",
+                  "name": "Body Klee One",
+                  "fill": "#333333",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "合同会社bombは、新しい価値を生み出す会社です。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "Klee One",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "TvVPw",
+                  "name": "Rep Klee One",
+                  "fill": "#6b6b6b",
+                  "content": "代表社員　佐藤陸",
+                  "fontFamily": "Klee One",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "giecb",
+              "name": "Col Zen Kurenaido",
+              "width": 360,
+              "cornerRadius": 16,
+              "stroke": "#ececec",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "bZbST",
+                  "name": "Label Zen Kurenaido",
+                  "fill": "#2b47d9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Zen Kurenaido｜手書き風（カジュアル）",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Ohljo",
+                  "name": "Big Zen Kurenaido",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Zen Kurenaido",
+                  "fontSize": 60,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "DqqhL",
+                  "name": "Head Zen Kurenaido",
+                  "fill": "#0a0a0a",
+                  "content": "事業内容 / 会社概要",
+                  "fontFamily": "Zen Kurenaido",
+                  "fontSize": 21,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "QdMV8",
+                  "name": "Body Zen Kurenaido",
+                  "fill": "#333333",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "合同会社bombは、新しい価値を生み出す会社です。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "Zen Kurenaido",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "aZg19",
+                  "name": "Rep Zen Kurenaido",
+                  "fill": "#6b6b6b",
+                  "content": "代表社員　佐藤陸",
+                  "fontFamily": "Zen Kurenaido",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "kPGW5",
+          "name": "EN HW Title",
+          "fill": "#0a0a0a",
+          "content": "英語・手書き風（英語版用）",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "vg8b5",
+          "name": "Columns EN HW",
+          "gap": 32,
+          "children": [
+            {
+              "type": "frame",
+              "id": "cXLg8",
+              "name": "Col Caveat",
+              "width": 360,
+              "cornerRadius": 16,
+              "stroke": "#ececec",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "f6RGQ",
+                  "name": "Label Caveat",
+                  "fill": "#2b47d9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Caveat | clean handwriting",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "xoeEm",
+                  "name": "Big Caveat",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Caveat",
+                  "fontSize": 64,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "axGzd",
+                  "name": "Head Caveat",
+                  "fill": "#0a0a0a",
+                  "content": "Services / Company",
+                  "fontFamily": "Caveat",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "fEqG6",
+                  "name": "Body Caveat",
+                  "fill": "#333333",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "bomb LLC creates new value through its products.",
+                  "lineHeight": 1.7,
+                  "fontFamily": "Caveat",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Uc4Fh",
+                  "name": "Rep Caveat",
+                  "fill": "#6b6b6b",
+                  "content": "Representative: Riku Sato",
+                  "fontFamily": "Caveat",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Ctnkl",
+              "name": "Col Architects Daughter",
+              "width": 360,
+              "cornerRadius": 16,
+              "stroke": "#ececec",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "X6dPw",
+                  "name": "Label Architects Daughter",
+                  "fill": "#2b47d9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Architects Daughter | architect style",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "kiyie",
+                  "name": "Big Architects Daughter",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Architects Daughter",
+                  "fontSize": 64,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "bYLYL",
+                  "name": "Head Architects Daughter",
+                  "fill": "#0a0a0a",
+                  "content": "Services / Company",
+                  "fontFamily": "Architects Daughter",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "sN413",
+                  "name": "Body Architects Daughter",
+                  "fill": "#333333",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "bomb LLC creates new value through its products.",
+                  "lineHeight": 1.7,
+                  "fontFamily": "Architects Daughter",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "D7ZJf3",
+                  "name": "Rep Architects Daughter",
+                  "fill": "#6b6b6b",
+                  "content": "Representative: Riku Sato",
+                  "fontFamily": "Architects Daughter",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Jn2q7",
+              "name": "Col Patrick Hand",
+              "width": 360,
+              "cornerRadius": 16,
+              "stroke": "#ececec",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "kIWDi",
+                  "name": "Label Patrick Hand",
+                  "fill": "#2b47d9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Patrick Hand | casual handwriting",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "RO2Mq",
+                  "name": "Big Patrick Hand",
+                  "fill": "#0a0a0a",
+                  "content": "bomb",
+                  "fontFamily": "Patrick Hand",
+                  "fontSize": 64,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "fBQV4",
+                  "name": "Head Patrick Hand",
+                  "fill": "#0a0a0a",
+                  "content": "Services / Company",
+                  "fontFamily": "Patrick Hand",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "xVT0E",
+                  "name": "Body Patrick Hand",
+                  "fill": "#333333",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "bomb LLC creates new value through its products.",
+                  "lineHeight": 1.7,
+                  "fontFamily": "Patrick Hand",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "BbL0S",
+                  "name": "Rep Patrick Hand",
+                  "fill": "#6b6b6b",
+                  "content": "Representative: Riku Sato",
+                  "fontFamily": "Patrick Hand",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
             }
           ]
         }

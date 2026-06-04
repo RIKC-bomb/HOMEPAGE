@@ -9,7 +9,7 @@
   <meta property="og:title" content="bomb" />
   <meta property="og:site_name" content="bomb" />
   <meta property="og:type" content="website" />
-  <meta property="og:description" content="合同会社bombのオフィシャルサイト。" />
+  <meta property="og:description" content="bombのオフィシャルサイト。" />
 
   <!-- 言語自動振り分け（ブラウザ言語ベース・手動選択を優先） -->
   <script>
@@ -24,59 +24,8 @@
     })();
   </script>
 
-  <!-- リロードごとにフォントをランダム切替（和文・ゴシック/明朝/手書きを多数・可読性優先） -->
-  <script>
-    (function () {
-      var fonts = [
-        { css: '"Noto Sans JP", sans-serif', g: 'Noto+Sans+JP:wght@400;700;900' },
-        { css: '"Noto Serif JP", serif', g: 'Noto+Serif+JP:wght@400;700' },
-        { css: '"Zen Kaku Gothic New", sans-serif', g: 'Zen+Kaku+Gothic+New:wght@400;700;900' },
-        { css: '"Zen Old Mincho", serif', g: 'Zen+Old+Mincho:wght@400;700;900' },
-        { css: '"Shippori Mincho", serif', g: 'Shippori+Mincho:wght@400;700;800' },
-        { css: '"Zen Maru Gothic", sans-serif', g: 'Zen+Maru+Gothic:wght@400;700;900' },
-        { css: '"M PLUS 1p", sans-serif', g: 'M+PLUS+1p:wght@400;700;800' },
-        { css: '"M PLUS Rounded 1c", sans-serif', g: 'M+PLUS+Rounded+1c:wght@400;700' },
-        { css: '"BIZ UDPGothic", sans-serif', g: 'BIZ+UDPGothic:wght@400;700' },
-        { css: '"BIZ UDPMincho", serif', g: 'BIZ+UDPMincho' },
-        { css: '"IBM Plex Sans JP", sans-serif', g: 'IBM+Plex+Sans+JP:wght@400;700' },
-        { css: '"Murecho", sans-serif', g: 'Murecho:wght@400;700;800' },
-        { css: '"Kosugi Maru", sans-serif', g: 'Kosugi+Maru' },
-        { css: '"Sawarabi Mincho", serif', g: 'Sawarabi+Mincho' },
-        { css: '"Sawarabi Gothic", sans-serif', g: 'Sawarabi+Gothic' },
-        { css: '"Kaisei Decol", serif', g: 'Kaisei+Decol:wght@400;700' },
-        { css: '"Shippori Mincho B1", serif', g: 'Shippori+Mincho+B1:wght@400;700' },
-        { css: '"Klee One", cursive', g: 'Klee+One:wght@400;600' },
-        { css: '"Yomogi", cursive', g: 'Yomogi' },
-        { css: '"Zen Kurenaido", sans-serif', g: 'Zen+Kurenaido' },
-        { css: '"Hina Mincho", serif', g: 'Hina+Mincho' },
-        { css: '"M PLUS 1", sans-serif', g: 'M+PLUS+1:wght@400;700;800' },
-        { css: '"M PLUS 2", sans-serif', g: 'M+PLUS+2:wght@400;700;800' },
-        { css: '"Zen Kaku Gothic Antique", sans-serif', g: 'Zen+Kaku+Gothic+Antique:wght@400;700;900' },
-        { css: '"BIZ UDGothic", sans-serif', g: 'BIZ+UDGothic:wght@400;700' },
-        { css: '"BIZ UDMincho", serif', g: 'BIZ+UDMincho' },
-        { css: '"Kosugi", sans-serif', g: 'Kosugi' },
-        { css: '"Kiwi Maru", serif', g: 'Kiwi+Maru:wght@400;500' },
-        { css: '"New Tegomin", serif', g: 'New+Tegomin' },
-        { css: '"Kaisei Opti", serif', g: 'Kaisei+Opti:wght@400;700' },
-        { css: '"Kaisei Tokumin", serif', g: 'Kaisei+Tokumin:wght@400;700' },
-        { css: '"Kaisei HarunoUmi", serif', g: 'Kaisei+HarunoUmi:wght@400;700' },
-        { css: '"Yuji Syuku", serif', g: 'Yuji+Syuku' },
-        { css: '"Yuji Boku", serif', g: 'Yuji+Boku' },
-        { css: '"Yusei Magic", sans-serif', g: 'Yusei+Magic' },
-        { css: '"Dela Gothic One", sans-serif', g: 'Dela+Gothic+One' },
-        { css: '"Reggae One", sans-serif', g: 'Reggae+One' },
-        { css: '"RocknRoll One", sans-serif', g: 'RocknRoll+One' },
-        { css: '"Potta One", sans-serif', g: 'Potta+One' },
-        { css: '"Stick", sans-serif', g: 'Stick' }
-      ];
-      var f = fonts[Math.floor(Math.random() * fonts.length)];
-      var l = document.createElement('link');
-      l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=' + f.g + '&display=swap';
-      document.head.appendChild(l);
-      document.documentElement.style.setProperty('--font', f.css);
-    })();
-  </script>
+  <!-- リロードごとにランダムフォント（全候補は fonts.js） -->
+  <script src="fonts.js"></script>
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSG4890EV9"></script>
@@ -90,7 +39,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- ===== ヘッダー ===== -->
   <header class="site-header">
     <a href="#top" class="logo">bomb</a>
     <nav class="nav">
@@ -99,16 +47,13 @@
     </nav>
   </header>
 
-  <!-- 横移動の矢印 -->
   <button class="deck-arrow prev hidden" type="button" aria-label="前へ">&lsaquo;</button>
   <button class="deck-arrow next" type="button" aria-label="次へ">&rsaquo;</button>
 
-  <!-- ===== 横スクロール（巻物）デッキ ===== -->
   <main class="scroll-track">
     <div class="scroll-sticky">
       <div class="rail">
 
-        <!-- ヒーロー -->
         <section id="top" class="panel hero">
           <div class="wrap">
             <p class="hero-eyebrow">bomb LLC</p>
@@ -126,7 +71,6 @@
           </div>
         </section>
 
-        <!-- 事業内容 -->
         <section id="about" class="panel">
           <div class="wrap">
             <div class="section-head">
@@ -143,7 +87,6 @@
           </div>
         </section>
 
-        <!-- 会社概要 -->
         <section id="company" class="panel panel-alt">
           <div class="wrap">
             <div class="section-head">
@@ -164,7 +107,6 @@
           </div>
         </section>
 
-        <!-- お問い合わせ -->
         <section id="contact" class="panel contact">
           <div class="wrap">
             <div class="section-head">
@@ -176,7 +118,6 @@
           </div>
         </section>
 
-        <!-- フッター -->
         <footer class="panel site-footer">
           <div class="wrap">
             <div class="footer-logo">bomb</div>
@@ -198,10 +139,7 @@
     </div>
   </main>
 
-  <!-- ページ位置ドット -->
   <nav class="dots" aria-label="セクション"></nav>
-
-  <!-- 横移動のヒント -->
   <div class="scroll-hint">スクロールで横に動きます →</div>
 
   <script>

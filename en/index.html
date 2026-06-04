@@ -19,55 +19,8 @@
     })();
   </script>
 
-  <!-- Random handwriting font on every reload (large pool) -->
-  <script>
-    (function () {
-      var fonts = [
-        { css: '"Caveat", cursive', g: 'Caveat:wght@400;700' },
-        { css: '"Architects Daughter", cursive', g: 'Architects+Daughter' },
-        { css: '"Patrick Hand", cursive', g: 'Patrick+Hand' },
-        { css: '"Shadows Into Light", cursive', g: 'Shadows+Into+Light' },
-        { css: '"Kalam", cursive', g: 'Kalam:wght@300;400;700' },
-        { css: '"Gloria Hallelujah", cursive', g: 'Gloria+Hallelujah' },
-        { css: '"Indie Flower", cursive', g: 'Indie+Flower' },
-        { css: '"Caveat Brush", cursive', g: 'Caveat+Brush' },
-        { css: '"Gochi Hand", cursive', g: 'Gochi+Hand' },
-        { css: '"Reenie Beanie", cursive', g: 'Reenie+Beanie' },
-        { css: '"Nanum Pen Script", cursive', g: 'Nanum+Pen+Script' },
-        { css: '"Permanent Marker", cursive', g: 'Permanent+Marker' },
-        { css: '"Sriracha", cursive', g: 'Sriracha' },
-        { css: '"Handlee", cursive', g: 'Handlee' },
-        { css: '"Coming Soon", cursive', g: 'Coming+Soon' },
-        { css: '"Just Another Hand", cursive', g: 'Just+Another+Hand' },
-        { css: '"Dancing Script", cursive', g: 'Dancing+Script:wght@400;700' },
-        { css: '"Pacifico", cursive', g: 'Pacifico' },
-        { css: '"Satisfy", cursive', g: 'Satisfy' },
-        { css: '"Kaushan Script", cursive', g: 'Kaushan+Script' },
-        { css: '"Gaegu", cursive', g: 'Gaegu:wght@300;400;700' },
-        { css: '"Neucha", cursive', g: 'Neucha' },
-        { css: '"Schoolbell", cursive', g: 'Schoolbell' },
-        { css: '"Walter Turncoat", cursive', g: 'Walter+Turncoat' },
-        { css: '"Short Stack", cursive', g: 'Short+Stack' },
-        { css: '"Sue Ellen Francisco", cursive', g: 'Sue+Ellen+Francisco' },
-        { css: '"Cookie", cursive', g: 'Cookie' },
-        { css: '"Marck Script", cursive', g: 'Marck+Script' },
-        { css: '"Homemade Apple", cursive', g: 'Homemade+Apple' },
-        { css: '"Rock Salt", cursive', g: 'Rock+Salt' },
-        { css: '"La Belle Aurore", cursive', g: 'La+Belle+Aurore' },
-        { css: '"Mansalva", cursive', g: 'Mansalva' },
-        { css: '"Delius", cursive', g: 'Delius' },
-        { css: '"Itim", cursive', g: 'Itim' },
-        { css: '"Comforter", cursive', g: 'Comforter' },
-        { css: '"Bad Script", cursive', g: 'Bad+Script' }
-      ];
-      var f = fonts[Math.floor(Math.random() * fonts.length)];
-      var l = document.createElement('link');
-      l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=' + f.g + '&display=swap';
-      document.head.appendChild(l);
-      document.documentElement.style.setProperty('--font', f.css);
-    })();
-  </script>
+  <!-- Random handwriting font on every reload (full pool in fonts.js) -->
+  <script src="../fonts.js"></script>
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSG4890EV9"></script>
