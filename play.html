@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bomb — break</title>
+  <meta name="robots" content="index, follow, noai, noimageai" />
+  <meta property="og:title" content="bomb" />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSG4890EV9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VSG4890EV9');
+  </script>
+
+  <style>
+    :root { --accent: #2b47d9; --ink: #0a0a0a; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; background: #fff; }
+    body {
+      font-family: "Yu Mincho", YuMincho, "Hiragino Mincho ProN", serif;
+      color: var(--ink);
+      -webkit-user-select: none; user-select: none; touch-action: none;
+    }
+    canvas { display: block; }
+    .hud {
+      position: fixed; top: 14px; left: 0; right: 0;
+      display: flex; justify-content: space-between;
+      padding: 0 18px; font-size: 0.9rem; color: var(--ink); pointer-events: none;
+      font-family: ui-monospace, monospace;
+    }
+    .overlay {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      gap: 18px; padding: 24px; background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(4px); transition: opacity 0.3s;
+    }
+    .overlay.hidden { opacity: 0; pointer-events: none; }
+    .overlay h1 { font-size: clamp(3rem, 12vw, 7rem); font-weight: 900; letter-spacing: 0.02em; }
+    .overlay p { color: #555; font-size: 1rem; max-width: 460px; line-height: 1.8; }
+    .overlay .accent { color: var(--accent); }
+    .btn {
+      display: inline-block; padding: 14px 30px; border-radius: 999px;
+      background: var(--accent); color: #fff; font-weight: 700; cursor: pointer;
+      border: none; font-size: 1rem; font-family: inherit;
+    }
+    .links { position: fixed; bottom: 14px; left: 0; right: 0; text-align: center;
+      font-size: 0.82rem; color: #999; font-family: ui-monospace, monospace; }
+    .links a { color: #999; text-decoration: none; margin: 0 8px; }
+    .links a:hover { color: var(--accent); }
+    .company { text-align: left; font-size: 0.92rem; line-height: 2; color: #333; }
+    .company b { display: inline-block; width: 5.5em; color: var(--ink); }
+  </style>
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div class="hud"><span id="score">SCORE 0</span><span id="lives">● ● ●</span></div>
+
+  <div class="overlay" id="start">
+    <h1>bomb<span class="accent">.</span></h1>
+    <p>このサイトは<strong>ブロック崩し</strong>です。<br>bombの言葉をすべて崩すと、会社が現れる。</p>
+    <button class="btn" id="startBtn">START</button>
+    <p style="font-size:0.8rem;color:#999">パドル：マウス / 指でスライド　・　発射：クリック / タップ</p>
+  </div>
+
+  <div class="overlay hidden" id="win">
+    <h1>CLEAR<span class="accent">.</span></h1>
+    <div class="company">
+      <div><b>商号</b>合同会社bomb</div>
+      <div><b>代表社員</b>佐藤陸</div>
+      <div><b>設立</b>20260401</div>
+      <div><b>所在地</b>港区南青山4-17-33</div>
+      <div><b>連絡先</b>info@bomb.co.jp</div>
+    </div>
+    <button class="btn" id="winBtn">もう一度</button>
+  </div>
+
+  <div class="overlay hidden" id="lose">
+    <h1>GAME OVER</h1>
+    <button class="btn" id="loseBtn">RETRY</button>
+  </div>
+
+  <div class="links">
+    <a href="index.html">通常版サイト</a> · <a href="mailto:info@bomb.co.jp">info@bomb.co.jp</a>
+  </div>
+
+  <script>
+    var canvas = document.getElementById('game');
+    var ctx = canvas.getContext('2d');
+    var WORDS = ['bomb','perspective','product','books','script','analytics','modeling','coding','visualization','bomb','perspective','product'];
+    var ACCENT = '#2b47d9';
+    var W, H, dpr;
+    var bricks = [], paddle, ball, score, lives, state, brickRows = 4, brickCols = 4;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      layout();
+    }
+
+    function layout() {
+      brickCols = Math.max(3, Math.min(6, Math.floor(W / 150)));
+      brickRows = Math.max(3, Math.min(5, Math.floor(H / 200)));
+      var top = 80, padX = 16, gap = 8;
+      var bw = (W - padX * 2 - gap * (brickCols - 1)) / brickCols;
+      var bh = 38;
+      var keepAlive = bricks.length ? null : true;
+      var old = bricks;
+      bricks = [];
+      var idx = 0;
+      for (var r = 0; r < brickRows; r++) {
+        for (var c = 0; c < brickCols; c++) {
+          var alive = true;
+          if (old.length && old[idx]) alive = old[idx].alive;
+          bricks.push({
+            x: padX + c * (bw + gap), y: top + r * (bh + gap),
+            w: bw, h: bh, word: WORDS[idx % WORDS.length], alive: alive
+          });
+          idx++;
+        }
+      }
+      if (paddle) paddle.y = H - 40;
+    }
+
+    function reset() {
+      score = 0; lives = 3; state = 'ready';
+      for (var i = 0; i < bricks.length; i++) bricks[i].alive = true;
+      paddle = { w: Math.max(90, W * 0.16), h: 12, x: W / 2, y: H - 40 };
+      resetBall();
+      updateHud();
+    }
+    function resetBall() {
+      ball = { x: paddle.x, y: paddle.y - 16, r: 8, dx: 0, dy: 0, speed: Math.max(5, H / 130), stuck: true };
+    }
+    function launch() {
+      if (ball.stuck) { ball.stuck = false; ball.dx = ball.speed * 0.5; ball.dy = -ball.speed; }
+    }
+
+    function updateHud() {
+      document.getElementById('score').textContent = 'SCORE ' + score;
+      var d = ''; for (var i = 0; i < 3; i++) d += i < lives ? '● ' : '○ ';
+      document.getElementById('lives').textContent = d.trim();
+    }
+
+    function step() {
+      if (state !== 'playing') { draw(); return; }
+      if (ball.stuck) { ball.x = paddle.x; ball.y = paddle.y - 16; draw(); return; }
+      ball.x += ball.dx; ball.y += ball.dy;
+      if (ball.x < ball.r) { ball.x = ball.r; ball.dx *= -1; }
+      if (ball.x > W - ball.r) { ball.x = W - ball.r; ball.dx *= -1; }
+      if (ball.y < ball.r) { ball.y = ball.r; ball.dy *= -1; }
+      // paddle
+      if (ball.dy > 0 && ball.y + ball.r >= paddle.y && ball.y - ball.r <= paddle.y + paddle.h &&
+          ball.x >= paddle.x - paddle.w / 2 - ball.r && ball.x <= paddle.x + paddle.w / 2 + ball.r) {
+        ball.y = paddle.y - ball.r;
+        var hit = (ball.x - paddle.x) / (paddle.w / 2);
+        var ang = hit * 1.1;
+        ball.dx = ball.speed * Math.sin(ang);
+        ball.dy = -ball.speed * Math.cos(ang);
+      }
+      // bricks
+      for (var i = 0; i < bricks.length; i++) {
+        var b = bricks[i];
+        if (!b.alive) continue;
+        if (ball.x + ball.r > b.x && ball.x - ball.r < b.x + b.w &&
+            ball.y + ball.r > b.y && ball.y - ball.r < b.y + b.h) {
+          b.alive = false; score += 100; updateHud();
+          var overlapX = Math.min(ball.x + ball.r - b.x, b.x + b.w - (ball.x - ball.r));
+          var overlapY = Math.min(ball.y + ball.r - b.y, b.y + b.h - (ball.y - ball.r));
+          if (overlapX < overlapY) ball.dx *= -1; else ball.dy *= -1;
+          break;
+        }
+      }
+      // lose ball
+      if (ball.y - ball.r > H) {
+        lives--; updateHud();
+        if (lives <= 0) { state = 'lost'; showOverlay('lose'); }
+        else { ball.stuck = true; }
+      }
+      // win
+      var any = false;
+      for (var j = 0; j < bricks.length; j++) if (bricks[j].alive) { any = true; break; }
+      if (!any) { state = 'won'; showOverlay('win'); }
+      draw();
+    }
+
+    function roundRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      // bricks
+      for (var i = 0; i < bricks.length; i++) {
+        var b = bricks[i];
+        if (!b.alive) continue;
+        ctx.fillStyle = ACCENT;
+        roundRect(b.x, b.y, b.w, b.h, 8); ctx.fill();
+        ctx.fillStyle = '#fff';
+        var fs = Math.min(15, b.w / (b.word.length * 0.62));
+        ctx.font = '600 ' + fs + 'px ui-monospace, monospace';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText(b.word, b.x + b.w / 2, b.y + b.h / 2);
+      }
+      // paddle
+      ctx.fillStyle = '#0a0a0a';
+      roundRect(paddle.x - paddle.w / 2, paddle.y, paddle.w, paddle.h, 6); ctx.fill();
+      // ball
+      ctx.fillStyle = ACCENT;
+      ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2); ctx.fill();
+    }
+
+    function showOverlay(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+    function hideOverlay(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    function movePaddle(clientX) {
+      if (!paddle) return;
+      paddle.x = Math.max(paddle.w / 2, Math.min(W - paddle.w / 2, clientX));
+    }
+    window.addEventListener('mousemove', function (e) { movePaddle(e.clientX); });
+    window.addEventListener('touchmove', function (e) { if (e.touches[0]) movePaddle(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('mousedown', launch);
+    window.addEventListener('touchstart', function () { launch(); }, { passive: true });
+    window.addEventListener('keydown', function (e) { if (e.key === ' ') { e.preventDefault(); launch(); } });
+    window.addEventListener('resize', function () { resize(); });
+
+    function begin() { reset(); state = 'playing'; }
+    document.getElementById('startBtn').addEventListener('click', function () { hideOverlay('start'); begin(); });
+    document.getElementById('winBtn').addEventListener('click', function () { hideOverlay('win'); begin(); });
+    document.getElementById('loseBtn').addEventListener('click', function () { hideOverlay('lose'); begin(); });
+
+    resize(); reset();
+    (function loop() { step(); requestAnimationFrame(loop); })();
+  </script>
+</body>
+</html>
