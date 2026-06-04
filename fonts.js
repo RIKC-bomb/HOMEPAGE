@@ -161,6 +161,8 @@
   var PI = '31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066';
   var now = new Date();
   var CAPITAL = 969696; // bombの資本金 ¥969,696 — 会社の素を“ゆらぎ”に織り込む
+  if (window.PI_BIG && window.PI_BIG.length > 1000) PI = window.PI_BIG; // π100万桁が読めれば使う
+  var coord = parseInt(PI.substr(Math.min(CAPITAL, PI.length - 9), 9), 10) || 1; // 資本金969,696番目のπ＝会社の座標
   var conds = [
     CAPITAL,
     Date.now(),
@@ -180,6 +182,7 @@
     var piChunk = parseInt(PI.substr((piOff + ci * 9) % (PI.length - 9), 9), 10) || 1;
     seed = (seed + ((conds[ci] % 1000003) + 1) * (piChunk % 9973 + 1)) % 2147483647;
   }
+  seed = (seed + (coord % 2147483647)) % 2147483647;
   seed = (seed ^ (seed >> 13) ^ (seed << 5)) >>> 0;
   var f = list[seed % list.length];
   var l = document.createElement('link');
