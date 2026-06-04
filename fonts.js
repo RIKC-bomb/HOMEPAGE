@@ -173,8 +173,9 @@
   ];
   var list = (document.documentElement.lang === 'en') ? en : ja;
   var seed = 1;
+  var piOff = Date.now() % (PI.length - 9); // 時刻で π の読み出し位置を決める
   for (var ci = 0; ci < conds.length; ci++) {
-    var piChunk = parseInt(PI.substr((ci * 9) % (PI.length - 9), 9), 10) || 1;
+    var piChunk = parseInt(PI.substr((piOff + ci * 9) % (PI.length - 9), 9), 10) || 1;
     seed = (seed + ((conds[ci] % 1000003) + 1) * (piChunk % 9973 + 1)) % 2147483647;
   }
   seed = (seed ^ (seed >> 13) ^ (seed << 5)) >>> 0;
