@@ -160,7 +160,9 @@
   // 同じ瞬間は二度と来ない＝見る人ごと・瞬間ごとに違う一書体が現れる（バタフライエフェクト的な何か）。
   var PI = '31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066';
   var now = new Date();
+  var CAPITAL = 969696; // bombの資本金 ¥969,696 — 会社の素を“ゆらぎ”に織り込む
   var conds = [
+    CAPITAL,
     Date.now(),
     Math.floor(((window.performance && performance.now) ? performance.now() : 0) * 1000),
     now.getMilliseconds(),
@@ -173,7 +175,7 @@
   ];
   var list = (document.documentElement.lang === 'en') ? en : ja;
   var seed = 1;
-  var piOff = Date.now() % (PI.length - 9); // 時刻で π の読み出し位置を決める
+  var piOff = (Date.now() + CAPITAL) % (PI.length - 9); // 時刻＋資本金で π の読み出し位置を決める
   for (var ci = 0; ci < conds.length; ci++) {
     var piChunk = parseInt(PI.substr((piOff + ci * 9) % (PI.length - 9), 9), 10) || 1;
     seed = (seed + ((conds[ci] % 1000003) + 1) * (piChunk % 9973 + 1)) % 2147483647;
