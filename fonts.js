@@ -155,8 +155,30 @@
     { css: '"WindSong",cursive', g: 'WindSong' }
   ];
 
+  // ---- フォント選択の「ゆらぎ」----
+  // 円周率・アクセス時刻(ミリ秒)・画面・端末・時差・言語・乱数…“さまざまな条件”を混ぜて指標を作る。
+  // 同じ瞬間は二度と来ない＝見る人ごと・瞬間ごとに違う一書体が現れる（バタフライエフェクト的な何か）。
+  var PI = '31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066';
+  var now = new Date();
+  var conds = [
+    Date.now(),
+    Math.floor(((window.performance && performance.now) ? performance.now() : 0) * 1000),
+    now.getMilliseconds(),
+    now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds(),
+    (screen.width || 1) * (screen.height || 1),
+    Math.round((window.devicePixelRatio || 1) * 1000),
+    -now.getTimezoneOffset(),
+    (navigator.language || '').length + (navigator.languages ? navigator.languages.length : 0),
+    Math.floor(Math.random() * 2147483647)
+  ];
   var list = (document.documentElement.lang === 'en') ? en : ja;
-  var f = list[Math.floor(Math.random() * list.length)];
+  var seed = 1;
+  for (var ci = 0; ci < conds.length; ci++) {
+    var piChunk = parseInt(PI.substr((ci * 9) % (PI.length - 9), 9), 10) || 1;
+    seed = (seed + ((conds[ci] % 1000003) + 1) * (piChunk % 9973 + 1)) % 2147483647;
+  }
+  seed = (seed ^ (seed >> 13) ^ (seed << 5)) >>> 0;
+  var f = list[seed % list.length];
   var l = document.createElement('link');
   l.rel = 'stylesheet';
   l.href = 'https://fonts.googleapis.com/css2?family=' + f.g + '&display=swap';
