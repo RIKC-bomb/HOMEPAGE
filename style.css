@@ -212,6 +212,16 @@ a { color: inherit; text-decoration: none; }
 .back-link { display: inline-block; margin-top: 28px; text-decoration: none !important; font-weight: 700; }
 
 /* ===== レスポンシブ ===== */
+/* トップはロゴ無し→ナビを右寄せ。他ページはロゴがスッと現れる */
+.site-header.no-logo { justify-content: flex-end; }
+.logo { animation: logoIn 0.7s ease both; }
+@keyframes logoIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+/* 会社概要パネル下部の小さなフッター */
+.mini-footer { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); }
+.mini-footer .footer-links { justify-content: flex-start; margin-bottom: 8px; }
+.mini-footer .copyright { font-size: 0.78rem; }
+
 @media (max-width: 640px) {
   .deck-arrow { display: none; }
   .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }

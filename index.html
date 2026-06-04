@@ -9,7 +9,6 @@
   <meta property="og:title" content="bomb" />
   <meta property="og:site_name" content="bomb" />
   <meta property="og:type" content="website" />
-  <meta property="og:description" content="bombのオフィシャルサイト。" />
 
   <!-- 言語自動振り分け（ブラウザ言語ベース・手動選択を優先） -->
   <script>
@@ -41,8 +40,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <a href="#top" class="logo">bomb</a>
+  <header class="site-header no-logo">
     <nav class="nav">
       <a href="#contact">Contact</a>
       <a href="en/" class="lang-link" data-lang="en">EN</a>
@@ -56,9 +54,9 @@
     <div class="scroll-sticky">
       <div class="rail">
 
+        <!-- bomb（屋号＋プロダクト） -->
         <section id="top" class="panel hero">
           <div class="wrap">
-            <p class="hero-eyebrow">bomb LLC</p>
             <h1 class="hero-title">bomb</h1>
             <div class="hero-words">
               <span>perspective</span>
@@ -66,46 +64,14 @@
               <span>books</span>
               <span>script</span>
               <span>analytics</span>
+              <span>modeling</span>
+              <span>coding</span>
+              <span>visualization</span>
             </div>
           </div>
         </section>
 
-        <section id="about" class="panel">
-          <div class="wrap">
-            <div class="section-head">
-              <p class="section-eyebrow">Services</p>
-              <h2 class="section-title">事業内容</h2>
-            </div>
-            <div class="cards">
-              <article class="card"><div class="card-num">01</div><h3>bomb perspective</h3><p>（説明）</p></article>
-              <article class="card"><div class="card-num">02</div><h3>bomb product</h3><p>（説明）</p></article>
-              <article class="card"><div class="card-num">03</div><h3>bomb books</h3><p>（説明）</p></article>
-              <article class="card"><div class="card-num">04</div><h3>bomb script</h3><p>（説明）</p></article>
-              <article class="card"><div class="card-num">05</div><h3>bomb analytics</h3><p>（説明）</p></article>
-            </div>
-          </div>
-        </section>
-
-        <section id="company" class="panel panel-alt">
-          <div class="wrap">
-            <div class="section-head">
-              <p class="section-eyebrow">About</p>
-              <h2 class="section-title">会社概要</h2>
-            </div>
-            <table class="company-table">
-              <tbody>
-                <tr><th>商号</th><td>合同会社bomb</td></tr>
-                <tr><th>代表社員</th><td>佐藤陸</td></tr>
-                <tr><th>設立</th><td>2026年4月1日</td></tr>
-                <tr><th>所在地</th><td>〒107-0062 東京都港区南青山4-17-33</td></tr>
-                <tr><th>事業内容</th><td>（事業内容を記載）</td></tr>
-                <tr><th>連絡先</th><td>info@example.com</td></tr>
-              </tbody>
-            </table>
-            <p class="company-note">私たちが見据えているもの — <a href="https://ja.wikipedia.org/wiki/%E5%9C%B0%E7%90%83%E3%81%AE%E6%9C%AA%E6%9D%A5" target="_blank" rel="noopener">地球の未来</a> ↗</p>
-          </div>
-        </section>
-
+        <!-- お問い合わせ -->
         <section id="contact" class="panel contact">
           <div class="wrap">
             <div class="section-head">
@@ -117,22 +83,33 @@
           </div>
         </section>
 
-        <footer class="panel site-footer">
+        <!-- 会社概要（右端＝根っこ） -->
+        <section id="company" class="panel panel-alt">
           <div class="wrap">
-            <div class="footer-logo">bomb</div>
-            <nav class="footer-links">
-              <a href="privacy.html">Privacy Policy</a>
-              <a href="legal.html">Legal notices</a>
-              <a href="credits.html">Credits</a>
-            </nav>
-            <div class="lang-switch">
-              <span class="lang-active">日本語</span>
-              <span class="lang-sep">/</span>
-              <a href="en/" data-lang="en">English</a>
+            <div class="section-head">
+              <p class="section-eyebrow">About</p>
+              <h2 class="section-title">会社概要</h2>
             </div>
-            <p class="copyright">&copy; <span id="year"></span> bomb LLC. All rights reserved.</p>
+            <table class="company-table">
+              <tbody>
+                <tr><th>商号</th><td>合同会社bomb（bomb LLC）</td></tr>
+                <tr><th>代表社員</th><td>佐藤陸</td></tr>
+                <tr><th>設立</th><td>2026年4月1日</td></tr>
+                <tr><th>所在地</th><td>〒107-0062 東京都港区南青山4-17-33</td></tr>
+                <tr><th>連絡先</th><td>info@example.com</td></tr>
+              </tbody>
+            </table>
+            <p class="company-note">私たちが見据えているもの — <a href="https://ja.wikipedia.org/wiki/%E5%9C%B0%E7%90%83%E3%81%AE%E6%9C%AA%E6%9D%A5" target="_blank" rel="noopener">地球の未来</a> ↗</p>
+            <div class="mini-footer">
+              <nav class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="legal.html">Legal notices</a>
+                <a href="credits.html">Credits</a>
+              </nav>
+              <p class="copyright">&copy; <span id="year"></span> bomb LLC. All rights reserved.</p>
+            </div>
           </div>
-        </footer>
+        </section>
 
       </div>
     </div>
