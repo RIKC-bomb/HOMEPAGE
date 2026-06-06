@@ -18,6 +18,7 @@ body {
   background: var(--bg);
   line-height: 1.9;
   -webkit-font-smoothing: antialiased;
+  font-synthesis: none; /* 太字/斜体を持たないフォントを偽装しない＝ガタガタ防止 */
 }
 
 a { color: inherit; text-decoration: none; }
@@ -99,7 +100,8 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
   color: var(--accent); font-size: 0.85rem;
 }
-.hero-title { font-size: clamp(3.5rem, 13vw, 8rem); font-weight: 900; line-height: 1.05; }
+.hero-title { font-size: clamp(3.5rem, 13vw, 8rem); font-weight: 900; line-height: 1.05; text-transform: lowercase; }
+.hero-words { text-transform: lowercase; }
 .hero-title a.secret { color: inherit; text-decoration: none; } /* 見た目そのまま＝隠しリンク */
 .hero-words {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px;
