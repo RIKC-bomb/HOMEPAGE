@@ -164,7 +164,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ===== お問い合わせ ===== */
 .contact { text-align: center; }
-.contact-lead { color: var(--muted); max-width: 30em; margin: 0 auto; }
+.contact-lead { color: var(--muted); max-width: 30em; margin: 0 auto; text-wrap: balance; }
 .contact .wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; }
 .contact-mail {
   font-size: clamp(1.5rem, 6vw, 3rem);
