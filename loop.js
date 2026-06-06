@@ -61,7 +61,7 @@
   deck.appendChild(cloneSet());
 
   // --- イージング＋ループ ---
-  var EASE = 0.1, targetX = 0, animating = false, raf = null, touching = false;
+  var EASE = 0.06, targetX = 0, animating = false, raf = null, touching = false;
   function setW() { return setCount * window.innerWidth; }
   function wrapNow() {
     var sw = setW();
