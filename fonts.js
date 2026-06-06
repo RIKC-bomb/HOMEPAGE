@@ -102,4 +102,30 @@
   l.href = 'https://fonts.googleapis.com/css2?family=' + f.g + '&display=swap';
   document.head.appendChild(l);
   document.documentElement.style.setProperty('--font', f.css);
+
+  // フォントが変わっても「bomb」の見た目サイズを一定に（実測して合わせる）。
+  // 書体ごとに字幅・字面が違うので、px固定だとリロードのたびに大きさが動く。
+  // → "bomb" の描画幅を目標幅に合わせ、フォントに依らず同じ大きさに見せる。
+  function fitTitle() {
+    var hs = document.querySelectorAll('.hero-title');
+    if (!hs.length) return;
+    var first = hs[0];
+    var a = first.querySelector('a') || first;
+    first.style.fontSize = '100px';
+    var w = a.getBoundingClientRect().width;
+    if (w > 4) {
+      var target = Math.min(window.innerWidth * 0.62, 560);
+      var fs = (100 * target / w).toFixed(2) + 'px';
+      for (var i = 0; i < hs.length; i++) hs[i].style.fontSize = fs;
+    } else {
+      first.style.fontSize = '';
+    }
+  }
+  function whenReady() {
+    fitTitle();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitle);
+  }
+  if (document.readyState !== 'loading') whenReady();
+  else document.addEventListener('DOMContentLoaded', whenReady);
+  window.addEventListener('resize', fitTitle);
 })();
