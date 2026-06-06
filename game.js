@@ -52,6 +52,7 @@
 
   function frame() {
     if (cleared) return; // 真っ白で停止（リロードで復活）
+    if (!dragging) px += (bx - px) * 0.09; // バーは自動でボールを追う（手動ドラッグ時は手動優先）
     px = Math.max(pw / 2, Math.min(W - pw / 2, px));
     var py = H - 34 - ph;
     paddle.style.left = (px - pw / 2) + 'px';
