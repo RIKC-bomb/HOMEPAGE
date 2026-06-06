@@ -60,11 +60,30 @@
   track.insertBefore(cloneSet(), originals[0]);
   track.appendChild(cloneSet());
 
-  // --- 自前の慣性スクロール物理（transform） ---
-  var EASE = 0.085;       // 目標へ寄る速さ（小さいほど長く滑る）
-  var MOMENTUM = 18;      // ドラッグ離した後の慣性の伸び
-  var pos = 0, target = 0, raf = null, running = false;
+  // --- 動きは physics.js の方程式から構成する ---
+  var P = window.PHYSICS || {
+    damp: function (v, c) { return v * (1 - c); },
+    springAccel: function (x, x0, v, k, c) { return -k * (x - x0) - c * v; },
+    attenuate: function (I0, r) { return I0 / (1 + r * r); },
+    kinetic: function (v, m) { return 0.5 * (m || 1) * v * v; }
+  };
+  var FRICTION = 0.06;    // 粘性摩擦 c（フリックの滑走：小さいほど長く滑る）
+  var WHEEL_GAIN = 0.18;  // ホイール入力 → 速度インパルス
+  var SPRING_K = 0.014;   // ばね定数 k（クリック収束の強さ）
+  var SPRING_C = 0.18;    // 減衰 c（収束の落ち着き）
+  var pos = 0, target = 0, vel = 0, mode = 'free', raf = null, running = false;
   var dragging = false, lastX = 0, lastDX = 0;
+
+  // --- 光の層（運動エネルギーで差す・逆二乗則で減衰） ---
+  var light = document.createElement('div');
+  light.className = 'deck-light';
+  deck.appendChild(light);
+  function shine(v) {
+    var ke = P.kinetic(v, 1);                 // E = ½mv²
+    var I = Math.min(0.14, P.attenuate(ke * 0.06, 0)); // 強さ（上限つき）
+    var cx = 50 + Math.max(-26, Math.min(26, v * -0.5)); // 進む向きへ寄る
+    light.style.background = 'radial-gradient(circle at ' + cx + '% 28%, rgba(43,71,217,' + I.toFixed(4) + ') 0%, rgba(43,71,217,0) 56%)';
+  }
 
   function setW() { return setCount * window.innerWidth; }
   function render() { track.style.transform = 'translate3d(' + (-pos) + 'px,0,0)'; }
@@ -74,28 +93,37 @@
     else if (pos > sw * 2) { pos -= sw; target -= sw; }
   }
   function tick() {
-    var diff = target - pos;
-    pos += diff * EASE;
-    if (Math.abs(diff) < 0.3) pos = target;
+    if (mode === 'spring') {
+      // 減衰調和振動  ẍ = −k(x−x₀) − c·ẋ
+      vel += P.springAccel(pos, target, vel, SPRING_K, SPRING_C);
+      pos += vel;
+      if (Math.abs(target - pos) < 0.3 && Math.abs(vel) < 0.3) { pos = target; vel = 0; }
+    } else {
+      // 粘性摩擦による慣性滑走  v ← v·(1−c)
+      pos += vel;
+      vel = P.damp(vel, FRICTION);
+      if (Math.abs(vel) < 0.02) vel = 0;
+    }
     wrap();
     render();
-    if (Math.abs(target - pos) > 0.3) { raf = requestAnimationFrame(tick); }
-    else { running = false; raf = null; }
+    shine(vel);
+    if (vel !== 0 || (mode === 'spring' && pos !== target)) { raf = requestAnimationFrame(tick); }
+    else { running = false; raf = null; shine(0); }
   }
   function start() { if (!running) { running = true; raf = requestAnimationFrame(tick); } }
-  function goTo(panel) { if (!panel) return; target = panel.offsetLeft; start(); }
+  function goTo(panel) { if (!panel) return; mode = 'spring'; target = panel.offsetLeft; vel = 0; start(); }
 
   pos = setW(); target = pos; render();
 
-  // ホイール／トラックパッド（縦・横どちらも横移動に）
+  // ホイール／トラックパッド（縦・横どちらも横移動に）＝速度へインパルス
   deck.addEventListener('wheel', function (e) {
     var d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-    target += d; e.preventDefault(); start();
+    mode = 'free'; vel += d * WHEEL_GAIN; e.preventDefault(); start();
   }, { passive: false });
 
   // ドラッグ（マウス＋タッチ共通）＝指に追従＋離すと慣性
   deck.addEventListener('pointerdown', function (e) {
-    dragging = true; lastX = e.clientX; lastDX = 0; target = pos;
+    dragging = true; mode = 'free'; lastX = e.clientX; lastDX = 0; vel = 0;
     if (raf) { cancelAnimationFrame(raf); raf = null; } running = false;
     try { deck.setPointerCapture(e.pointerId); } catch (_) {}
   });
@@ -103,13 +131,13 @@
     if (!dragging) return;
     var dx = e.clientX - lastX;
     lastDX = dx; lastX = e.clientX;
-    pos -= dx; target = pos; wrap(); render();
+    pos -= dx; target = pos; wrap(); render(); shine(dx);
   });
   function endDrag(e) {
     if (!dragging) return;
     dragging = false;
     try { deck.releasePointerCapture(e.pointerId); } catch (_) {}
-    target = pos - lastDX * MOMENTUM; start();
+    mode = 'free'; vel = -lastDX; start();   // 離した瞬間の速度を慣性に
   }
   deck.addEventListener('pointerup', endDrag);
   deck.addEventListener('pointercancel', endDrag);
