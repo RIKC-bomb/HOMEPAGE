@@ -21,8 +21,8 @@
       ja:'水や光、風、雨、植生の成長――時間とともに移ろう環境のふるまいを、計算で確かめる工程。物理やルールを与え、コードで動かす。スクリプトを書き<span class="seed">scripting</span>、ツールやシステムを組み<span class="seed">programming</span>、必要なコードを書く<span class="seed">coding</span>、条件から形やパターンを生み<span class="seed">generation</span>、数値を解いて<span class="seed">calculation</span>たしかめる。',
       en:'Checking, by computation, how an environment behaves over time — water, light, wind, rain, the growth of planting. We give it physics and rules, then drive it with code: writing scripts <span class="seed">scripting</span>, building tools and systems <span class="seed">programming</span>, writing the code itself <span class="seed">coding</span>, generating form and pattern from conditions <span class="seed">generation</span>, and solving the numbers <span class="seed">calculation</span>.'},
     perception:{k:'パーセプション',
-      ja:'景観の見え方に関わる領域。同じ場所でも、視点<span class="seed">perspective</span>が変われば違って見える。どこから・どう見せるかを選び、伝わる像へ翻訳する<span class="seed">visualization</span>までを扱う。',
-      en:'The domain of how a landscape appears. The same place looks different as the point of view <span class="seed">perspective</span> changes. It covers choosing where and how to show it, and translating it into an image that reads <span class="seed">visualization</span>.'}
+      ja:'景観の見え方に関わる領域。同じ場所でも、視点<span class="seed">perspective</span>が変われば違って見える。どこから・どう見せるかを選び、関係や構造を図に起こし<span class="seed">diagramming</span>、伝わる像へ翻訳する<span class="seed">visualization</span>までを扱う。',
+      en:'The domain of how a landscape appears. The same place looks different as the point of view <span class="seed">perspective</span> changes. It covers choosing where and how to show it, drawing relations and structure into diagrams <span class="seed">diagramming</span>, and translating it into an image that reads <span class="seed">visualization</span>.'}
   };
 
   // --- 単語パネルを生成し、ヒーローの直後に挿入 ---
