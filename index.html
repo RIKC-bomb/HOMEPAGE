@@ -68,7 +68,6 @@
     "logo": "https://bomb.co.jp/favicon.svg",
     "image": "https://bomb.co.jp/og.svg",
     "description": "ランドスケープに特化したスタジオ。",
-    "email": "info@bomb.co.jp",
     "foundingDate": "2026-04-01",
     "founder": { "@type": "Person", "name": "佐藤陸" },
     "address": {
@@ -81,7 +80,6 @@
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "info@bomb.co.jp",
       "contactType": "customer support"
     }
   }
@@ -122,7 +120,7 @@
                 <tr><th>代表社員</th><td>佐藤陸</td></tr>
                 <tr><th>設立</th><td>20260401</td></tr>
                 <tr><th>所在地</th><td>107-0062 東京都港区南青山4-17-33（<a href="https://www.google.com/maps?q=35.6641775,139.7182328" target="_blank" rel="noopener">35°39'51.0"N 139°43'05.6"E</a>）</td></tr>
-                <tr><th>連絡先</th><td>info@bomb.co.jp</td></tr>
+                <tr><th>連絡先</th><td data-mail></td></tr>
               </tbody>
             </table>
             <div class="mini-footer">
@@ -142,7 +140,7 @@
           <div class="wrap">
             <p class="section-eyebrow">Contact</p>
             <p class="contact-lead">何かを想像したり、それを作ったりすることが好きです。<br />何か質問があれば、気軽にメールしてください。</p>
-            <a href="mailto:info@bomb.co.jp" class="contact-mail">info@bomb.co.jp</a>
+            <a class="contact-mail" data-mail aria-label="email"></a>
           </div>
         </section>
 
@@ -150,6 +148,8 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    (function () { var m = atob('aW5mbw==') + '@' + atob('Ym9tYi5jby5qcA==');
+      document.querySelectorAll('[data-mail]').forEach(function (el) { if (el.tagName === 'A') { el.setAttribute('href', 'mailto:' + m); } el.textContent = m; }); })();
     document.querySelectorAll('[data-lang]').forEach(function (a) {
       a.addEventListener('click', function () {
         try { localStorage.setItem('lang', this.getAttribute('data-lang')); } catch (e) {}
