@@ -27,7 +27,7 @@
       -webkit-user-select: none; user-select: none; touch-action: none;
     }
     /* seep 背景（点からの色拡散・白へフェード） */
-    #seep { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; filter: blur(14px); opacity: 0.5; }
+    #seep { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; filter: blur(9px); opacity: 0.9; }
     .cv-viewport {
       position: fixed; inset: 0; overflow: hidden; cursor: grab; z-index: 1;
       background-image: radial-gradient(circle, rgba(60,60,60,0.10) 1.2px, transparent 1.2px);
@@ -96,11 +96,19 @@
       var octx = off.getContext('2d');
       var img = octx.createImageData(cols, rows);
       var POW = 1.2, EMP = 2.0, GRAD = 0.10, MAXB = 3, MIND = 1.0;
+      function hsl(h, sa, l) {
+        var c = (1 - Math.abs(2 * l - 1)) * sa, x = c * (1 - Math.abs((h / 60) % 2 - 1)), mm = l - c / 2, r, g, b;
+        if (h < 60) { r = c; g = x; b = 0; } else if (h < 120) { r = x; g = c; b = 0; }
+        else if (h < 180) { r = 0; g = c; b = x; } else if (h < 240) { r = 0; g = x; b = c; }
+        else if (h < 300) { r = x; g = 0; b = c; } else { r = c; g = 0; b = x; }
+        return [(r + mm) * 255, (g + mm) * 255, (b + mm) * 255];
+      }
       var N = 5 + Math.floor(Math.random() * 4);
       var srcs = [];
       for (var i = 0; i < N; i++) {
-        srcs.push({ x: Math.random() * cols, y: Math.random() * rows, f: 1 + Math.random() * 8,
-          r: Math.random() * 255, g: Math.random() * 255, b: Math.random() * 255 });
+        var col = hsl(Math.random() * 360, 0.74, 0.56);
+        srcs.push({ x: Math.random() * cols, y: Math.random() * rows, f: 3 + Math.random() * 6,
+          r: col[0], g: col[1], b: col[2] });
       }
       for (var yy = 0; yy < rows; yy++) {
         for (var xx = 0; xx < cols; xx++) {
