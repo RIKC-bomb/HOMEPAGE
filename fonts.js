@@ -111,11 +111,13 @@
     if (!hs.length) return;
     var first = hs[0];
     var a = first.querySelector('a') || first;
-    first.style.fontSize = '100px';
+    first.style.fontSize = '';                                      // CSSのclamp値（旧来の画面幅追従サイズ）に戻す
+    var base = parseFloat(getComputedStyle(first).fontSize) || 96;  // それを基準サイズにする
+    first.style.fontSize = base + 'px';
     var w = a.getBoundingClientRect().width;
     if (w > 4) {
-      var target = Math.min(window.innerWidth * 0.42, 320);  // 目標の描画幅
-      var fs = Math.max(44, Math.min(100 * target / w, 126)); // 旧8rem(=128px)相当を超えない
+      var fs = base * (base * 2.3) / w;                             // 平均的な字幅(2.3em)に正規化＝旧サイズ感のまま書体差を吸収
+      fs = Math.max(base * 0.62, Math.min(fs, base * 1.2));         // 暴れ防止
       var px = fs.toFixed(2) + 'px';
       for (var i = 0; i < hs.length; i++) hs[i].style.fontSize = px;
     } else {
