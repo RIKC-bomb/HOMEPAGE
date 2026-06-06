@@ -62,8 +62,7 @@ a { color: inherit; text-decoration: none; }
 .btn-lg { padding: 18px 40px; font-size: 1.05rem; }
 
 /* ===== 横スクロール（巻物）：CSSスクロール駆動で 縦スク→横移動＆滑らか ===== */
-.scroll-track { position: relative; z-index: 1; }
-#bg-seep { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; filter: blur(12px); opacity: 0.5; pointer-events: none; }
+.scroll-track { position: relative; }
 .scroll-sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
 .rail { display: flex; height: 100svh; width: max-content; }
 .panel {
