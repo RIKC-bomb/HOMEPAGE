@@ -1,3 +1,6 @@
+/* ページ間をスーッと“ワープ”（対応ブラウザのみ・非対応は通常遷移） */
+@view-transition { navigation: auto; }
+
 /* ===== ベース ===== */
 :root {
   --bg: #ffffff;
@@ -108,6 +111,20 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted); font-size: clamp(0.95rem, 2.2vw, 1.1rem); letter-spacing: 0.04em;
 }
 .hero-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; }
+.hero-row a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.hero-row a:hover { color: var(--accent); }
+
+/* ===== 単語ページ ===== */
+.word-main { max-width: 760px; margin: 0 auto; padding: 120px clamp(20px, 5vw, 40px) 80px; }
+.word-title { font-size: clamp(2.5rem, 9vw, 5rem); font-weight: 900; line-height: 1.05; text-transform: lowercase; }
+.word-reading { color: var(--muted); margin-top: 6px; letter-spacing: 0.12em; }
+.word-desc { font-size: 1.05rem; line-height: 2; color: #333; margin-top: 28px; }
+.word-desc a { color: var(--accent); text-decoration: none; margin-right: 6px; }
+.word-examples { margin-top: 56px; }
+.word-ex-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+.word-ex { aspect-ratio: 4 / 3; border: 1px dashed var(--line); border-radius: 10px; background: #fafafa; }
+.word-ex-note { color: var(--muted); font-size: 0.85rem; margin-top: 12px; }
+@media (max-width: 560px) { .word-ex-grid { grid-template-columns: repeat(2, 1fr); } }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
 
 /* ===== セクション見出し ===== */

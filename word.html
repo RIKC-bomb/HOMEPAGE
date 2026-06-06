@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bomb</title>
+  <meta name="robots" content="index, follow, noai, noimageai" />
+  <meta name="theme-color" content="#2b47d9" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSG4890EV9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VSG4890EV9');
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="word-page">
+  <header class="site-header">
+    <a href="/" class="logo">bomb</a>
+  </header>
+
+  <main class="word-main">
+    <p class="section-eyebrow" id="w-kicker">bomb</p>
+    <h1 class="word-title" id="w-title">—</h1>
+    <p class="word-reading" id="w-reading"></p>
+    <p class="word-desc" id="w-desc"></p>
+
+    <div class="word-examples">
+      <p class="section-eyebrow" id="w-ex-label">実例</p>
+      <div class="word-ex-grid">
+        <div class="word-ex"></div>
+        <div class="word-ex"></div>
+        <div class="word-ex"></div>
+      </div>
+      <p class="word-ex-note" id="w-ex-note">準備中</p>
+    </div>
+
+    <p><a href="/" class="back-link" id="w-back">← 戻る</a></p>
+  </main>
+
+  <script>
+    var DATA = {
+      modeling: { kana: 'モデリング',
+        ja: '3DCGで「形」を作る工程。ポリゴンやNURBSで、物体や空間のかたちを一から構築する。',
+        en: 'Building 3D form — constructing the shape of objects and spaces from scratch with polygons or NURBS.' },
+      sculpting: { kana: 'スカルプティング',
+        ja: '粘土をこねるように3Dモデルを彫り込む手法。有機的で繊細な造形に向く（ZBrush 等）。',
+        en: 'Shaping a 3D model as if it were clay — ideal for organic, detailed forms (e.g. ZBrush).' },
+      texturing: { kana: 'テクスチャリング',
+        ja: 'モデルの表面に色や質感（木・金属・肌など）を与え、素材としての説得力を作る工程。',
+        en: 'Giving surfaces color and material — wood, metal, skin — so they feel real.' },
+      lighting: { kana: 'ライティング',
+        ja: '3D空間に光を配置し、陰影・空気・時間帯・感情をつくる工程。画の印象を決める。',
+        en: 'Placing light in a 3D scene to shape shadow, atmosphere, time of day and emotion.' },
+      animation: { kana: 'アニメーション',
+        ja: 'キーフレームで「こう動かしたい」を手付けする工程。意図のある動きを作る。',
+        en: 'Authoring intended motion by hand with keyframes — movement with purpose.' },
+      rendering: { kana: 'レンダリング',
+        ja: '3Dシーンを計算し、最終的な一枚の画像・映像へと焼き上げる工程。',
+        en: 'Computing a 3D scene into the final still image or film.' },
+      coding: { kana: 'コーディング',
+        ja: 'コードを書く行為全般。自動化やツール作りを含む総称。',
+        en: 'Writing code — the umbrella term for automation and tool-making.' },
+      scripting: { kana: 'スクリプティング',
+        ja: '既存ソフトの中で動く小さなコード。作業の自動化や手続き的な生成を担う。',
+        en: 'Small code that runs inside existing software to automate and procedurally generate.' },
+      programming: { kana: 'プログラミング',
+        ja: '独立したソフトやシステム、制作パイプラインそのものを設計・構築する。',
+        en: 'Designing and building standalone software, systems and production pipelines.' },
+      generation: { kana: 'ジェネレーション',
+        ja: 'ルールやアルゴリズムから形・パターンを生成する（プロシージャル／ジェネレーティブ）。',
+        en: 'Creating form and pattern from rules and algorithms — procedural and generative.' },
+      calculation: { kana: 'カリキュレーション',
+        ja: '数値計算。形状・物理・最適化など、あらゆる工程の土台になる演算。',
+        en: 'Numerical computation — the foundation beneath geometry, physics and optimization.' },
+      simulation: { kana: 'シミュレーション',
+        ja: '物理やルールで動き・現象を計算する。流体・布・破壊・群衆などの“起こるはず”を出す。',
+        en: 'Computing motion and phenomena by physics or rules — fluids, cloth, destruction, crowds.' },
+      speculation: { kana: 'スペキュレーション',
+        ja: 'まだ無い未来や世界を構想し、ありえる姿を思索する（speculative design）。bombの核。',
+        en: 'Envisioning futures and worlds that do not yet exist — speculative design. The core of bomb.' },
+      visualization: { kana: 'ビジュアライゼーション',
+        ja: 'データや構想を、人が直感で掴める画像・映像へと翻訳する。',
+        en: 'Translating data and ideas into images one can grasp at a glance.' },
+      perspective: { kana: 'パースペクティブ',
+        ja: '視点。世界の見え方そのもの。すべての工程が最後に立ち返る軸。',
+        en: 'A point of view — how the world is seen. The axis every process returns to.' }
+    };
+
+    var p = new URLSearchParams(location.search);
+    var w = (p.get('w') || '').toLowerCase();
+    var lang = p.get('lang') === 'en' ? 'en' : 'ja';
+    document.documentElement.lang = lang;
+    var d = DATA[w];
+
+    function $(id) { return document.getElementById(id); }
+    if (d) {
+      $('w-title').textContent = w;
+      $('w-reading').textContent = lang === 'ja' ? d.kana : '';
+      $('w-desc').textContent = d[lang];
+      document.title = w + ' — bomb';
+      $('w-ex-label').textContent = lang === 'en' ? 'Examples' : '実例';
+      $('w-ex-note').textContent = lang === 'en' ? 'coming soon' : '準備中';
+      $('w-back').textContent = lang === 'en' ? '← back' : '← 戻る';
+      $('w-back').setAttribute('href', lang === 'en' ? '/en/' : '/');
+    } else {
+      // 不明な語：全語リストへ
+      $('w-title').textContent = 'bomb';
+      $('w-desc').innerHTML = Object.keys(DATA).map(function (k) {
+        return '<a href="word.html?w=' + k + (lang === 'en' ? '&lang=en' : '') + '">' + k + '</a>';
+      }).join('　');
+      $('w-back').setAttribute('href', lang === 'en' ? '/en/' : '/');
+    }
+  </script>
+</body>
+</html>

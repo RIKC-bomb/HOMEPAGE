@@ -21,5 +21,7 @@
   <url><loc>https://bomb.co.jp/en/privacy.html</loc><priority>0.3</priority></url>
   <url><loc>https://bomb.co.jp/en/legal.html</loc><priority>0.3</priority></url>
   <url><loc>https://bomb.co.jp/en/credits.html</loc><priority>0.3</priority></url>
+  <url><loc>https://bomb.co.jp/recruit.html</loc><priority>0.5</priority></url>
+  <url><loc>https://bomb.co.jp/en/recruit.html</loc><priority>0.4</priority></url>
   <url><loc>https://bomb.co.jp/play.html</loc><priority>0.5</priority></url>
 </urlset>
