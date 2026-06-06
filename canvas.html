@@ -103,20 +103,38 @@
         else if (h < 300) { r = x; g = 0; b = c; } else { r = c; g = 0; b = x; }
         return [(r + mm) * 255, (g + mm) * 255, (b + mm) * 255];
       }
-      var N = 5 + Math.floor(Math.random() * 4);
-      var srcs = [];
+      // flow: ランダムな流線（曲線）を発生源に。始点→終点で引力を補間し、距離でIDW拡散。
+      var N = 4 + Math.floor(Math.random() * 3);
+      var curves = [];
       for (var i = 0; i < N; i++) {
         var col = hsl(Math.random() * 360, 0.74, 0.56);
-        srcs.push({ x: Math.random() * cols, y: Math.random() * rows, f: 3 + Math.random() * 6,
-          r: col[0], g: col[1], b: col[2] });
+        var x = Math.random() * cols, y = Math.random() * rows, ang = Math.random() * Math.PI * 2;
+        var steps = 7 + Math.floor(Math.random() * 5);
+        var seg = ((cols + rows) / 2) / steps * 1.5;
+        var raw = [];
+        for (var st = 0; st <= steps; st++) { raw.push([x, y]); ang += (Math.random() - 0.5) * 1.3; x += Math.cos(ang) * seg; y += Math.sin(ang) * seg; }
+        var samples = [], sub = 4, tot1 = raw.length - 1;
+        for (var aa = 0; aa < tot1; aa++) {
+          for (var bb = 0; bb < sub; bb++) {
+            var tt = (aa + bb / sub) / tot1;
+            samples.push([raw[aa][0] + (raw[aa + 1][0] - raw[aa][0]) * (bb / sub), raw[aa][1] + (raw[aa + 1][1] - raw[aa][1]) * (bb / sub), tt]);
+          }
+        }
+        samples.push([raw[tot1][0], raw[tot1][1], 1]);
+        curves.push({ samples: samples, fs: 3 + Math.random() * 6, fe: 3 + Math.random() * 6, r: col[0], g: col[1], b: col[2] });
       }
       for (var yy = 0; yy < rows; yy++) {
         for (var xx = 0; xx < cols; xx++) {
           var inf = [];
-          for (var k = 0; k < srcs.length; k++) {
-            var sp = srcs[k], dx = xx - sp.x, dy = yy - sp.y, d = Math.sqrt(dx * dx + dy * dy);
-            if (d < MIND) d = MIND;
-            inf.push({ v: Math.pow(sp.f, EMP) / Math.pow(d, POW), s: sp });
+          for (var k = 0; k < curves.length; k++) {
+            var cu = curves[k], best = 1e9, bt = 0;
+            for (var si = 0; si < cu.samples.length; si++) {
+              var ddx = xx - cu.samples[si][0], ddy = yy - cu.samples[si][1], d2 = ddx * ddx + ddy * ddy;
+              if (d2 < best) { best = d2; bt = cu.samples[si][2]; }
+            }
+            var dist = Math.sqrt(best); if (dist < MIND) dist = MIND;
+            var force = cu.fs + (cu.fe - cu.fs) * bt;
+            inf.push({ v: Math.pow(force, EMP) / Math.pow(dist, POW), s: cu });
           }
           inf.sort(function (a, b) { return b.v - a.v; });
           inf = inf.slice(0, MAXB);
