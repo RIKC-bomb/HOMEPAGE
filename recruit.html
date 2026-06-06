@@ -27,18 +27,22 @@
 
   <main class="legal">
     <h1>Recruit</h1>
-    <p class="legal-lead">bombは小さな、始まったばかりのスタジオです。<br />
-      私たちは、まだ見ぬものを作る人を、ゆっくり探しています。</p>
+    <p class="legal-lead">bombは、始まったばかりの小さなスタジオです。<br />
+      うまくやれる、と言えるわけではありません。それでも、まだ無いものを一緒に手を動かして探す人を、ゆっくり探しています。</p>
 
-    <h2>探している人</h2>
-    <p>モデルを作り、レンダリングし、コードを書ける手。そして、まだ無い方法を探す意志。</p>
+    <p>ポートフォリオも、学歴も、要りません。<br />
+      何か通じるものを感じたなら、それで十分なのかもしれません。</p>
 
-    <h2>応募</h2>
-    <p>ポートフォリオ（PDF）を <a href="mailto:info@bomb.co.jp">info@bomb.co.jp</a> へ送ってください。</p>
+    <p>とりあえず、<a data-mail></a> まで。</p>
 
-    <p class="legal-date">積極的な採用はしていません。しかし、正しい人からのメッセージは、いつでも歓迎します。<br />合同会社bomb</p>
+    <p class="legal-date">積極的に募集しているわけではありません。<br />合同会社bomb</p>
     <p><a href="index.html" class="back-link">← 戻る</a></p>
   </main>
+
+  <script>
+    (function () { var m = atob('aW5mbw==') + '@' + atob('Ym9tYi5jby5qcA==');
+      document.querySelectorAll('[data-mail]').forEach(function (el) { if (el.tagName === 'A') { el.setAttribute('href', 'mailto:' + m); } el.textContent = m; }); })();
+  </script>
 
 </body>
 </html>

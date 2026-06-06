@@ -28,17 +28,21 @@
   <main class="legal">
     <h1>Recruit</h1>
     <p class="legal-lead">bomb is a small studio that has only just begun.<br />
-      We are slowly looking for people to make the not-yet-seen.</p>
+      We can't claim to be good at this. Still, we are slowly looking for people to make the not-yet-seen, together.</p>
 
-    <h2>Looking for</h2>
-    <p>Hands that can model, render and code — and the will to find ways that do not exist yet.</p>
+    <p>No portfolio, no diploma needed.<br />
+      If something here resonates, perhaps that is enough.</p>
 
-    <h2>Apply</h2>
-    <p>Send a portfolio (PDF) to <a href="mailto:info@bomb.co.jp">info@bomb.co.jp</a>.</p>
+    <p>For now, just write to <a data-mail></a>.</p>
 
-    <p class="legal-date">We are not actively hiring, but a message from the right person is always welcome.<br />bomb LLC</p>
+    <p class="legal-date">We are not actively hiring.<br />bomb LLC</p>
     <p><a href="index.html" class="back-link">← back</a></p>
   </main>
+
+  <script>
+    (function () { var m = atob('aW5mbw==') + '@' + atob('Ym9tYi5jby5qcA==');
+      document.querySelectorAll('[data-mail]').forEach(function (el) { if (el.tagName === 'A') { el.setAttribute('href', 'mailto:' + m); } el.textContent = m; }); })();
+  </script>
 
 </body>
 </html>
