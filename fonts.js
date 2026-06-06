@@ -114,9 +114,10 @@
     first.style.fontSize = '100px';
     var w = a.getBoundingClientRect().width;
     if (w > 4) {
-      var target = Math.min(window.innerWidth * 0.62, 560);
-      var fs = (100 * target / w).toFixed(2) + 'px';
-      for (var i = 0; i < hs.length; i++) hs[i].style.fontSize = fs;
+      var target = Math.min(window.innerWidth * 0.42, 320);  // 目標の描画幅
+      var fs = Math.max(44, Math.min(100 * target / w, 126)); // 旧8rem(=128px)相当を超えない
+      var px = fs.toFixed(2) + 'px';
+      for (var i = 0; i < hs.length; i++) hs[i].style.fontSize = px;
     } else {
       first.style.fontSize = '';
     }
