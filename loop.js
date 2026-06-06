@@ -4,17 +4,17 @@
   if (!deck) return;
   var LANG = document.documentElement.lang === 'en' ? 'en' : 'ja';
 
-  var WORDS = ['modeling','simulation','speculation'];
+  var WORDS = ['modeling','simulation','perception'];
   var DATA = {
     modeling:{k:'モデリング',
-      ja:'世界をまず形にする。点を立て、面を張り、塊を起こす。粘土のように削り込み<span class="seed">sculpting</span>、表面に色と質感を与え<span class="seed">texturing</span>、光を置いて陰影をつくり<span class="seed">lighting</span>、時間を与えて動かし<span class="seed">animation</span>、最後に計算で一枚の画像へ焼き上げる<span class="seed">rendering</span>。すべては、見えるようにする<span class="seed">visualization</span>ための手数だ。',
-      en:'First, the world is made into form. Points stand, surfaces stretch, mass rises. We carve it like clay <span class="seed">sculpting</span>, give the surface color and material <span class="seed">texturing</span>, place light for shadow <span class="seed">lighting</span>, add time to move it <span class="seed">animation</span>, and bake it into a single image <span class="seed">rendering</span>. Every move is to make it visible <span class="seed">visualization</span>.'},
+      ja:'形を一からつくる。ポリゴンや曲面で、物体や空間を立ち上げる。粘土のように削り込み<span class="seed">sculpting</span>、表面に色と質感を与え<span class="seed">texturing</span>、光を置いて陰影をつくり<span class="seed">lighting</span>、動きを付け<span class="seed">animation</span>、計算して一枚の画像へ仕上げる<span class="seed">rendering</span>。見えるものにすること<span class="seed">visualization</span>が、ここでの仕事だ。',
+      en:'We build form from scratch. With polygons and surfaces, objects and spaces take shape. We carve it like clay <span class="seed">sculpting</span>, give the surface color and material <span class="seed">texturing</span>, place light for shadow <span class="seed">lighting</span>, add movement <span class="seed">animation</span>, and compute it into a finished image <span class="seed">rendering</span>. The work here is to make things visible <span class="seed">visualization</span>.'},
     simulation:{k:'シミュレーション',
-      ja:'現象を、手で描かずに計算させる。流体や布や破壊が、ルールに従って勝手に動く。そのために小さなコードを書き<span class="seed">scripting</span>、ソフトの外に道具を組み<span class="seed">programming</span>、コードそのものを書く<span class="seed">coding</span>。規則から形を生み<span class="seed">generation</span>、数を回して答えを出す<span class="seed">calculation</span>。動かしているのは、いつも数式だ。',
-      en:'Instead of drawing motion by hand, we let it be computed. Fluids, cloth, destruction move on their own by rules. For that we write small code <span class="seed">scripting</span>, build tools beyond the software <span class="seed">programming</span>, write the code itself <span class="seed">coding</span>, grow form from rules <span class="seed">generation</span>, and turn numbers into answers <span class="seed">calculation</span>. What moves it is always an equation.'},
-    speculation:{k:'スペキュレーション',
-      ja:'まだ無い未来を、先に見る。ありえる世界、ありえた世界を構想し、その姿を描く。これが bomb の核だ。思索とは、世界の見え方そのもの<span class="seed">perspective</span>を選ぶこと。そして選んだ視点を、人が直感で掴める像へ翻訳する<span class="seed">visualization</span>。3, 6, 9 ── 複雑な方程式から、シンプルな解へ。',
-      en:'We see the not-yet future first. We envision worlds that could be, that could have been, and draw their shape. This is the core of bomb. To speculate is to choose how the world is seen <span class="seed">perspective</span>, and to translate that view into an image one can grasp at once <span class="seed">visualization</span>. 3, 6, 9 — from a complex equation toward a simple solution.'}
+      ja:'手で描かずに、現象を計算させる。流体・布・破壊などを、ルールに沿って動かす。そのために小さなコードを書き<span class="seed">scripting</span>、道具やシステムを組み<span class="seed">programming</span>、コードを書く<span class="seed">coding</span>。規則から形を生成し<span class="seed">generation</span>、数値を計算する<span class="seed">calculation</span>。再現と制御のための、地味な土台だ。',
+      en:'Rather than drawing motion by hand, we let phenomena be computed. Fluids, cloth, destruction move along rules. For this we write small code <span class="seed">scripting</span>, build tools and systems <span class="seed">programming</span>, write code <span class="seed">coding</span>, generate form from rules <span class="seed">generation</span>, and run the numbers <span class="seed">calculation</span>. A quiet foundation for reproducibility and control.'},
+    perception:{k:'パーセプション',
+      ja:'ものの見え方を、設計する。同じ対象でも、視点<span class="seed">perspective</span>が変われば違うものになる。どこから・どう見せるかを選び、伝わる像へ翻訳する<span class="seed">visualization</span>。私たちが扱うのは未来の予言ではなく、いま目の前にあるものの、捉え方だ。',
+      en:'We design how things are seen. The same subject becomes another thing when the point of view <span class="seed">perspective</span> changes. We choose where and how to show it, and translate it into an image that reads <span class="seed">visualization</span>. What we handle is not a prophecy of the future, but the way of seeing what is already here.'}
   };
 
   // --- 単語パネルを生成し、ヒーローの直後に挿入 ---
