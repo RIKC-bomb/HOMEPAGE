@@ -74,15 +74,18 @@
   var pos = 0, target = 0, vel = 0, mode = 'free', raf = null, running = false;
   var dragging = false, lastX = 0, lastDX = 0;
 
-  // --- 光の層（運動エネルギーで差す・逆二乗則で減衰） ---
+  // --- 自然光と影の層（陽が空を移動し、地形に陰影が差す） ---
   var light = document.createElement('div');
   light.className = 'deck-light';
   deck.appendChild(light);
   function shine(v) {
-    var ke = P.kinetic(v, 1);                 // E = ½mv²
-    var I = Math.min(0.14, P.attenuate(ke * 0.06, 0)); // 強さ（上限つき）
-    var cx = 50 + Math.max(-26, Math.min(26, v * -0.5)); // 進む向きへ寄る
-    light.style.background = 'radial-gradient(circle at ' + cx + '% 28%, rgba(43,71,217,' + I.toFixed(4) + ') 0%, rgba(43,71,217,0) 56%)';
+    var ke = P.kinetic(v, 1);                          // 運動エネルギー E = ½mv²
+    var a = Math.min(0.075, 0.022 + P.attenuate(ke * 0.05, 0)); // 影の濃さ（動くほどわずかに深く）
+    var sw = setW();
+    var phase = ((pos % sw) + sw) % sw / sw;           // 巻物の進み 0..1（陽の位置）
+    var lx = (12 + phase * 76).toFixed(1);             // 光源が空を 12%→88% 周回
+    light.style.background =
+      'radial-gradient(135% 115% at ' + lx + '% 8%, rgba(255,249,235,0) 32%, rgba(58,49,36,' + a.toFixed(4) + ') 100%)';
   }
 
   function setW() { return setCount * window.innerWidth; }
