@@ -83,7 +83,7 @@
   }
   </script>
 </head>
-<body>
+<body class="deck-page">
   <header class="site-header no-logo">
     <nav class="nav">
       <a href="#contact">Contact</a>
@@ -91,9 +91,7 @@
     </nav>
   </header>
 
-  <main class="scroll-track">
-    <div class="scroll-sticky">
-      <div class="rail">
+  <main class="deck">
 
         <!-- bomb（屋号＋プロダクト） -->
         <section id="top" class="panel hero">
@@ -143,7 +141,7 @@
                 <tr><th>商号</th><td>合同会社bomb（bomb LLC）</td></tr>
                 <tr><th>代表社員</th><td>佐藤陸</td></tr>
                 <tr><th>設立</th><td>20260401</td></tr>
-                <tr><th>所在地</th><td>107-0062 東京都港区南青山4-17-33</td></tr>
+                <tr><th>所在地</th><td><a href="https://www.google.com/maps/search/?api=1&amp;query=4-17-33+Minami-Aoyama,+Minato-ku,+Tokyo" target="_blank" rel="noopener">107-0062 東京都港区南青山4-17-33</a>（<a href="https://www.google.com/maps/search/?api=1&amp;query=NAGAYA+AOYAMA+Minami-Aoyama,+Tokyo" target="_blank" rel="noopener">座標</a>）</td></tr>
                 <tr><th>連絡先</th><td>info@bomb.co.jp</td></tr>
               </tbody>
             </table>
@@ -160,8 +158,6 @@
           </div>
         </section>
 
-      </div>
-    </div>
   </main>
 
   <script>
@@ -181,6 +177,6 @@
       setTimeout(function () { cp.textContent = orig; cp.classList.remove('copied'); }, 1500);
     });
   </script>
-  <script src="deck.js"></script>
+  <script src="loop.js"></script>
 </body>
 </html>
