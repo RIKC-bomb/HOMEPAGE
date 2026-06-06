@@ -4,6 +4,8 @@
 # 注意：robots.txt は「お願い」ベース。法令遵守のクローラーは従うが、
 #       悪質なbotは無視しうる。確実な遮断は前段のCDN/WAF(Cloudflare等)で行う。
 
+Sitemap: https://bomb.co.jp/sitemap.xml
+
 # --- 通常の検索エンジン（許可） ---
 User-agent: Googlebot
 Allow: /
