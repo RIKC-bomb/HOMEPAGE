@@ -4,6 +4,9 @@
   var words = document.querySelectorAll('.hero-words span');
   if (!words.length) return;
 
+  var APPEAR_RATE = 0.1; // 出現確率（0.1 = 10回に1回くらい・唐突なイースターエッグ）
+  if (Math.random() > APPEAR_RATE) return;
+
   var paddle = document.createElement('div'); paddle.className = 'bk-paddle';
   var ball = document.createElement('div'); ball.className = 'bk-ball';
   document.body.appendChild(paddle);
