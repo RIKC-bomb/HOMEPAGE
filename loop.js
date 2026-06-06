@@ -117,7 +117,7 @@
   function goTo(panel) { if (!panel) return; mode = 'spring'; target = panel.offsetLeft; vel = 0; start(); }
 
   pos = setW();
-  try { var _st = sessionStorage.getItem('deckPanel'); if (_st !== null) pos = setW() + (parseInt(_st, 10) || 0) * window.innerWidth; } catch (e) {}
+  try { var _st = sessionStorage.getItem('deckPos'); if (_st !== null) pos = setW() + (parseFloat(_st) || 0) * window.innerWidth; } catch (e) {}
   target = pos; render();
 
   // ホイール／トラックパッド（縦・横どちらも横移動に）＝速度へインパルス
@@ -160,9 +160,9 @@
   });
 
   // 現在のパネルをタブに記憶 → リロードしても同じ位置（トップに戻らない）
-  function curIdx() { var k = Math.round(pos / window.innerWidth); return ((k % setCount) + setCount) % setCount; }
-  function save() { try { sessionStorage.setItem('deckPanel', String(curIdx())); } catch (e) {} }
+  function curOffset() { var u = pos / window.innerWidth; return ((u % setCount) + setCount) % setCount; } // パネル単位の連続値
+  function save() { try { sessionStorage.setItem('deckPos', String(curOffset())); } catch (e) {} }
   window.addEventListener('pagehide', save);
   window.addEventListener('beforeunload', save);
-  window.addEventListener('resize', function () { var idx = curIdx(); pos = setW() + idx * window.innerWidth; target = pos; render(); });
+  window.addEventListener('resize', function () { var f = curOffset(); pos = setW() + f * window.innerWidth; target = pos; render(); });
 })();
