@@ -36,6 +36,17 @@
     deck.insertBefore(sec, after);
   });
 
+  // モバイル(タッチ)は横巻物をやめて縦スクロール。横移動は気持ちよくない＆iOSの描画負荷も回避。
+  if (window.matchMedia('(pointer: coarse)').matches) {
+    Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function (a) {
+      var href = a.getAttribute('href'), t = null;
+      if (href.indexOf('word.html?w=') !== -1) t = document.getElementById('w-' + href.split('w=')[1].split('&')[0]);
+      else if (href.charAt(0) === '#') t = document.getElementById(href.slice(1));
+      if (t) a.addEventListener('click', function (e) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); });
+    });
+    return; // トラック化・複製・物理・光はやらない（縦はCSSで素直に積む）
+  }
+
   // --- パネルをトラックに移し、transform で動かす（scrollLeftをやめてチカチカ解消） ---
   var track = document.createElement('div');
   track.className = 'deck-track';

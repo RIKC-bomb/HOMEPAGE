@@ -98,6 +98,13 @@ a { color: inherit; text-decoration: none; }
           mask-image: linear-gradient(to right, transparent 0%, #000 30%, #000 70%, transparent 100%);
 }
 .panel-alt > .wrap { position: relative; z-index: 1; }
+/* モバイル(タッチ)：横巻物 → 縦スクロール */
+@media (pointer: coarse) {
+  .deck-page { height: auto; overflow-x: hidden; }
+  .deck { display: block; width: 100%; height: auto; overflow: visible; }
+  .panel { width: 100%; min-height: 100svh; height: auto; flex: none; overflow: visible; }
+  .deck-light { display: none; }
+}
 .wrap { width: 100%; max-width: var(--max); }
 
 /* ===== ヒーロー ===== */
