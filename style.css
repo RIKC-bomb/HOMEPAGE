@@ -90,7 +90,15 @@ a { color: inherit; text-decoration: none; }
   padding: 88px clamp(20px, 5vw, 48px) 84px;
   overflow: hidden;
 }
-.panel-alt { background: #ffffff url("contour.svg") center / cover no-repeat; } /* 南青山の実際の等高線（国土地理院DEM）を背景に */
+.panel-alt { background: #ffffff; position: relative; }
+/* 南青山の実際の等高線（国土地理院DEM）を背景に。左右はグラデーションで透過させ隣の白へ溶かす */
+.panel-alt::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: url("contour.svg") center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 76%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 76%, transparent 100%);
+}
+.panel-alt > .wrap { position: relative; z-index: 1; }
 .wrap { width: 100%; max-width: var(--max); }
 
 /* ===== ヒーロー ===== */

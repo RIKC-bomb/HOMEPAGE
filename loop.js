@@ -4,19 +4,11 @@
   if (!deck) return;
   var LANG = document.documentElement.lang === 'en' ? 'en' : 'ja';
 
-  // 座標リンクの遷移先を Google Maps(地形) / Google Earth のどちらかにランダムで（フォント同様の“ゆらぎ”）
-  (function () {
-    var dest = (Math.random() < 0.5)
-      ? 'https://www.google.com/maps/@35.6641775,139.7182328,15z/data=!5m1!1e4'      // Maps・地形表示
-      : 'https://earth.google.com/web/@35.6641775,139.7182328,300a,1200d,35y,0h,0t,0r'; // Google Earth
-    Array.prototype.forEach.call(document.querySelectorAll('a[href*="maps?q=35.6641775"]'), function (a) { a.setAttribute('href', dest); });
-  })();
-
   var WORDS = ['modeling','simulation','perception'];
   var DATA = {
     modeling:{k:'モデリング',
-      ja:'地形や空間の形を、ポリゴンや曲面（NURBS）で一からつくる工程。bombでは主に <span class="seed">Rhinoceros</span> を用い、処理は <span class="seed">Python</span> で書く。粘土のように削り込む<span class="seed">sculpting</span>、表面に色と質感を与える<span class="seed">texturing</span>、光を視る<span class="seed">lighting</span>、動きを付ける<span class="seed">animation</span>、計算して画像に仕上げる<span class="seed">rendering</span>──いずれも、見えるものにする<span class="seed">visualization</span>ための工程である。',
-      en:'Building the form of terrain and space from scratch with polygons and surfaces (NURBS). At bomb this is done mainly in <span class="seed">Rhinoceros</span>, scripted in <span class="seed">Python</span>. Carving like clay <span class="seed">sculpting</span>, giving surfaces color and material <span class="seed">texturing</span>, observing light <span class="seed">lighting</span>, adding movement <span class="seed">animation</span>, computing it into an image <span class="seed">rendering</span> — all are steps toward making something visible <span class="seed">visualization</span>.'},
+      ja:'地形や空間の形を、ポリゴンや曲面（NURBS）で一からつくる工程。bombでは主に <span class="seed">Rhinoceros</span> を用い、処理は <span class="seed">Python</span> で書く。粘土のように削り込む<span class="seed">sculpting</span>、表面に色と質感を与える<span class="seed">texturing</span>、光を視る<span class="seed">lighting</span>、動きを付ける<span class="seed">animation</span>、計算して画像に仕上げる<span class="seed">rendering</span>──いずれも、見えるものにする<span class="seed">visualization</span>ための工程なのかもしれない。',
+      en:'Building the form of terrain and space from scratch with polygons and surfaces (NURBS). At bomb this is done mainly in <span class="seed">Rhinoceros</span>, scripted in <span class="seed">Python</span>. Carving like clay <span class="seed">sculpting</span>, giving surfaces color and material <span class="seed">texturing</span>, observing light <span class="seed">lighting</span>, adding movement <span class="seed">animation</span>, computing it into an image <span class="seed">rendering</span> — all are steps toward making something visible <span class="seed">visualization</span> — at least, that is how we see it for now.'},
     simulation:{k:'シミュレーション',
       ja:'水や光、風、雨、植生の成長――時間とともに移ろう環境のふるまいを、計算で確かめる工程。物理やルールを与え、コードで動かす。スクリプトを書き<span class="seed">scripting</span>、ツールやシステムを組み<span class="seed">programming</span>、必要なコードを書く<span class="seed">coding</span>、条件から形やパターンを生み<span class="seed">generation</span>、数値を解いて<span class="seed">calculation</span>たしかめる。',
       en:'Checking, by computation, how an environment behaves over time — water, light, wind, rain, the growth of planting. We give it physics and rules, then drive it with code: writing scripts <span class="seed">scripting</span>, building tools and systems <span class="seed">programming</span>, writing the code itself <span class="seed">coding</span>, generating form and pattern from conditions <span class="seed">generation</span>, and solving the numbers <span class="seed">calculation</span>.'},
