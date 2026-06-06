@@ -104,7 +104,8 @@ a { color: inherit; text-decoration: none; }
   .deck { display: block; width: 100%; height: auto; overflow: visible; }
   .panel { width: 100%; min-height: 100svh; height: auto; flex: none; overflow: visible; }
   .deck-light { display: none; }
-  .panel-alt::before { display: none; } /* モバイルは重い等高線SVGを描かない */
+  /* モバイルは重いSVGの代わりに軽いラスター画像(PNG)で等高線を描く */
+  .panel-alt::before { display: block; left: 0; right: 0; background-image: url("contour.png"); }
 }
 .wrap { width: 100%; max-width: var(--max); }
 
