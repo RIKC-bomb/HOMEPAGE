@@ -36,8 +36,14 @@
     deck.insertBefore(sec, after);
   });
 
+  // --- パネルをトラックに移し、transform で動かす（scrollLeftをやめてチカチカ解消） ---
+  var track = document.createElement('div');
+  track.className = 'deck-track';
+  while (deck.firstChild) track.appendChild(deck.firstChild);
+  deck.appendChild(track);
+
   // --- 無限ループ用に前後へ複製 ---
-  var originals = Array.prototype.slice.call(deck.children);
+  var originals = Array.prototype.slice.call(track.children);
   var setCount = originals.length;
   function cloneSet() {
     var frag = document.createDocumentFragment();
@@ -51,43 +57,64 @@
     });
     return frag;
   }
-  deck.insertBefore(cloneSet(), originals[0]);
-  deck.appendChild(cloneSet());
+  track.insertBefore(cloneSet(), originals[0]);
+  track.appendChild(cloneSet());
 
-  // --- イージング＋ループ ---
-  var EASE = 0.06, targetX = 0, animating = false, raf = null, touching = false;
+  // --- 自前の慣性スクロール物理（transform） ---
+  var EASE = 0.085;       // 目標へ寄る速さ（小さいほど長く滑る）
+  var MOMENTUM = 18;      // ドラッグ離した後の慣性の伸び
+  var pos = 0, target = 0, raf = null, running = false;
+  var dragging = false, lastX = 0, lastDX = 0;
+
   function setW() { return setCount * window.innerWidth; }
-  function wrapNow() {
+  function render() { track.style.transform = 'translate3d(' + (-pos) + 'px,0,0)'; }
+  function wrap() {
     var sw = setW();
-    if (deck.scrollLeft < sw) { deck.scrollLeft += sw; targetX += sw; }
-    else if (deck.scrollLeft > sw * 2) { deck.scrollLeft -= sw; targetX -= sw; }
+    if (pos < sw) { pos += sw; target += sw; }
+    else if (pos > sw * 2) { pos -= sw; target -= sw; }
   }
-  function loopFn() {
-    if (touching) { animating = false; raf = null; return; }
-    var diff = targetX - deck.scrollLeft;
-    if (Math.abs(diff) < 0.5) { deck.scrollLeft = targetX; wrapNow(); animating = false; raf = null; return; }
-    deck.scrollLeft += diff * EASE;
-    wrapNow();
-    raf = requestAnimationFrame(loopFn);
+  function tick() {
+    var diff = target - pos;
+    pos += diff * EASE;
+    if (Math.abs(diff) < 0.3) pos = target;
+    wrap();
+    render();
+    if (Math.abs(target - pos) > 0.3) { raf = requestAnimationFrame(tick); }
+    else { running = false; raf = null; }
   }
-  function start() { if (!animating) { animating = true; raf = requestAnimationFrame(loopFn); } }
-  function goTo(panel) { if (!panel) return; targetX = panel.offsetLeft; start(); }
+  function start() { if (!running) { running = true; raf = requestAnimationFrame(tick); } }
+  function goTo(panel) { if (!panel) return; target = panel.offsetLeft; start(); }
 
-  deck.scrollLeft = setW();
-  targetX = deck.scrollLeft;
+  pos = setW(); target = pos; render();
 
+  // ホイール／トラックパッド（縦・横どちらも横移動に）
   deck.addEventListener('wheel', function (e) {
     var d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-    targetX += d; e.preventDefault(); start();
+    target += d; e.preventDefault(); start();
   }, { passive: false });
-  deck.addEventListener('touchstart', function () { touching = true; if (raf) { cancelAnimationFrame(raf); raf = null; } animating = false; }, { passive: true });
-  deck.addEventListener('touchend', function () { touching = false; targetX = deck.scrollLeft; }, { passive: true });
-  deck.addEventListener('scroll', function () {
-    if (animating) return;
-    requestAnimationFrame(function () { wrapNow(); if (!animating) targetX = deck.scrollLeft; });
-  }, { passive: true });
 
-  // --- クリック：単語/アンカー → 該当パネルへ滑走（別ページに飛ばさない） ---
+  // ドラッグ（マウス＋タッチ共通）＝指に追従＋離すと慣性
+  deck.addEventListener('pointerdown', function (e) {
+    dragging = true; lastX = e.clientX; lastDX = 0; target = pos;
+    if (raf) { cancelAnimationFrame(raf); raf = null; } running = false;
+    try { deck.setPointerCapture(e.pointerId); } catch (_) {}
+  });
+  deck.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    var dx = e.clientX - lastX;
+    lastDX = dx; lastX = e.clientX;
+    pos -= dx; target = pos; wrap(); render();
+  });
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    try { deck.releasePointerCapture(e.pointerId); } catch (_) {}
+    target = pos - lastDX * MOMENTUM; start();
+  }
+  deck.addEventListener('pointerup', endDrag);
+  deck.addEventListener('pointercancel', endDrag);
+
+  // クリック：単語／アンカー → 該当パネルへ滑走（別ページに飛ばさない）
   Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var href = a.getAttribute('href');
     if (href.indexOf('word.html?w=') !== -1) {
@@ -98,5 +125,5 @@
     }
   });
 
-  window.addEventListener('resize', function () { deck.scrollLeft = setW(); targetX = deck.scrollLeft; });
+  window.addEventListener('resize', function () { pos = setW(); target = pos; render(); });
 })();

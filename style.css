@@ -64,13 +64,18 @@ a { color: inherit; text-decoration: none; }
 /* ===== 横スクロール（巻物）：ネイティブ横スクロール＋無限ループ ===== */
 .deck-page { height: 100svh; overflow: hidden; }
 .deck {
-  display: flex;
+  position: relative;
   width: 100vw;
   height: 100svh;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.deck-track {
+  display: flex;
+  height: 100svh;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 .deck::-webkit-scrollbar { display: none; }
 .panel {
