@@ -115,6 +115,9 @@ a { color: inherit; text-decoration: none; }
 .word-ex-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
 .word-ex { aspect-ratio: 4 / 3; border: 1px dashed var(--line); border-radius: 10px; background: #fafafa; }
 .word-ex-note { color: var(--muted); font-size: 0.85rem; margin-top: 12px; }
+.word-panel .wrap { max-width: 720px; }
+.word-panel .word-desc { margin-top: 18px; }
+.word-panel .word-examples { margin-top: 30px; }
 @media (max-width: 560px) { .word-ex-grid { grid-template-columns: repeat(2, 1fr); } }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
 
