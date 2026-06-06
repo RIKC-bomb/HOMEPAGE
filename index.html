@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>bomb</title>
-  <meta name="description" content="bombの公式ページ。modeling / sculpting / texturing / lighting / animation / rendering / coding / generation / calculation / simulation / speculation / perspective / visualization — 東京・南青山。" />
+  <meta name="description" content="bombの公式ページ。modeling / sculpting / texturing / lighting / rendering / coding / animation / generation / calculation / simulation / speculation / visualization / perspective — 東京・南青山。" />
   <meta name="robots" content="index, follow, noai, noimageai" />
   <meta name="theme-color" content="#2b47d9" />
   <link rel="canonical" href="https://bomb.co.jp/" />
@@ -104,15 +104,15 @@
               <span>sculpting</span>
               <span>texturing</span>
               <span>lighting</span>
-              <span>animation</span>
               <span>rendering</span>
               <span>coding</span>
+              <span>animation</span>
               <span>generation</span>
               <span>calculation</span>
               <span>simulation</span>
               <span>speculation</span>
-              <span>perspective</span>
               <span>visualization</span>
+              <span>perspective</span>
             </div>
           </div>
         </section>
@@ -120,12 +120,9 @@
         <!-- お問い合わせ -->
         <section id="contact" class="panel contact">
           <div class="wrap">
-            <div class="section-head">
-              <p class="section-eyebrow">Contact</p>
-              <h2 class="section-title">お問い合わせ</h2>
-            </div>
-            <p class="contact-lead">ご相談・ご依頼は、下記メールアドレスまでお気軽にご連絡ください。</p>
-            <a href="mailto:info@bomb.co.jp" class="btn btn-primary btn-lg">info@bomb.co.jp</a>
+            <p class="section-eyebrow">Contact</p>
+            <a href="mailto:info@bomb.co.jp" class="contact-mail">info@bomb.co.jp</a>
+            <button type="button" class="contact-copy" data-copy="info@bomb.co.jp">クリックでコピー</button>
           </div>
         </section>
 
@@ -166,6 +163,15 @@
       a.addEventListener('click', function () {
         try { localStorage.setItem('lang', this.getAttribute('data-lang')); } catch (e) {}
       });
+    });
+    var cp = document.querySelector('.contact-copy');
+    if (cp) cp.addEventListener('click', function () {
+      var t = cp.getAttribute('data-copy');
+      try { if (navigator.clipboard) navigator.clipboard.writeText(t); } catch (e) {}
+      var orig = cp.textContent;
+      cp.textContent = (document.documentElement.lang === 'en') ? 'copied!' : 'コピーしました';
+      cp.classList.add('copied');
+      setTimeout(function () { cp.textContent = orig; cp.classList.remove('copied'); }, 1500);
     });
   </script>
   <script src="deck.js"></script>
