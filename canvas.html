@@ -8,9 +8,7 @@
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
-  <!-- リロードごとにランダムフォント -->
   <script src="fonts.js"></script>
-  <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSG4890EV9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -28,45 +26,51 @@
       color: var(--ink); text-transform: lowercase; font-synthesis: none;
       -webkit-user-select: none; user-select: none; touch-action: none;
     }
-    .cv-viewport { position: fixed; inset: 0; overflow: hidden; cursor: grab; }
+    /* seep 背景（点からの色拡散・白へフェード） */
+    #seep { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; filter: blur(14px); opacity: 0.5; }
+    .cv-viewport {
+      position: fixed; inset: 0; overflow: hidden; cursor: grab; z-index: 1;
+      background-image: radial-gradient(circle, rgba(60,60,60,0.10) 1.2px, transparent 1.2px);
+      background-size: 46px 46px;
+    }
     .cv-viewport.grab { cursor: grabbing; }
-    .cv-space { position: absolute; top: 0; left: 0; will-change: transform; }
+    .cv-space { position: absolute; top: 0; left: 0; transform-origin: 0 0; will-change: transform; }
     .cv-tile { position: absolute; top: 0; left: 0; }
     .node { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; }
     .node.title { font-weight: 900; font-size: clamp(4rem, 12vw, 9rem); color: var(--ink); }
     .node.title a { color: inherit; text-decoration: none; }
-    .node.word { font-size: clamp(1rem, 2.6vw, 1.5rem); color: var(--muted); cursor: pointer; transition: color .15s; }
+    .node.word { font-size: clamp(1rem, 2.6vw, 1.45rem); color: var(--muted); cursor: pointer; transition: color .15s; }
     .node.word:hover { color: var(--accent); }
-    .node.label { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); cursor: pointer; }
+    .node.fact { font-size: 0.82rem; color: #8f8f8f; letter-spacing: 0.06em; }
+    .node.act { font-size: 0.92rem; color: var(--accent); cursor: pointer; }
+    .node.act:hover { text-decoration: underline; }
 
-    /* 開いた説明（その場・同じ次元の上に薄く） */
     .sheet { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; padding: 28px; z-index: 50; background: rgba(255,255,255,0.86); backdrop-filter: blur(6px); }
     .sheet.open { display: flex; }
     .sheet-inner { max-width: 640px; text-align: left; }
     .sheet-title { font-weight: 900; font-size: clamp(2.5rem, 9vw, 4.5rem); line-height: 1.05; }
     .sheet-reading { color: var(--muted); margin-top: 6px; letter-spacing: 0.12em; }
     .sheet-desc { font-size: 1.05rem; line-height: 2; color: #333; margin-top: 24px; text-transform: none; }
-    .sheet-desc a.mail { color: var(--accent); text-decoration: none; }
     .sheet-close { margin-top: 28px; color: var(--muted); font-size: 0.85rem; cursor: pointer; letter-spacing: 0.1em; }
     .sheet-close:hover { color: var(--ink); }
 
-    /* 別次元への入口（隅） */
     .dims { position: fixed; bottom: 16px; left: 0; right: 0; text-align: center; z-index: 40; font-size: 0.8rem; }
-    .dims a { color: #aaa; text-decoration: none; margin: 0 9px; text-transform: none; }
+    .dims a { color: #999; text-decoration: none; margin: 0 9px; text-transform: none; }
     .dims a:hover { color: var(--accent); }
-    .hint { position: fixed; top: 16px; left: 0; right: 0; text-align: center; color: #bbb; font-size: 0.8rem; z-index: 40; transition: opacity .6s; pointer-events: none; }
+    .hint { position: fixed; top: 16px; left: 0; right: 0; text-align: center; color: #aaa; font-size: 0.8rem; z-index: 40; transition: opacity .6s; pointer-events: none; }
     .hint.gone { opacity: 0; }
     .lang { position: fixed; top: 14px; right: 16px; z-index: 41; font-size: 0.8rem; }
-    .lang a { color: var(--muted); text-decoration: none; border: 1px solid #e3e3e3; border-radius: 999px; padding: 2px 11px; }
+    .lang a { color: var(--muted); text-decoration: none; border: 1px solid #e3e3e3; border-radius: 999px; padding: 2px 11px; background: rgba(255,255,255,0.7); }
   </style>
 </head>
 <body>
+  <canvas id="seep"></canvas>
   <div class="cv-viewport" id="vp">
     <div class="cv-space" id="space"></div>
   </div>
 
-  <div class="lang"><a href="en/canvas.html" data-lang="en" id="langlink">EN</a></div>
-  <div class="hint" id="hint">ドラッグして探索 — どこまでも循環します</div>
+  <div class="lang"><a href="#" id="langlink">EN</a></div>
+  <div class="hint" id="hint">ドラッグで探索・ピンチで拡大 — どこまでも循環します</div>
   <div class="dims" id="dims"></div>
 
   <div class="sheet" id="sheet">
@@ -79,7 +83,57 @@
   </div>
 
   <script>
-    var LANG = (document.documentElement.lang === 'en') ? 'en' : 'ja';
+    var LANG = (new URLSearchParams(location.search).get('lang') === 'en') ? 'en' : 'ja';
+    document.documentElement.lang = LANG;
+
+    /* ===== seep 背景：逆距離加重(IDW)で点の色を拡散、白へフェード ===== */
+    function renderSeep() {
+      var cv = document.getElementById('seep');
+      var w = window.innerWidth, h = window.innerHeight;
+      cv.width = w; cv.height = h;
+      var cols = 64, rows = Math.max(8, Math.round(64 * h / w));
+      var off = document.createElement('canvas'); off.width = cols; off.height = rows;
+      var octx = off.getContext('2d');
+      var img = octx.createImageData(cols, rows);
+      var POW = 1.2, EMP = 2.0, GRAD = 0.10, MAXB = 3, MIND = 1.0;
+      var N = 5 + Math.floor(Math.random() * 4);
+      var srcs = [];
+      for (var i = 0; i < N; i++) {
+        srcs.push({ x: Math.random() * cols, y: Math.random() * rows, f: 1 + Math.random() * 8,
+          r: Math.random() * 255, g: Math.random() * 255, b: Math.random() * 255 });
+      }
+      for (var yy = 0; yy < rows; yy++) {
+        for (var xx = 0; xx < cols; xx++) {
+          var inf = [];
+          for (var k = 0; k < srcs.length; k++) {
+            var sp = srcs[k], dx = xx - sp.x, dy = yy - sp.y, d = Math.sqrt(dx * dx + dy * dy);
+            if (d < MIND) d = MIND;
+            inf.push({ v: Math.pow(sp.f, EMP) / Math.pow(d, POW), s: sp });
+          }
+          inf.sort(function (a, b) { return b.v - a.v; });
+          inf = inf.slice(0, MAXB);
+          var tot = 0; for (var m = 0; m < inf.length; m++) tot += inf[m].v;
+          var idx = (yy * cols + xx) * 4;
+          var r = 255, g = 255, b = 255;
+          if (tot > 0.001) {
+            r = g = b = 0;
+            for (var m2 = 0; m2 < inf.length; m2++) { r += inf[m2].s.r * inf[m2].v; g += inf[m2].s.g * inf[m2].v; b += inf[m2].s.b * inf[m2].v; }
+            r /= tot; g /= tot; b /= tot;
+            var tw = GRAD / (GRAD + tot); if (tw < 0) tw = 0; if (tw > 1) tw = 1;
+            r = r + (255 - r) * tw; g = g + (255 - g) * tw; b = b + (255 - b) * tw;
+          }
+          img.data[idx] = r; img.data[idx + 1] = g; img.data[idx + 2] = b; img.data[idx + 3] = 255;
+        }
+      }
+      octx.putImageData(img, 0, 0);
+      var ctx = cv.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(off, 0, 0, cols, rows, 0, 0, w, h);
+    }
+    renderSeep();
+    window.addEventListener('resize', renderSeep);
+
+    /* ===== nodes ===== */
     var DATA = {
       modeling:{k:'モデリング',ja:'3DCGで「形」を作る工程。ポリゴンやNURBSで物体や空間のかたちを一から構築する。',en:'Building 3D form from scratch with polygons or NURBS.'},
       sculpting:{k:'スカルプティング',ja:'粘土をこねるように3Dモデルを彫り込む手法。有機的で繊細な造形に向く。',en:'Shaping a 3D model like clay — ideal for organic, detailed forms.'},
@@ -95,28 +149,28 @@
       simulation:{k:'シミュレーション',ja:'物理やルールで動き・現象を計算する（流体・布・破壊など）。',en:'Computing motion and phenomena by physics — fluids, cloth, destruction.'},
       speculation:{k:'スペキュレーション',ja:'まだ無い未来や世界を構想し、ありえる姿を思索する。bombの核。',en:'Envisioning futures that do not yet exist. The core of bomb.'},
       visualization:{k:'ビジュアライゼーション',ja:'データや構想を、人が直感で掴める画像・映像へ翻訳する。',en:'Translating data and ideas into images one can grasp.'},
-      perspective:{k:'パースペクティブ',ja:'視点。世界の見え方そのもの。すべてが最後に立ち返る軸。',en:'A point of view — how the world is seen. Where all returns.'},
-      location:{k:'所在地',ja:'107-0062 東京都港区南青山4-17-33（NAGAYA青山）。合同会社bomb／代表社員 佐藤陸／設立 20260401。',en:'4-17-33 Minami-Aoyama, Minato-ku, Tokyo. bomb LLC / Founder Riku Sato / Founded 20260401.'},
-      contact:{k:'お問い合わせ',ja:'つくることについて話すのが好きです。<a class="mail" href="mailto:info@bomb.co.jp">info@bomb.co.jp</a>',en:'We love talking about what we make. <a class="mail" href="mailto:info@bomb.co.jp">info@bomb.co.jp</a>'}
+      perspective:{k:'パースペクティブ',ja:'視点。世界の見え方そのもの。すべてが最後に立ち返る軸。',en:'A point of view — how the world is seen. Where all returns.'}
     };
     var WORDS = ['modeling','sculpting','texturing','lighting','animation','rendering','coding','scripting','programming','generation','calculation','simulation','speculation','visualization','perspective'];
+    var FACTS = (LANG === 'en')
+      ? [{t:'2026'},{t:'bomb LLC'},{t:'Riku Sato'},{t:'founded 20260401'},{t:'Minami-Aoyama, Tokyo'},{t:'4-17-33'},{t:'info@bomb.co.jp',act:'mail'},{t:'recruit →',act:'recruit'}]
+      : [{t:'2026'},{t:'合同会社 bomb'},{t:'佐藤陸'},{t:'設立 20260401'},{t:'東京・南青山'},{t:'4-17-33'},{t:'info@bomb.co.jp',act:'mail'},{t:'recruit →',act:'recruit'}];
 
-    var W = 1900, H = 1400;
-    var cx = W / 2, cy = H / 2;
-    var nodes = [];
-    nodes.push({ type: 'title', label: 'bomb', x: cx, y: cy });
-    for (var i = 0; i < WORDS.length; i++) {
-      var a = (i / WORDS.length) * Math.PI * 2 - Math.PI / 2;
-      var r = 380 + (i % 3) * 110;
-      nodes.push({ type: 'word', label: WORDS[i], x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r * 0.72 });
-    }
-    nodes.push({ type: 'label', label: 'Location', key: 'location', x: cx - 720, y: cy + 540 });
-    nodes.push({ type: 'label', label: 'Contact', key: 'contact', x: cx + 720, y: cy - 520 });
+    var W = 1900, H = 1400, cx = W / 2, cy = H / 2;
+    var nodes = [{ type: 'title', label: 'bomb', x: cx, y: cy }];
+    var items = [];
+    WORDS.forEach(function (w) { items.push({ type: 'word', key: w, label: w }); });
+    FACTS.forEach(function (f) { items.push({ type: f.act ? 'act' : 'fact', label: f.t, act: f.act }); });
+    var golden = Math.PI * (3 - Math.sqrt(5));
+    items.forEach(function (it, n) {
+      var ang = n * golden, r = 360 + 100 * Math.sqrt(n);
+      it.x = cx + Math.cos(ang) * r; it.y = cy + Math.sin(ang) * r * 0.78;
+      nodes.push(it);
+    });
 
     function buildTile() {
       var t = document.createElement('div');
-      t.className = 'cv-tile';
-      t.style.width = W + 'px'; t.style.height = H + 'px';
+      t.className = 'cv-tile'; t.style.width = W + 'px'; t.style.height = H + 'px';
       nodes.forEach(function (n) {
         var el;
         if (n.type === 'title') {
@@ -125,11 +179,15 @@
           a.href = (LANG === 'en' ? 'https://en.wikipedia.org/wiki/Future_of_Earth' : 'https://ja.wikipedia.org/wiki/%E5%9C%B0%E7%90%83%E3%81%AE%E6%9C%AA%E6%9D%A5');
           a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'bomb';
           el.appendChild(a);
+        } else if (n.type === 'word') {
+          el = document.createElement('div'); el.className = 'node word';
+          el.textContent = n.label; el.setAttribute('data-key', n.key);
+        } else if (n.type === 'act') {
+          el = document.createElement('div'); el.className = 'node act';
+          el.textContent = n.label; el.setAttribute('data-act', n.act);
         } else {
-          el = document.createElement('div');
-          el.className = 'node ' + (n.type === 'label' ? 'label' : 'word');
+          el = document.createElement('div'); el.className = 'node fact';
           el.textContent = n.label;
-          el.setAttribute('data-key', n.key || n.label);
         }
         el.style.left = n.x + 'px'; el.style.top = n.y + 'px';
         t.appendChild(el);
@@ -138,22 +196,29 @@
     }
 
     var space = document.getElementById('space');
-    for (var gx = 0; gx < 3; gx++) {
-      for (var gy = 0; gy < 3; gy++) {
+    for (var gx = 0; gx < 5; gx++) {
+      for (var gy = 0; gy < 5; gy++) {
         var tile = buildTile();
         tile.style.transform = 'translate(' + (gx * W) + 'px,' + (gy * H) + 'px)';
         space.appendChild(tile);
       }
     }
 
+    /* ===== pan + zoom + loop ===== */
     var vp = document.getElementById('vp');
-    var px = -(W - window.innerWidth) / 2 - W; // 中央タイルが中心に来るよう初期化
-    var py = -(H - window.innerHeight) / 2 - H;
+    var s = 1, ox = window.innerWidth / 2 - cx, oy = window.innerHeight / 2 - cy;
     function wrap(v, m) { v = v % m; if (v > 0) v -= m; return v; }
     function apply() {
-      space.style.transform = 'translate(' + wrap(px, W) + 'px,' + wrap(py, H) + 'px)';
+      space.style.transform = 'translate(' + wrap(ox, W * s) + 'px,' + wrap(oy, H * s) + 'px) scale(' + s + ')';
+      var g = 46 * s;
+      vp.style.backgroundSize = g + 'px ' + g + 'px';
+      vp.style.backgroundPosition = wrap(ox, g) + 'px ' + wrap(oy, g) + 'px';
     }
     apply();
+    function zoomAt(mx, my, factor) {
+      var ns = Math.max(0.4, Math.min(3.2, s * factor));
+      ox = mx - (mx - ox) * (ns / s); oy = my - (my - oy) * (ns / s); s = ns; apply();
+    }
 
     var dragging = false, moved = 0, lx = 0, ly = 0;
     function down(x, y) { dragging = true; moved = 0; lx = x; ly = y; vp.classList.add('grab'); }
@@ -161,21 +226,44 @@
       if (!dragging) return;
       var dx = x - lx, dy = y - ly; lx = x; ly = y;
       moved += Math.abs(dx) + Math.abs(dy);
-      px += dx; py += dy; apply();
-      if (moved > 8) { var h = document.getElementById('hint'); if (h) h.classList.add('gone'); }
+      ox += dx; oy += dy; apply();
+      if (moved > 8) { var hh = document.getElementById('hint'); if (hh) hh.classList.add('gone'); }
     }
     function up() { dragging = false; vp.classList.remove('grab'); }
 
     vp.addEventListener('mousedown', function (e) { down(e.clientX, e.clientY); });
     window.addEventListener('mousemove', function (e) { move(e.clientX, e.clientY); });
     window.addEventListener('mouseup', up);
-    vp.addEventListener('touchstart', function (e) { var t = e.touches[0]; down(t.clientX, t.clientY); }, { passive: true });
-    window.addEventListener('touchmove', function (e) { var t = e.touches[0]; if (t) move(t.clientX, t.clientY); }, { passive: true });
-    window.addEventListener('touchend', up);
-    // ホイール/トラックパッドでもパン
-    vp.addEventListener('wheel', function (e) { px -= e.deltaX; py -= e.deltaY; apply(); e.preventDefault(); }, { passive: false });
 
-    // クリック（ドラッグでない時）で説明をその場に開く
+    // ホイール：通常=パン / ctrl・meta（=トラックパッドのピンチ）=ズーム
+    vp.addEventListener('wheel', function (e) {
+      e.preventDefault();
+      if (e.ctrlKey || e.metaKey) { zoomAt(e.clientX, e.clientY, Math.exp(-e.deltaY * 0.01)); }
+      else { ox -= e.deltaX; oy -= e.deltaY; moved = 99; apply(); }
+    }, { passive: false });
+
+    // タッチ：1本=パン / 2本=ピンチズーム
+    var pinchDist = 0, pinching = false;
+    function tdist(e) { var a = e.touches[0], b = e.touches[1]; var dx = a.clientX - b.clientX, dy = a.clientY - b.clientY; return Math.sqrt(dx * dx + dy * dy); }
+    function tmid(e) { return { x: (e.touches[0].clientX + e.touches[1].clientX) / 2, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 }; }
+    vp.addEventListener('touchstart', function (e) {
+      if (e.touches.length === 2) { pinching = true; pinchDist = tdist(e); }
+      else if (e.touches.length === 1) { pinching = false; down(e.touches[0].clientX, e.touches[0].clientY); }
+    }, { passive: true });
+    window.addEventListener('touchmove', function (e) {
+      if (pinching && e.touches.length === 2) {
+        var nd = tdist(e), mid = tmid(e);
+        if (pinchDist > 0) zoomAt(mid.x, mid.y, nd / pinchDist);
+        pinchDist = nd;
+      } else if (!pinching && e.touches.length === 1) { move(e.touches[0].clientX, e.touches[0].clientY); }
+    }, { passive: true });
+    window.addEventListener('touchend', function (e) {
+      if (e.touches.length < 2) pinching = false;
+      if (e.touches.length === 1) down(e.touches[0].clientX, e.touches[0].clientY);
+      else if (e.touches.length === 0) up();
+    });
+
+    /* ===== sheet / links ===== */
     var sheet = document.getElementById('sheet');
     function openSheet(key) {
       var d = DATA[key]; if (!d) return;
@@ -187,24 +275,28 @@
     }
     function closeSheet() { sheet.classList.remove('open'); }
     vp.addEventListener('click', function (e) {
-      if (moved > 8) return; // ドラッグはクリック扱いしない
-      var n = e.target.closest('[data-key]');
-      if (n) openSheet(n.getAttribute('data-key'));
+      if (moved > 8) return;
+      var k = e.target.closest('[data-key]');
+      if (k) { openSheet(k.getAttribute('data-key')); return; }
+      var a = e.target.closest('[data-act]');
+      if (a) {
+        var act = a.getAttribute('data-act');
+        if (act === 'mail') location.href = 'mailto:info@bomb.co.jp';
+        else if (act === 'recruit') location.href = (LANG === 'en') ? 'en/recruit.html' : 'recruit.html';
+      }
     });
     sheet.addEventListener('click', function (e) { if (e.target === sheet || e.target.id === 's-close') closeSheet(); });
     window.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSheet(); });
 
-    // 別次元（別ページ）への入口
     var dims = document.getElementById('dims');
     var dimLinks = LANG === 'en'
       ? [['Recruit','en/recruit.html'],['Privacy','en/privacy.html'],['Legal','en/legal.html'],['Credits','en/credits.html']]
       : [['Recruit','recruit.html'],['Privacy','privacy.html'],['Legal','legal.html'],['Credits','credits.html']];
     dims.innerHTML = dimLinks.map(function (l) { return '<a href="' + l[1] + '">' + l[0] + '</a>'; }).join('·');
-    if (LANG === 'en') document.getElementById('hint').textContent = 'drag to explore — it loops forever';
 
-    document.querySelectorAll('[data-lang]').forEach(function (a) {
-      a.addEventListener('click', function () { try { localStorage.setItem('lang', this.getAttribute('data-lang')); } catch (e) {} });
-    });
+    var ll = document.getElementById('langlink');
+    if (LANG === 'en') { ll.textContent = 'JP'; ll.href = 'canvas.html'; document.getElementById('hint').textContent = 'drag to explore · pinch to zoom — it loops forever'; }
+    else { ll.textContent = 'EN'; ll.href = 'canvas.html?lang=en'; }
   </script>
 </body>
 </html>
