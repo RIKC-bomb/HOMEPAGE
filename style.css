@@ -118,6 +118,7 @@ a { color: inherit; text-decoration: none; }
 .word-panel .wrap { max-width: 720px; }
 .word-panel .word-desc { margin-top: 18px; }
 .word-panel .word-examples { margin-top: 30px; }
+.word-desc .seed { color: var(--accent); text-transform: lowercase; font-style: normal; white-space: nowrap; }
 @media (max-width: 560px) { .word-ex-grid { grid-template-columns: repeat(2, 1fr); } }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
 

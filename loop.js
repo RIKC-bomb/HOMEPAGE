@@ -4,23 +4,17 @@
   if (!deck) return;
   var LANG = document.documentElement.lang === 'en' ? 'en' : 'ja';
 
-  var WORDS = ['modeling','sculpting','texturing','lighting','animation','rendering','coding','scripting','programming','generation','calculation','simulation','speculation','visualization','perspective'];
+  var WORDS = ['modeling','simulation','speculation'];
   var DATA = {
-    modeling:{k:'モデリング',ja:'3DCGで「形」を作る工程。ポリゴンやNURBSで物体や空間のかたちを一から構築する。',en:'Building 3D form from scratch with polygons or NURBS.'},
-    sculpting:{k:'スカルプティング',ja:'粘土をこねるように3Dモデルを彫り込む手法。有機的で繊細な造形に向く。',en:'Shaping a 3D model like clay — ideal for organic, detailed forms.'},
-    texturing:{k:'テクスチャリング',ja:'モデルの表面に色や質感を与え、素材としての説得力を作る工程。',en:'Giving surfaces color and material so they feel real.'},
-    lighting:{k:'ライティング',ja:'3D空間に光を配置し、陰影・空気・時間帯・感情をつくる工程。',en:'Placing light to shape shadow, atmosphere and emotion.'},
-    animation:{k:'アニメーション',ja:'キーフレームで「こう動かしたい」を手付けする工程。',en:'Authoring intended motion by hand with keyframes.'},
-    rendering:{k:'レンダリング',ja:'3Dシーンを計算し、最終的な画像・映像へ焼き上げる工程。',en:'Computing a 3D scene into the final image or film.'},
-    coding:{k:'コーディング',ja:'コードを書く行為全般。自動化やツール作りを含む総称。',en:'Writing code — the umbrella for automation and tools.'},
-    scripting:{k:'スクリプティング',ja:'既存ソフトの中で動く小さなコード。自動化や手続き的生成を担う。',en:'Small code inside software to automate and generate.'},
-    programming:{k:'プログラミング',ja:'独立したソフトやシステム、制作パイプラインを設計・構築する。',en:'Building standalone software, systems and pipelines.'},
-    generation:{k:'ジェネレーション',ja:'ルールやアルゴリズムから形・パターンを生成する。',en:'Creating form and pattern from rules and algorithms.'},
-    calculation:{k:'カリキュレーション',ja:'数値計算。形状・物理・最適化などの土台になる演算。',en:'Numerical computation behind geometry and physics.'},
-    simulation:{k:'シミュレーション',ja:'物理やルールで動き・現象を計算する（流体・布・破壊など）。',en:'Computing motion and phenomena by physics — fluids, cloth, destruction.'},
-    speculation:{k:'スペキュレーション',ja:'まだ無い未来や世界を構想し、ありえる姿を思索する。bombの核。',en:'Envisioning futures that do not yet exist. The core of bomb.'},
-    visualization:{k:'ビジュアライゼーション',ja:'データや構想を、人が直感で掴める画像・映像へ翻訳する。',en:'Translating data and ideas into images one can grasp.'},
-    perspective:{k:'パースペクティブ',ja:'視点。世界の見え方そのもの。すべてが最後に立ち返る軸。',en:'A point of view — how the world is seen. Where all returns.'}
+    modeling:{k:'モデリング',
+      ja:'世界をまず形にする。点を立て、面を張り、塊を起こす。粘土のように削り込み<span class="seed">sculpting</span>、表面に色と質感を与え<span class="seed">texturing</span>、光を置いて陰影をつくり<span class="seed">lighting</span>、時間を与えて動かし<span class="seed">animation</span>、最後に計算で一枚の画像へ焼き上げる<span class="seed">rendering</span>。すべては、見えるようにする<span class="seed">visualization</span>ための手数だ。',
+      en:'First, the world is made into form. Points stand, surfaces stretch, mass rises. We carve it like clay <span class="seed">sculpting</span>, give the surface color and material <span class="seed">texturing</span>, place light for shadow <span class="seed">lighting</span>, add time to move it <span class="seed">animation</span>, and bake it into a single image <span class="seed">rendering</span>. Every move is to make it visible <span class="seed">visualization</span>.'},
+    simulation:{k:'シミュレーション',
+      ja:'現象を、手で描かずに計算させる。流体や布や破壊が、ルールに従って勝手に動く。そのために小さなコードを書き<span class="seed">scripting</span>、ソフトの外に道具を組み<span class="seed">programming</span>、コードそのものを書く<span class="seed">coding</span>。規則から形を生み<span class="seed">generation</span>、数を回して答えを出す<span class="seed">calculation</span>。動かしているのは、いつも数式だ。',
+      en:'Instead of drawing motion by hand, we let it be computed. Fluids, cloth, destruction move on their own by rules. For that we write small code <span class="seed">scripting</span>, build tools beyond the software <span class="seed">programming</span>, write the code itself <span class="seed">coding</span>, grow form from rules <span class="seed">generation</span>, and turn numbers into answers <span class="seed">calculation</span>. What moves it is always an equation.'},
+    speculation:{k:'スペキュレーション',
+      ja:'まだ無い未来を、先に見る。ありえる世界、ありえた世界を構想し、その姿を描く。これが bomb の核だ。思索とは、世界の見え方そのもの<span class="seed">perspective</span>を選ぶこと。そして選んだ視点を、人が直感で掴める像へ翻訳する<span class="seed">visualization</span>。3, 6, 9 ── 複雑な方程式から、シンプルな解へ。',
+      en:'We see the not-yet future first. We envision worlds that could be, that could have been, and draw their shape. This is the core of bomb. To speculate is to choose how the world is seen <span class="seed">perspective</span>, and to translate that view into an image one can grasp at once <span class="seed">visualization</span>. 3, 6, 9 — from a complex equation toward a simple solution.'}
   };
 
   // --- 単語パネルを生成し、ヒーローの直後に挿入 ---
