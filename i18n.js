@@ -63,6 +63,22 @@
     return DICT[code];
   }
   function nameOf(code){ return SPECIAL_NAME[code] || (code==='egy'?'𓂀 hieroglyphs':(DICT[code]&&DICT[code].name)||code); }
+
+  // 言語ごとにフォントもランダム（その文字体系の候補から・使った時だけ読み込む）
+  var baseFont='', loadedF={};
+  var SCRIPT_FONTS={
+    zh:[{css:'"Noto Sans SC",sans-serif',g:'Noto+Sans+SC'},{css:'"Noto Serif SC",serif',g:'Noto+Serif+SC'},{css:'"ZCOOL XiaoWei",serif',g:'ZCOOL+XiaoWei'},{css:'"Ma Shan Zheng",cursive',g:'Ma+Shan+Zheng'},{css:'"ZCOOL QingKe HuangYou",sans-serif',g:'ZCOOL+QingKe+HuangYou'}],
+    ko:[{css:'"Noto Sans KR",sans-serif',g:'Noto+Sans+KR'},{css:'"Noto Serif KR",serif',g:'Noto+Serif+KR'},{css:'"Nanum Gothic",sans-serif',g:'Nanum+Gothic'},{css:'"Nanum Myeongjo",serif',g:'Nanum+Myeongjo'},{css:'"Jua",sans-serif',g:'Jua'},{css:'"Do Hyeon",sans-serif',g:'Do+Hyeon'}],
+    ar:[{css:'"Noto Sans Arabic",sans-serif',g:'Noto+Sans+Arabic'},{css:'"Noto Naskh Arabic",serif',g:'Noto+Naskh+Arabic'},{css:'"Amiri",serif',g:'Amiri'},{css:'"Cairo",sans-serif',g:'Cairo'},{css:'"Tajawal",sans-serif',g:'Tajawal'},{css:'"Reem Kufi",sans-serif',g:'Reem+Kufi'}],
+    ru:[{css:'"Noto Sans",sans-serif',g:'Noto+Sans'},{css:'"PT Serif",serif',g:'PT+Serif'},{css:'"Jura",sans-serif',g:'Jura'},{css:'"Russo One",sans-serif',g:'Russo+One'},{css:'"Yeseva One",serif',g:'Yeseva+One'},{css:'"Pattaya",sans-serif',g:'Pattaya'}]
+  };
+  function loadFont(g){ if(loadedF[g])return; loadedF[g]=1; var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family='+g+'&display=swap'; document.head.appendChild(l); }
+  function pickFont(code){
+    var pool=SCRIPT_FONTS[code];
+    if(!pool){ if(baseFont) document.documentElement.style.setProperty('--font', baseFont); return; }
+    var f=pool[Math.floor(Math.random()*pool.length)];
+    loadFont(f.g); document.documentElement.style.setProperty('--font', f.css);
+  }
   // 概念語を式/コードに置換（mode無しなら元に戻す）
   function setConcept(mode){
     var els=document.querySelectorAll('.hero-domain, .hero-row a, .word-title');
@@ -112,6 +128,7 @@
     // 方向・言語・フォント
     doc.documentElement.setAttribute('dir', d.rtl?'rtl':'ltr');
     doc.body.classList.toggle('lang-egy', code==='egy');
+    pickFont(code);
     if(code==='egy') ensureEgyFont();
     try{ localStorage.setItem('lang', code); }catch(e){}
     var lbl=document.getElementById('langCur'); if(lbl) lbl.textContent=(SHORT[code]||code.toUpperCase());
@@ -148,6 +165,6 @@
     document.body.appendChild(ov);
   }
 
-  function init(){ var cur=detect(); buildPanel(cur); apply(cur); }
+  function init(){ baseFont=document.documentElement.style.getPropertyValue('--font')||''; var cur=detect(); buildPanel(cur); apply(cur); }
   if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded',init);
 })();
