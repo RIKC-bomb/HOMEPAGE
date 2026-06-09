@@ -4,7 +4,7 @@
   if (!deck) return;
   var LANG = document.documentElement.lang === 'en' ? 'en' : 'ja';
 
-  var WORDS = ['modeling','simulation','perception'];
+  var WORDS = ['modeling','simulation','perspective'];
   var DATA = {
     modeling:{k:'モデリング',
       ja:'地形や空間の形を、ポリゴンや曲面（NURBS）で一からつくる工程。bombでは主に <span class="seed">Rhinoceros</span> を用い、処理は <span class="seed">Python</span> で書く。粘土のように削り込む<span class="seed">sculpting</span>、表面に色と質感を与える<span class="seed">texturing</span>、光をみる<span class="seed">lighting</span>、動きを付ける<span class="seed">animation</span>、計算して画像に仕上げる<span class="seed">rendering</span>──どれも、見えるようにするための試みなのかもしれない。',
@@ -12,9 +12,9 @@
     simulation:{k:'シミュレーション',
       ja:'水や光、風、雨、植生の成長――時間とともに移ろう環境のふるまいを、計算で確かめる工程。物理やルールを与え、コードで動かす。スクリプトを書き<span class="seed">scripting</span>、ツールやシステムを組み<span class="seed">programming</span>、必要なコードを書く<span class="seed">coding</span>、条件から形やパターンを生み<span class="seed">generation</span>、数値を解いて<span class="seed">calculation</span>たしかめる。',
       en:'Checking, by computation, how an environment behaves over time — water, light, wind, rain, the growth of planting. We give it physics and rules, then drive it with code: writing scripts <span class="seed">scripting</span>, building tools and systems <span class="seed">programming</span>, writing the code itself <span class="seed">coding</span>, generating form and pattern from conditions <span class="seed">generation</span>, and solving the numbers <span class="seed">calculation</span>.'},
-    perception:{k:'パーセプション',
-      ja:'景観の見え方に関わる領域。同じ場所でも、視点<span class="seed">perspective</span>が変われば違って見える。どこから・どう見せるかを選び、関係や構造を図に起こし<span class="seed">diagramming</span>、伝わる像へ翻訳する<span class="seed">visualization</span>までを扱う。',
-      en:'The domain of how a landscape appears. The same place looks different as the point of view <span class="seed">perspective</span> changes. It covers choosing where and how to show it, drawing relations and structure into diagrams <span class="seed">diagramming</span>, and translating it into an image that reads <span class="seed">visualization</span>.'}
+    perspective:{k:'パースペクティブ',
+      ja:'景観の、見え方そのもの。同じ場所でも、どこから・どう見るかで、違う風景になる。視点を決め、知覚<span class="seed">perception</span>にふれ、関係や構造を図に起こし<span class="seed">diagramming</span>、伝わる像へ翻訳する<span class="seed">visualization</span>までを扱う。',
+      en:'How a landscape is seen. The same place becomes a different scene depending on where and how you look. It covers choosing the point of view, touching perception <span class="seed">perception</span>, drawing relations and structure into diagrams <span class="seed">diagramming</span>, and translating it into an image that reads <span class="seed">visualization</span>.'}
   };
 
   // --- 単語パネルを生成し、ヒーローの直後に挿入 ---
