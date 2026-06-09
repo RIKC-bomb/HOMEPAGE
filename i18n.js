@@ -52,7 +52,67 @@
       recruit:'Varbado', privacy:'Privateca politiko', legal:'Juraj avizoj', credits:'Atribuoj',
       works:'verkoj', coming:'baldaŭ',
       lead1:'Ni ŝatas imagi aferojn, kaj fari ilin.', lead2:'Se io interesas vin, skribu al ni libere.',
-      th_name:'Nomo', th_founder:'Fondinto', th_founded:'Fondita', th_address:'Adreso', th_contact:'Kontakto'}
+      th_name:'Nomo', th_founder:'Fondinto', th_founded:'Fondita', th_address:'Adreso', th_contact:'Kontakto'},
+    pt: {name:'Português', nav_contact:'Contato', contact:'Contato', location:'Localização',
+      recruit:'Carreiras', privacy:'Privacidade', legal:'Avisos legais', credits:'Créditos',
+      works:'trabalhos', coming:'em breve',
+      lead1:'Gostamos de imaginar coisas e de fazê-las.', lead2:'Se algo lhe interessar, escreva-nos à vontade.',
+      th_name:'Nome', th_founder:'Fundador', th_founded:'Fundação', th_address:'Endereço', th_contact:'Contato'},
+    it: {name:'Italiano', nav_contact:'Contatti', contact:'Contatti', location:'Sede',
+      recruit:'Lavora con noi', privacy:'Privacy', legal:'Note legali', credits:'Crediti',
+      works:'lavori', coming:'in arrivo',
+      lead1:'Ci piace immaginare le cose e realizzarle.', lead2:'Se qualcosa ti interessa, scrivici liberamente.',
+      th_name:'Nome', th_founder:'Fondatore', th_founded:'Fondazione', th_address:'Indirizzo', th_contact:'Contatti'},
+    id: {name:'Bahasa Indonesia', nav_contact:'Kontak', contact:'Kontak', location:'Lokasi',
+      recruit:'Karier', privacy:'Privasi', legal:'Pemberitahuan hukum', credits:'Kredit',
+      works:'karya', coming:'segera hadir',
+      lead1:'Kami suka membayangkan sesuatu, dan membuatnya.', lead2:'Jika ada yang menarik bagimu, kirim surel dengan bebas.',
+      th_name:'Nama', th_founder:'Pendiri', th_founded:'Didirikan', th_address:'Alamat', th_contact:'Kontak'},
+    tr: {name:'Türkçe', nav_contact:'İletişim', contact:'İletişim', location:'Konum',
+      recruit:'Kariyer', privacy:'Gizlilik', legal:'Yasal uyarılar', credits:'Künye',
+      works:'çalışmalar', coming:'yakında',
+      lead1:'Bir şeyler hayal etmeyi ve onları yapmayı seviyoruz.', lead2:'İlginizi çeken bir şey olursa, çekinmeden yazın.',
+      th_name:'Ad', th_founder:'Kurucu', th_founded:'Kuruluş', th_address:'Adres', th_contact:'İletişim'},
+    nl: {name:'Nederlands', nav_contact:'Contact', contact:'Contact', location:'Locatie',
+      recruit:'Vacatures', privacy:'Privacy', legal:'Juridische kennisgeving', credits:'Credits',
+      works:'werk', coming:'binnenkort',
+      lead1:'We verbeelden graag dingen en maken ze.', lead2:'Als iets je interesseert, mail ons gerust.',
+      th_name:'Naam', th_founder:'Oprichter', th_founded:'Opgericht', th_address:'Adres', th_contact:'Contact'},
+    pl: {name:'Polski', nav_contact:'Kontakt', contact:'Kontakt', location:'Lokalizacja',
+      recruit:'Kariera', privacy:'Prywatność', legal:'Nota prawna', credits:'Twórcy',
+      works:'prace', coming:'wkrótce',
+      lead1:'Lubimy wyobrażać sobie rzeczy i je tworzyć.', lead2:'Jeśli coś Cię zainteresuje, napisz do nas śmiało.',
+      th_name:'Nazwa', th_founder:'Założyciel', th_founded:'Założono', th_address:'Adres', th_contact:'Kontakt'},
+    uk: {name:'Українська', nav_contact:'Контакти', contact:'Контакти', location:'Розташування',
+      recruit:'Вакансії', privacy:'Конфіденційність', legal:'Правова інформація', credits:'Подяки',
+      works:'роботи', coming:'незабаром',
+      lead1:'Нам подобається уявляти речі та створювати їх.', lead2:'Якщо щось зацікавить — пишіть нам.',
+      th_name:'Назва', th_founder:'Засновник', th_founded:'Засновано', th_address:'Адреса', th_contact:'Контакт'},
+    vi: {name:'Tiếng Việt', nav_contact:'Liên hệ', contact:'Liên hệ', location:'Vị trí',
+      recruit:'Tuyển dụng', privacy:'Quyền riêng tư', legal:'Thông báo pháp lý', credits:'Ghi nhận',
+      works:'tác phẩm', coming:'sắp ra mắt',
+      lead1:'Chúng tôi thích tưởng tượng ra mọi thứ, và làm ra chúng.', lead2:'Nếu bạn quan tâm điều gì, cứ thoải mái gửi email cho chúng tôi.',
+      th_name:'Tên', th_founder:'Người sáng lập', th_founded:'Thành lập', th_address:'Địa chỉ', th_contact:'Liên hệ'},
+    hi: {name:'हिन्दी', nav_contact:'संपर्क', contact:'संपर्क', location:'स्थान',
+      recruit:'भर्ती', privacy:'गोपनीयता', legal:'कानूनी सूचना', credits:'श्रेय',
+      works:'कार्य', coming:'जल्द आ रहा है',
+      lead1:'हमें चीज़ों की कल्पना करना और उन्हें बनाना पसंद है।', lead2:'अगर कुछ आपको दिलचस्प लगे, तो बेझिझक हमें ईमेल करें।',
+      th_name:'नाम', th_founder:'संस्थापक', th_founded:'स्थापना', th_address:'पता', th_contact:'संपर्क'},
+    fa: {name:'فارسی', rtl:true, nav_contact:'تماس', contact:'تماس', location:'موقعیت',
+      recruit:'استخدام', privacy:'حریم خصوصی', legal:'اطلاعیه حقوقی', credits:'دست‌اندرکاران',
+      works:'کارها', coming:'به‌زودی',
+      lead1:'ما دوست داریم چیزها را تصوّر کنیم و آن‌ها را بسازیم.', lead2:'اگر چیزی توجه شما را جلب کرد، با خیال راحت به ما ایمیل بزنید.',
+      th_name:'نام', th_founder:'بنیان‌گذار', th_founded:'تأسیس', th_address:'نشانی', th_contact:'تماس'},
+    th: {name:'ไทย', nav_contact:'ติดต่อ', contact:'ติดต่อ', location:'ที่ตั้ง',
+      recruit:'ร่วมงาน', privacy:'ความเป็นส่วนตัว', legal:'ประกาศทางกฎหมาย', credits:'เครดิต',
+      works:'ผลงาน', coming:'เร็ว ๆ นี้',
+      lead1:'เราชอบจินตนาการสิ่งต่าง ๆ และลงมือทำมันขึ้นมา', lead2:'หากมีสิ่งใดที่คุณสนใจ เขียนอีเมลมาหาเราได้เลย',
+      th_name:'ชื่อ', th_founder:'ผู้ก่อตั้ง', th_founded:'ก่อตั้ง', th_address:'ที่อยู่', th_contact:'ติดต่อ'},
+    la: {name:'Latina', nav_contact:'Contactus', contact:'Contactus', location:'Locus',
+      recruit:'Conductio', privacy:'Privata', legal:'Notae legales', credits:'Auctores',
+      works:'opera', coming:'mox',
+      lead1:'Res imaginari et eas facere amamus.', lead2:'Si quid te movet, scribe nobis libere.',
+      th_name:'Nomen', th_founder:'Conditor', th_founded:'Condita', th_address:'Inscriptio', th_contact:'Contactus'}
   };
 
   // ヒエログリフ：ラテン文字→uniliteral signs（音訳）
@@ -70,8 +130,11 @@
     zh:[{css:'"Noto Sans SC",sans-serif',g:'Noto+Sans+SC'},{css:'"Noto Serif SC",serif',g:'Noto+Serif+SC'},{css:'"ZCOOL XiaoWei",serif',g:'ZCOOL+XiaoWei'},{css:'"Ma Shan Zheng",cursive',g:'Ma+Shan+Zheng'},{css:'"ZCOOL QingKe HuangYou",sans-serif',g:'ZCOOL+QingKe+HuangYou'}],
     ko:[{css:'"Noto Sans KR",sans-serif',g:'Noto+Sans+KR'},{css:'"Noto Serif KR",serif',g:'Noto+Serif+KR'},{css:'"Nanum Gothic",sans-serif',g:'Nanum+Gothic'},{css:'"Nanum Myeongjo",serif',g:'Nanum+Myeongjo'},{css:'"Jua",sans-serif',g:'Jua'},{css:'"Do Hyeon",sans-serif',g:'Do+Hyeon'}],
     ar:[{css:'"Noto Sans Arabic",sans-serif',g:'Noto+Sans+Arabic'},{css:'"Noto Naskh Arabic",serif',g:'Noto+Naskh+Arabic'},{css:'"Amiri",serif',g:'Amiri'},{css:'"Cairo",sans-serif',g:'Cairo'},{css:'"Tajawal",sans-serif',g:'Tajawal'},{css:'"Reem Kufi",sans-serif',g:'Reem+Kufi'}],
-    ru:[{css:'"Noto Sans",sans-serif',g:'Noto+Sans'},{css:'"PT Serif",serif',g:'PT+Serif'},{css:'"Jura",sans-serif',g:'Jura'},{css:'"Russo One",sans-serif',g:'Russo+One'},{css:'"Yeseva One",serif',g:'Yeseva+One'},{css:'"Pattaya",sans-serif',g:'Pattaya'}]
+    ru:[{css:'"Noto Sans",sans-serif',g:'Noto+Sans'},{css:'"PT Serif",serif',g:'PT+Serif'},{css:'"Jura",sans-serif',g:'Jura'},{css:'"Russo One",sans-serif',g:'Russo+One'},{css:'"Yeseva One",serif',g:'Yeseva+One'},{css:'"Pattaya",sans-serif',g:'Pattaya'}],
+    hi:[{css:'"Noto Sans Devanagari",sans-serif',g:'Noto+Sans+Devanagari'},{css:'"Noto Serif Devanagari",serif',g:'Noto+Serif+Devanagari'},{css:'"Hind",sans-serif',g:'Hind'},{css:'"Mukta",sans-serif',g:'Mukta'},{css:'"Tiro Devanagari Hindi",serif',g:'Tiro+Devanagari+Hindi'},{css:'"Baloo 2",sans-serif',g:'Baloo+2'}],
+    th:[{css:'"Noto Sans Thai",sans-serif',g:'Noto+Sans+Thai'},{css:'"Noto Serif Thai",serif',g:'Noto+Serif+Thai'},{css:'"Sarabun",sans-serif',g:'Sarabun'},{css:'"Kanit",sans-serif',g:'Kanit'},{css:'"Mitr",sans-serif',g:'Mitr'},{css:'"Chonburi",cursive',g:'Chonburi'}]
   };
+  SCRIPT_FONTS.fa=SCRIPT_FONTS.ar; SCRIPT_FONTS.uk=SCRIPT_FONTS.ru; // 同じ文字体系を共用
   function loadFont(g){ if(loadedF[g])return; loadedF[g]=1; var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family='+g+'&display=swap'; document.head.appendChild(l); }
   function pickFont(code){
     var pool=SCRIPT_FONTS[code];
@@ -88,8 +151,8 @@
       el.textContent=(mode&&c)?c[mode]:orig;
     });
   }
-  var ORDER=['en','ja','zh','es','fr','de','ru','ar','ko','eo','math','lisp','py','egy'];
-  var SHORT={en:'EN',ja:'JP',zh:'ZH',es:'ES',fr:'FR',de:'DE',ru:'RU',ar:'AR',ko:'KR',eo:'EO',math:'∑',lisp:'( )',py:'PY',egy:'𓂀'};
+  var ORDER=['en','ja','zh','es','fr','de','ru','ar','ko','eo','pt','it','id','tr','nl','pl','uk','vi','hi','fa','th','la','math','lisp','py','egy'];
+  var SHORT={en:'EN',ja:'JP',zh:'ZH',es:'ES',fr:'FR',de:'DE',ru:'RU',ar:'AR',ko:'KR',eo:'EO',pt:'PT',it:'IT',id:'ID',tr:'TR',nl:'NL',pl:'PL',uk:'UA',vi:'VI',hi:'HI',fa:'FA',th:'TH',la:'LA',math:'∑',lisp:'( )',py:'PY',egy:'𓂀'};
   var SPECIAL_NAME={math:'∑ formula', lisp:'Lisp', py:'Python'};
   // 各概念語の“パトス”を式・コードで（特殊モード）
   var CONCEPT={
