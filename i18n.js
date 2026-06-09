@@ -62,13 +62,33 @@
     if(code==='egy'){ var base=DICT.en, d={name:'𓂀 hieroglyphs'}; for(var k in base){ if(k==='name') continue; d[k]=toEgy(base[k]); } d.rtl=false; return d; }
     return DICT[code];
   }
-  var ORDER=['en','ja','zh','es','fr','de','ru','ar','ko','eo','egy'];
-  var SHORT={en:'EN',ja:'JP',zh:'ZH',es:'ES',fr:'FR',de:'DE',ru:'RU',ar:'AR',ko:'KR',eo:'EO',egy:'𓂀'};
+  function nameOf(code){ return SPECIAL_NAME[code] || (code==='egy'?'𓂀 hieroglyphs':(DICT[code]&&DICT[code].name)||code); }
+  // 概念語を式/コードに置換（mode無しなら元に戻す）
+  function setConcept(mode){
+    var els=document.querySelectorAll('.hero-domain, .hero-row a, .word-title');
+    Array.prototype.forEach.call(els,function(el){
+      var orig=el.getAttribute('data-orig'); if(orig===null){ orig=el.textContent.trim(); el.setAttribute('data-orig',orig); }
+      var c=CONCEPT[orig.toLowerCase()];
+      el.textContent=(mode&&c)?c[mode]:orig;
+    });
+  }
+  var ORDER=['en','ja','zh','es','fr','de','ru','ar','ko','eo','math','lisp','py','egy'];
+  var SHORT={en:'EN',ja:'JP',zh:'ZH',es:'ES',fr:'FR',de:'DE',ru:'RU',ar:'AR',ko:'KR',eo:'EO',math:'∑',lisp:'( )',py:'PY',egy:'𓂀'};
+  var SPECIAL_NAME={math:'∑ formula', lisp:'Lisp', py:'Python'};
+  // 各概念語の“パトス”を式・コードで（特殊モード）
+  var CONCEPT={
+    landscape:{math:'z = f(x, y)', lisp:'(surface x y)', py:'z = height(x, y)'},
+    modeling:{math:'f : ∅ → ℝ³', lisp:'(make form)', py:'form = build(void)'},
+    simulation:{math:'dx/dt = f(x, t)', lisp:'(loop (step world))', py:'while True: step(world)'},
+    perspective:{math:"x' = f·X / Z", lisp:'(project world eye)', py:'img = project(world, eye)'}
+  };
 
   function setText(el,t){ if(el && t!=null) el.textContent=t; }
   function apply(code){
-    var d=dictFor(code)||DICT.en;
+    var special=(code==='math'||code==='lisp'||code==='py');
+    var d=special?DICT.en:(dictFor(code)||DICT.en);
     var doc=document;
+    setConcept(special?code:null);
     setText(doc.querySelector('.nav a[href="#contact"], .nav a[href$="#contact"]'), d.nav_contact);
     // eyebrow（文脈で判別）
     doc.querySelectorAll('.panel.contact .section-eyebrow').forEach(function(e){setText(e,d.contact);});
@@ -100,7 +120,7 @@
   function ensureEgyFont(){ if(egyLoaded) return; egyLoaded=true; var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap'; document.head.appendChild(l); }
 
   function detect(){
-    try{ var s=localStorage.getItem('lang'); if(s&&(DICT[s]||s==='egy')) return s; }catch(e){}
+    try{ var s=localStorage.getItem('lang'); if(s&&(DICT[s]||s==='egy'||SPECIAL_NAME[s])) return s; }catch(e){}
     var n=(navigator.language||'en').toLowerCase();
     for(var i=0;i<ORDER.length;i++){ var c=ORDER[i]; if(c!=='egy'&&(n===c||n.indexOf(c+'-')===0||n.split('-')[0]===c)) return c; }
     if(n.indexOf('zh')===0) return 'zh';
@@ -109,19 +129,13 @@
 
   // 言語パネル
   function buildPanel(cur){
-    var btn=document.createElement('button'); btn.className='lang-link lang-btn'; btn.type='button';
+    var btn=document.createElement('button'); btn.className='lang-link'; btn.type='button';
     btn.innerHTML='<span id="langCur"></span>';
     var ov=document.createElement('div'); ov.className='lang-overlay'; ov.style.display='none';
     var box=document.createElement('div'); box.className='lang-list';
-    var search=document.createElement('input'); search.className='lang-search'; search.type='text';
-    search.setAttribute('placeholder','search / 検索 …'); search.setAttribute('aria-label','search language');
-    search.addEventListener('input',function(){ var q=this.value.toLowerCase();
-      box.querySelectorAll('.lang-item').forEach(function(it){
-        it.style.display=((it.textContent+' '+(it.getAttribute('data-code')||'')).toLowerCase().indexOf(q)>=0)?'':'none'; }); });
-    box.appendChild(search);
     ORDER.forEach(function(code){
       var it=document.createElement('button'); it.type='button'; it.className='lang-item';
-      it.textContent=dictFor(code).name; it.setAttribute('data-code',code);
+      it.textContent=nameOf(code); it.setAttribute('data-code',code);
       if(code==='egy') it.style.fontFamily='"Noto Sans Egyptian Hieroglyphs", serif';
       it.addEventListener('click',function(){ apply(this.getAttribute('data-code')); ov.style.display='none'; });
       box.appendChild(it);
@@ -129,8 +143,7 @@
     ov.appendChild(box);
     ov.addEventListener('click',function(e){ if(e.target===ov) ov.style.display='none'; });
     btn.addEventListener('click',function(){ ensureEgyFont();
-      var open = ov.style.display==='none'; ov.style.display = open?'flex':'none';
-      if(open){ search.value=''; box.querySelectorAll('.lang-item').forEach(function(it){it.style.display='';}); try{search.focus();}catch(e){} } });
+      ov.style.display = (ov.style.display==='none')?'flex':'none'; });
     var nav=document.querySelector('.nav'); if(nav) nav.appendChild(btn);
     document.body.appendChild(ov);
   }
