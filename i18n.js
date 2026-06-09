@@ -110,18 +110,26 @@
   function buildPanel(cur){
     var btn=document.createElement('button'); btn.className='lang-btn'; btn.type='button';
     btn.innerHTML='<span id="langCur"></span> ▾';
-    var ov=document.createElement('div'); ov.className='lang-overlay'; ov.hidden=true;
+    var ov=document.createElement('div'); ov.className='lang-overlay'; ov.style.display='none';
     var box=document.createElement('div'); box.className='lang-list';
+    var search=document.createElement('input'); search.className='lang-search'; search.type='text';
+    search.setAttribute('placeholder','search / 検索 …'); search.setAttribute('aria-label','search language');
+    search.addEventListener('input',function(){ var q=this.value.toLowerCase();
+      box.querySelectorAll('.lang-item').forEach(function(it){
+        it.style.display=((it.textContent+' '+(it.getAttribute('data-code')||'')).toLowerCase().indexOf(q)>=0)?'':'none'; }); });
+    box.appendChild(search);
     ORDER.forEach(function(code){
       var it=document.createElement('button'); it.type='button'; it.className='lang-item';
       it.textContent=dictFor(code).name; it.setAttribute('data-code',code);
       if(code==='egy') it.style.fontFamily='"Noto Sans Egyptian Hieroglyphs", serif';
-      it.addEventListener('click',function(){ apply(this.getAttribute('data-code')); ov.hidden=true; });
+      it.addEventListener('click',function(){ apply(this.getAttribute('data-code')); ov.style.display='none'; });
       box.appendChild(it);
     });
     ov.appendChild(box);
-    ov.addEventListener('click',function(e){ if(e.target===ov) ov.hidden=true; });
-    btn.addEventListener('click',function(){ ensureEgyFont(); ov.hidden=!ov.hidden; });
+    ov.addEventListener('click',function(e){ if(e.target===ov) ov.style.display='none'; });
+    btn.addEventListener('click',function(){ ensureEgyFont();
+      var open = ov.style.display==='none'; ov.style.display = open?'flex':'none';
+      if(open){ search.value=''; box.querySelectorAll('.lang-item').forEach(function(it){it.style.display='';}); try{search.focus();}catch(e){} } });
     var nav=document.querySelector('.nav'); if(nav) nav.appendChild(btn);
     document.body.appendChild(ov);
   }

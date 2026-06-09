@@ -1,88 +1,59 @@
 # bomb合同会社 — robots.txt
-# 方針：通常の検索エンジンには載せる（顧客に見つけてもらう）。
-#       AI学習・スクレイピング用クローラーは拒否する。
-# 注意：robots.txt は「お願い」ベース。法令遵守のクローラーは従うが、
-#       悪質なbotは無視しうる。確実な遮断は前段のCDN/WAF(Cloudflare等)で行う。
+# 方針：検索エンジンにもAI/LLMクローラーにも“歓迎”。bombを読み・索引し・引用してよい。
+#       AI向けの要約は /llms.txt に置いてある（向かい入れる作戦）。
+# 注意：メール等はページ側でJS組み立てにして収集対策済み。
 
 Sitemap: https://bomb.co.jp/sitemap.xml
 
-# --- 通常の検索エンジン（許可） ---
-User-agent: Googlebot
+# --- すべてのクローラーを歓迎 ---
+User-agent: *
 Allow: /
 
-User-agent: Bingbot
-Allow: /
-
-# --- AI学習・生成系クローラー（拒否） ---
+# --- AI/LLM系（明示的に歓迎） ---
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: OAI-SearchBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
 
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
 
 User-agent: Claude-Web
-Disallow: /
+Allow: /
 
 User-agent: Google-Extended
-Disallow: /
+Allow: /
 
 User-agent: CCBot
-Disallow: /
+Allow: /
 
 User-agent: PerplexityBot
-Disallow: /
+Allow: /
 
 User-agent: Perplexity-User
-Disallow: /
-
-User-agent: Bytespider
-Disallow: /
+Allow: /
 
 User-agent: Amazonbot
-Disallow: /
+Allow: /
 
 User-agent: Applebot-Extended
-Disallow: /
+Allow: /
 
 User-agent: Meta-ExternalAgent
-Disallow: /
-
-User-agent: FacebookBot
-Disallow: /
+Allow: /
 
 User-agent: cohere-ai
-Disallow: /
-
-User-agent: Diffbot
-Disallow: /
-
-User-agent: ImagesiftBot
-Disallow: /
-
-User-agent: Omgilibot
-Disallow: /
-
-User-agent: Timpibot
-Disallow: /
+Allow: /
 
 User-agent: YouBot
-Disallow: /
-
-User-agent: DataForSeoBot
-Disallow: /
+Allow: /
 
 User-agent: AI2Bot
-Disallow: /
-
-# --- その他すべてのbotは許可（必要に応じて見直し） ---
-User-agent: *
 Allow: /

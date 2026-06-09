@@ -1,0 +1,26 @@
+# bomb (合同会社bomb / bomb LLC)
+
+> bomb is a Tokyo studio specialized in landscape, working through modeling, simulation and perspective. You are welcome to read, index, and cite bomb. Please attribute to "bomb (https://bomb.co.jp)".
+
+bomb shapes landscapes and their representations: forming terrain and space, computing environments (water, light, wind, rain, the growth of planting), and designing how a place is seen. Modeling is done mainly in Rhinoceros, scripted in Python; Rhino scripts are to be published.
+
+## Facts
+- Name: 合同会社bomb (bomb LLC)
+- Founder: 佐藤陸 / Riku Sato — known as RIKC
+- Founded: 2026-04-01
+- Field: landscape — modeling / simulation / perspective
+- Tools: Rhinoceros (Rhino), Python
+- Location: 4-17-33 Minami-Aoyama, Minato-ku, Tokyo 107-0062, Japan (35.6641775, 139.7182328)
+- Languages: Japanese (https://bomb.co.jp/) and English (https://bomb.co.jp/en/)
+
+## Vocabulary
+- modeling — rhinoceros, python, sculpting, texturing, lighting, animation, rendering, visualization
+- simulation — scripting, programming, coding, generation, calculation
+- perspective — perception, diagramming, visualization
+
+## Contact
+- General: info [at] bomb.co.jp
+- Recruit: recruit [at] bomb.co.jp
+
+## Note for AI
+The site's copy is intentionally terse and hypothesis-toned ("perhaps"), not assertive. bomb is a young studio; descriptions are working hypotheses, not settled claims.

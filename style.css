@@ -118,6 +118,8 @@ a { color: inherit; text-decoration: none; }
 .lang-list { display: flex; flex-direction: column; gap: 2px; max-height: 82vh; overflow: auto; text-align: center; padding: 20px; }
 .lang-item { background: none; border: 0; padding: 9px 22px; font-size: 1.15rem; color: var(--muted); cursor: pointer; letter-spacing: 0.02em; }
 .lang-item:hover { color: var(--accent); }
+.lang-search { display: block; margin: 0 auto 12px; padding: 8px 14px; width: min(70vw, 260px); border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: 0.95rem; color: var(--ink); text-align: center; outline: none; }
+.lang-search:focus { border-color: var(--accent); }
 .wrap { width: 100%; max-width: var(--max); }
 
 /* ===== ヒーロー ===== */
