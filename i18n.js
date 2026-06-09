@@ -63,6 +63,7 @@
     return DICT[code];
   }
   var ORDER=['en','ja','zh','es','fr','de','ru','ar','ko','eo','egy'];
+  var SHORT={en:'EN',ja:'JP',zh:'ZH',es:'ES',fr:'FR',de:'DE',ru:'RU',ar:'AR',ko:'KR',eo:'EO',egy:'𓂀'};
 
   function setText(el,t){ if(el && t!=null) el.textContent=t; }
   function apply(code){
@@ -93,7 +94,7 @@
     doc.body.classList.toggle('lang-egy', code==='egy');
     if(code==='egy') ensureEgyFont();
     try{ localStorage.setItem('lang', code); }catch(e){}
-    var lbl=document.getElementById('langCur'); if(lbl) lbl.textContent=(dictFor(code).name||code);
+    var lbl=document.getElementById('langCur'); if(lbl) lbl.textContent=(SHORT[code]||code.toUpperCase());
   }
   var egyLoaded=false;
   function ensureEgyFont(){ if(egyLoaded) return; egyLoaded=true; var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap'; document.head.appendChild(l); }
