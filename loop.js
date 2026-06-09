@@ -7,7 +7,7 @@
   var WORDS = ['modeling','simulation','perspective'];
   // 文章はやめて単語だけで見せる（旧説明文は archive-descriptions.md に退避）
   var DATA = {
-    modeling:{k:'モデリング', w:['rhinoceros','python','sculpting','texturing','lighting','animation','rendering','visualization']},
+    modeling:{k:'モデリング', w:['rhinoceros','python','sculpting','texturing','lighting','animation','rendering']},
     simulation:{k:'シミュレーション', w:['scripting','programming','coding','generation','calculation']},
     perspective:{k:'パースペクティブ', w:['perception','diagramming','visualization']}
   };

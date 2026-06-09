@@ -109,8 +109,8 @@
 
   // 言語パネル
   function buildPanel(cur){
-    var btn=document.createElement('button'); btn.className='lang-btn'; btn.type='button';
-    btn.innerHTML='<span id="langCur"></span> ▾';
+    var btn=document.createElement('button'); btn.className='lang-link lang-btn'; btn.type='button';
+    btn.innerHTML='<span id="langCur"></span>';
     var ov=document.createElement('div'); ov.className='lang-overlay'; ov.style.display='none';
     var box=document.createElement('div'); box.className='lang-list';
     var search=document.createElement('input'); search.className='lang-search'; search.type='text';
