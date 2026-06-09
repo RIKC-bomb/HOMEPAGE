@@ -7,8 +7,8 @@
   --ink: #010101; /* 純黒から1だけずらしたジェットブラック */
   --muted: #6b6b6b;
   --line: #ececec;
-  --accent: #2b47d9; /* ロイヤルブルー */
-  --accent-dark: #1e34b0;
+  --accent: #1a499e; /* bombの紋章の青に合わせる */
+  --accent-dark: #133a82;
   --max: 1080px;
 }
 
