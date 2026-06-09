@@ -5,16 +5,11 @@
   var LANG = document.documentElement.lang === 'en' ? 'en' : 'ja';
 
   var WORDS = ['modeling','simulation','perspective'];
+  // 文章はやめて単語だけで見せる（旧説明文は archive-descriptions.md に退避）
   var DATA = {
-    modeling:{k:'モデリング',
-      ja:'地形や空間の形を、ポリゴンや曲面（NURBS）で一からつくる工程。bombでは主に <span class="seed">Rhinoceros</span> を用い、処理は <span class="seed">Python</span> で書く。粘土のように削り込む<span class="seed">sculpting</span>、表面に色と質感を与える<span class="seed">texturing</span>、光をみる<span class="seed">lighting</span>、動きを付ける<span class="seed">animation</span>、計算して画像に仕上げる<span class="seed">rendering</span>──どれも、見えるようにするための試みなのかもしれない。',
-      en:'Building the form of terrain and space from scratch with polygons and surfaces (NURBS). At bomb this is done mainly in <span class="seed">Rhinoceros</span>, scripted in <span class="seed">Python</span>. Carving like clay <span class="seed">sculpting</span>, giving surfaces color and material <span class="seed">texturing</span>, observing light <span class="seed">lighting</span>, adding movement <span class="seed">animation</span>, computing it into an image <span class="seed">rendering</span> — all are steps toward making something visible — at least, that is how we see it for now.'},
-    simulation:{k:'シミュレーション',
-      ja:'水や光、風、雨、植生の成長――時間とともに移ろう環境のふるまいを、計算で確かめる工程。物理やルールを与え、コードで動かす。スクリプトを書き<span class="seed">scripting</span>、ツールやシステムを組み<span class="seed">programming</span>、必要なコードを書く<span class="seed">coding</span>、条件から形やパターンを生み<span class="seed">generation</span>、数値を解いて<span class="seed">calculation</span>たしかめる。',
-      en:'Checking, by computation, how an environment behaves over time — water, light, wind, rain, the growth of planting. We give it physics and rules, then drive it with code: writing scripts <span class="seed">scripting</span>, building tools and systems <span class="seed">programming</span>, writing the code itself <span class="seed">coding</span>, generating form and pattern from conditions <span class="seed">generation</span>, and solving the numbers <span class="seed">calculation</span>.'},
-    perspective:{k:'パースペクティブ',
-      ja:'景観の、見え方そのもの。同じ場所でも、どこから・どう見るかで、違う風景になる。視点を決め、知覚<span class="seed">perception</span>にふれ、関係や構造を図に起こし<span class="seed">diagramming</span>、伝わる像へ翻訳する<span class="seed">visualization</span>までを扱う。',
-      en:'How a landscape is seen. The same place becomes a different scene depending on where and how you look. It covers choosing the point of view, touching perception <span class="seed">perception</span>, drawing relations and structure into diagrams <span class="seed">diagramming</span>, and translating it into an image that reads <span class="seed">visualization</span>.'}
+    modeling:{k:'モデリング', w:['rhinoceros','python','sculpting','texturing','lighting','animation','rendering','visualization']},
+    simulation:{k:'シミュレーション', w:['scripting','programming','coding','generation','calculation']},
+    perspective:{k:'パースペクティブ', w:['perception','diagramming','visualization']}
   };
 
   // --- 単語パネルを生成し、ヒーローの直後に挿入 ---
@@ -28,7 +23,7 @@
     sec.innerHTML = '<div class="wrap">'
       + '<h2 class="word-title">' + w + '</h2>'
       + (LANG === 'ja' ? '<p class="word-reading">' + d.k + '</p>' : '')
-      + '<p class="word-desc">' + d[LANG] + '</p>'
+      + '<ul class="word-list">' + d.w.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>'
       + '<div class="word-examples"><p class="section-eyebrow">' + (LANG === 'en' ? 'work' : '作例') + '</p>'
       + '<div class="word-ex-grid"><div class="word-ex"></div><div class="word-ex"></div><div class="word-ex"></div></div>'
       + '<p class="word-ex-note">' + (LANG === 'en' ? 'coming soon' : '準備中') + '</p></div>'
