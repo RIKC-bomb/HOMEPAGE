@@ -10,6 +10,7 @@
       works:'works', coming:'coming soon',
       lead1:'We like to imagine things, and to make them.', lead2:'If anything catches your interest, feel free to email us.',
       th_name:'Name', th_founder:'Founder', th_founded:'Founded', th_address:'Address', th_contact:'Contact',
+      co_name:'bomb LLC', co_founder:'Riku Sato', co_address:'4-17-33 Minami-Aoyama, Minato-ku, Tokyo 107-0062, Japan（<a href="https://maps.gsi.go.jp/#16/35.6641775/139.7182328/&base=pale&ls=pale&disp=1" target="_blank" rel="noopener">35°39\'51.0"N 139°43\'05.6"E</a>）',
       w_examples:'Examples', w_back:'← back',
       d_modeling:'Building 3D form — constructing the shape of objects and spaces from scratch with polygons or NURBS.',
       d_sculpting:'Shaping a 3D model as if it were clay — ideal for organic, detailed forms (e.g. ZBrush).',
@@ -50,6 +51,7 @@
       works:'作例', coming:'準備中',
       lead1:'何かを想像したり、それを作ったりすることが好きです。', lead2:'気になることがあれば、自由にメールしてください。',
       th_name:'商号', th_founder:'代表社員', th_founded:'設立', th_address:'所在地', th_contact:'連絡先',
+      co_name:'合同会社bomb', co_founder:'佐藤陸', co_address:'107-0062 東京都港区南青山4-17-33（<a href="https://maps.gsi.go.jp/#16/35.6641775/139.7182328/&base=pale&ls=pale&disp=1" target="_blank" rel="noopener">35°39\'51.0"N 139°43\'05.6"E</a>）',
       w_examples:'実例', w_back:'← 戻る',
       d_modeling:'3DCGで「形」を作る工程。ポリゴンやNURBSで、物体や空間のかたちを一から構築する。',
       d_sculpting:'粘土をこねるように3Dモデルを彫り込む手法。有機的で繊細な造形に向く（ZBrush 等）。',
@@ -890,9 +892,11 @@
   // Hieroglyphs: Latin letters -> uniliteral signs (transliteration)
   var EGY = {a:'𓄿',b:'𓃀',c:'𓎡',d:'𓂧',e:'𓇋',f:'𓆑',g:'𓎼',h:'𓉔',i:'𓇋',j:'𓆓',k:'𓎡',l:'𓂋',m:'𓅓',n:'𓈖',o:'𓍯',p:'𓊪',q:'𓎤',r:'𓂋',s:'𓋴',t:'𓏏',u:'𓅱',v:'𓆑',w:'𓅱',x:'𓎡𓋴',y:'𓇌',z:'𓊃',' ':' '};
   function toEgy(s){ var o=''; s=String(s).toLowerCase(); for(var i=0;i<s.length;i++){var ch=s[i]; o+=(EGY[ch]!==undefined?EGY[ch]:(/[a-z ]/.test(ch)?'':ch));} return o||String(s); }
+  // Transliterate the text but leave HTML tags (and their attributes) untouched, so links survive.
+  function toEgyTags(s){ return String(s).replace(/<[^>]*>|[^<]+/g, function(m){ return (m.charAt(0)==='<') ? m : toEgy(m); }); }
   function dictFor(code){
     if(code==='egy'){ var base=DICT.en, d={name:'𓂀 hieroglyphs'}; for(var k in base){ if(k==='name'||k==='rtl') continue; var v=base[k];
-        d[k]=(typeof v==='string' && v.indexOf('<')>=0)? v : toEgy(v); } d.rtl=false; return d; }
+        d[k]=(typeof v==='string' && v.indexOf('<')>=0)? toEgyTags(v) : toEgy(v); } d.rtl=false; return d; }
     return DICT[code];
   }
   function nameOf(code){ return SPECIAL_NAME[code] || (code==='egy'?'𓂀 hieroglyphs':(DICT[code]&&DICT[code].name)||code); }
@@ -1027,7 +1031,10 @@
     btn.innerHTML='<span id="langCur"></span>';
     var ov=document.createElement('div'); ov.className='lang-overlay'; ov.style.display='none';
     var box=document.createElement('div'); box.className='lang-list';
-    ORDER.forEach(function(code){
+    // shuffle the order on every load (same spirit as the random fonts)
+    var order=ORDER.slice();
+    for(var s=order.length-1;s>0;s--){ var r=Math.floor(Math.random()*(s+1)); var tmp=order[s]; order[s]=order[r]; order[r]=tmp; }
+    order.forEach(function(code){
       var it=document.createElement('button'); it.type='button'; it.className='lang-item';
       it.textContent=nameOf(code); it.setAttribute('data-code',code);
       if(code==='egy') it.style.fontFamily='"Noto Sans Egyptian Hieroglyphs", serif';
