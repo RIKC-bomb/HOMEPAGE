@@ -915,13 +915,19 @@
     var f=pool[Math.floor(Math.random()*pool.length)];
     loadFont(f.g); document.documentElement.style.setProperty('--font', f.css);
   }
-  // Replace concept words with formulae/code (restore originals when no mode is set)
-  function setConcept(mode){
-    var els=document.querySelectorAll('.hero-domain, .hero-row a, .word-title');
+  // Concept words rendered per language (special modes -> symbols; egy -> transliteration;
+  // natural languages -> CW table; bomb itself is never touched, it is not a concept word).
+  function setConcept(code){
+    var special=(code==='math'||code==='lisp'||code==='py');
+    var cw=(!special && code && code!=='egy') ? CW[code] : null;
+    // bomb itself (.hero-title / .logo) only transforms in symbol modes and hieroglyphs.
+    var els=document.querySelectorAll('.hero-title a, .logo, .hero-domain, .hero-row a, .word-title');
     Array.prototype.forEach.call(els,function(el){
       var orig=el.getAttribute('data-orig'); if(orig===null){ orig=el.textContent.trim(); el.setAttribute('data-orig',orig); }
-      var c=CONCEPT[orig.toLowerCase()];
-      el.textContent=(mode&&c)?c[mode]:orig;
+      var key=orig.toLowerCase();
+      if(special){ var c=CONCEPT[key]; el.textContent=c?c[code]:orig; }
+      else if(code==='egy'){ el.textContent=toEgy(orig); }
+      else { el.textContent=(cw&&cw[key])||orig; }
     });
   }
   var ORDER=['en','ja','zh','es','fr','de','ru','ar','ko','eo','pt','it','id','tr','nl','pl','uk','vi','hi','fa','th','la','math','lisp','py','egy'];
@@ -944,7 +950,33 @@
     simulation:{math:'ẋ = ƒ(x,t)', lisp:'(↻ ∂ₜx)', py:'↻ x ⊕ ẋΔt'},
     speculation:{math:'◇ Ω', lisp:'(◇ Ω)', py:'Ω′ ≔ ◇Ω'},
     visualization:{math:'D ↠ ℝ²', lisp:'(↦ D 𝐯)', py:'𝐯 ≔ D↦ℝ²'},
-    perspective:{math:'x′= ƒX∕Z', lisp:'(π Ω ⊙)', py:'⊙ ∘ Ω'}
+    perspective:{math:'x′= ƒX∕Z', lisp:'(π Ω ⊙)', py:'⊙ ∘ Ω'},
+    bomb:{math:'E = mc²', lisp:'(↯ t₀)', py:'↯ ≔ δ(t)'}
+  };
+  // Concept-word translations per language. "bomb" is intentionally absent -> stays "bomb"
+  // in every natural language (only symbol modes / hieroglyphs transform it, via CONCEPT/toEgy).
+  var CW={
+    ja:{landscape:'ランドスケープ',modeling:'モデリング',sculpting:'スカルプティング',texturing:'テクスチャリング',lighting:'ライティング',animation:'アニメーション',rendering:'レンダリング',coding:'コーディング',scripting:'スクリプティング',programming:'プログラミング',generation:'生成',calculation:'計算',simulation:'シミュレーション',speculation:'スペキュレーション',visualization:'可視化',perspective:'パースペクティブ'},
+    zh:{landscape:'景观',modeling:'建模',sculpting:'雕刻',texturing:'贴图',lighting:'布光',animation:'动画',rendering:'渲染',coding:'编码',scripting:'脚本',programming:'编程',generation:'生成',calculation:'计算',simulation:'模拟',speculation:'思辨',visualization:'可视化',perspective:'透视'},
+    es:{landscape:'paisaje',modeling:'modelado',sculpting:'escultura',texturing:'texturizado',lighting:'iluminación',animation:'animación',rendering:'renderizado',coding:'codificación',scripting:'scripting',programming:'programación',generation:'generación',calculation:'cálculo',simulation:'simulación',speculation:'especulación',visualization:'visualización',perspective:'perspectiva'},
+    fr:{landscape:'paysage',modeling:'modélisation',sculpting:'sculpture',texturing:'texturage',lighting:'éclairage',animation:'animation',rendering:'rendu',coding:'codage',scripting:'scriptage',programming:'programmation',generation:'génération',calculation:'calcul',simulation:'simulation',speculation:'spéculation',visualization:'visualisation',perspective:'perspective'},
+    de:{landscape:'Landschaft',modeling:'Modellierung',sculpting:'Skulptieren',texturing:'Texturierung',lighting:'Beleuchtung',animation:'Animation',rendering:'Rendering',coding:'Codierung',scripting:'Skripting',programming:'Programmierung',generation:'Generierung',calculation:'Berechnung',simulation:'Simulation',speculation:'Spekulation',visualization:'Visualisierung',perspective:'Perspektive'},
+    ru:{landscape:'ландшафт',modeling:'моделирование',sculpting:'скульптинг',texturing:'текстурирование',lighting:'освещение',animation:'анимация',rendering:'рендеринг',coding:'кодирование',scripting:'скриптинг',programming:'программирование',generation:'генерация',calculation:'вычисление',simulation:'симуляция',speculation:'спекуляция',visualization:'визуализация',perspective:'перспектива'},
+    ar:{landscape:'المشهد',modeling:'النمذجة',sculpting:'النحت',texturing:'الإكساء',lighting:'الإضاءة',animation:'التحريك',rendering:'التصيير',coding:'الترميز',scripting:'البرمجة النصية',programming:'البرمجة',generation:'التوليد',calculation:'الحساب',simulation:'المحاكاة',speculation:'التأمل',visualization:'التمثيل المرئي',perspective:'المنظور'},
+    ko:{landscape:'랜드스케이프',modeling:'모델링',sculpting:'스컬프팅',texturing:'텍스처링',lighting:'라이팅',animation:'애니메이션',rendering:'렌더링',coding:'코딩',scripting:'스크립팅',programming:'프로그래밍',generation:'생성',calculation:'계산',simulation:'시뮬레이션',speculation:'사변',visualization:'시각화',perspective:'관점'},
+    eo:{landscape:'pejzaĝo',modeling:'modelado',sculpting:'skulptado',texturing:'teksturado',lighting:'lumigado',animation:'animacio',rendering:'bildigo',coding:'kodado',scripting:'skriptado',programming:'programado',generation:'generado',calculation:'kalkulo',simulation:'simulado',speculation:'konjektado',visualization:'vidigo',perspective:'perspektivo'},
+    pt:{landscape:'paisagem',modeling:'modelagem',sculpting:'escultura',texturing:'texturização',lighting:'iluminação',animation:'animação',rendering:'renderização',coding:'codificação',scripting:'scripting',programming:'programação',generation:'geração',calculation:'cálculo',simulation:'simulação',speculation:'especulação',visualization:'visualização',perspective:'perspetiva'},
+    it:{landscape:'paesaggio',modeling:'modellazione',sculpting:'scultura',texturing:'texturizzazione',lighting:'illuminazione',animation:'animazione',rendering:'rendering',coding:'codifica',scripting:'scripting',programming:'programmazione',generation:'generazione',calculation:'calcolo',simulation:'simulazione',speculation:'speculazione',visualization:'visualizzazione',perspective:'prospettiva'},
+    id:{landscape:'lanskap',modeling:'pemodelan',sculpting:'pemahatan',texturing:'penteksturan',lighting:'pencahayaan',animation:'animasi',rendering:'perenderan',coding:'pengodean',scripting:'penulisan skrip',programming:'pemrograman',generation:'pembangkitan',calculation:'perhitungan',simulation:'simulasi',speculation:'spekulasi',visualization:'visualisasi',perspective:'perspektif'},
+    tr:{landscape:'peyzaj',modeling:'modelleme',sculpting:'yontma',texturing:'dokulama',lighting:'aydınlatma',animation:'animasyon',rendering:'işleme',coding:'kodlama',scripting:'betikleme',programming:'programlama',generation:'üretim',calculation:'hesaplama',simulation:'simülasyon',speculation:'spekülasyon',visualization:'görselleştirme',perspective:'perspektif'},
+    nl:{landscape:'landschap',modeling:'modelleren',sculpting:'beeldhouwen',texturing:'textureren',lighting:'belichting',animation:'animatie',rendering:'rendering',coding:'codering',scripting:'scripten',programming:'programmeren',generation:'generatie',calculation:'berekening',simulation:'simulatie',speculation:'speculatie',visualization:'visualisatie',perspective:'perspectief'},
+    pl:{landscape:'krajobraz',modeling:'modelowanie',sculpting:'rzeźbienie',texturing:'teksturowanie',lighting:'oświetlenie',animation:'animacja',rendering:'renderowanie',coding:'kodowanie',scripting:'skryptowanie',programming:'programowanie',generation:'generowanie',calculation:'obliczenia',simulation:'symulacja',speculation:'spekulacja',visualization:'wizualizacja',perspective:'perspektywa'},
+    uk:{landscape:'ландшафт',modeling:'моделювання',sculpting:'скульптинг',texturing:'текстурування',lighting:'освітлення',animation:'анімація',rendering:'рендеринг',coding:'кодування',scripting:'скриптинг',programming:'програмування',generation:'генерація',calculation:'обчислення',simulation:'симуляція',speculation:'спекуляція',visualization:'візуалізація',perspective:'перспектива'},
+    vi:{landscape:'cảnh quan',modeling:'dựng hình',sculpting:'điêu khắc',texturing:'tạo chất liệu',lighting:'chiếu sáng',animation:'hoạt hình',rendering:'kết xuất',coding:'viết mã',scripting:'viết kịch bản',programming:'lập trình',generation:'tạo sinh',calculation:'tính toán',simulation:'mô phỏng',speculation:'tư biện',visualization:'trực quan hóa',perspective:'góc nhìn'},
+    hi:{landscape:'भूदृश्य',modeling:'मॉडलिंग',sculpting:'गढ़ाई',texturing:'टेक्सचरिंग',lighting:'प्रकाश-व्यवस्था',animation:'एनिमेशन',rendering:'रेंडरिंग',coding:'कोडिंग',scripting:'स्क्रिप्टिंग',programming:'प्रोग्रामिंग',generation:'उत्पादन',calculation:'गणना',simulation:'अनुकरण',speculation:'परिकल्पना',visualization:'दृश्यीकरण',perspective:'दृष्टिकोण'},
+    fa:{landscape:'چشم‌انداز',modeling:'مدل‌سازی',sculpting:'مجسمه‌سازی',texturing:'بافت‌دهی',lighting:'نورپردازی',animation:'پویانمایی',rendering:'پرداخت',coding:'کدنویسی',scripting:'اسکریپت‌نویسی',programming:'برنامه‌نویسی',generation:'تولید',calculation:'محاسبه',simulation:'شبیه‌سازی',speculation:'گمانه‌زنی',visualization:'بصری‌سازی',perspective:'دیدگاه'},
+    th:{landscape:'ภูมิทัศน์',modeling:'การสร้างแบบจำลอง',sculpting:'การปั้น',texturing:'การลงพื้นผิว',lighting:'การจัดแสง',animation:'แอนิเมชัน',rendering:'การเรนเดอร์',coding:'การเขียนโค้ด',scripting:'การเขียนสคริปต์',programming:'การเขียนโปรแกรม',generation:'การกำเนิด',calculation:'การคำนวณ',simulation:'การจำลอง',speculation:'การคาดการณ์',visualization:'การทำให้เห็นภาพ',perspective:'มุมมอง'},
+    la:{landscape:'prospectus',modeling:'formatio',sculpting:'sculptura',texturing:'texturatio',lighting:'illuminatio',animation:'animatio',rendering:'redditio',coding:'codificatio',scripting:'scriptio',programming:'programmatio',generation:'generatio',calculation:'computatio',simulation:'simulatio',speculation:'speculatio',visualization:'visualizatio',perspective:'perspectiva'}
   };
 
   function apply(code){
@@ -952,7 +984,7 @@
     var d=special?DICT.en:(dictFor(code)||DICT.en);
     function T(k){ var v=d[k]; return (v!=null)?v:DICT.en[k]; }
     var doc=document;
-    setConcept(special?code:null);
+    setConcept(code);
     // generic text nodes
     doc.querySelectorAll('[data-i18n]').forEach(function(el){ var v=T(el.getAttribute('data-i18n')); if(v!=null) el.textContent=v; });
     // generic HTML nodes (paragraphs that contain links)
@@ -961,8 +993,8 @@
     doc.querySelectorAll('.contact-lead').forEach(function(p){ p.innerHTML=T('lead1')+'<br />'+T('lead2'); });
     // nav contact link (only when it points to the contact anchor)
     var nc=doc.querySelector('.nav a[href="#contact"], .nav a[href$="#contact"]'); if(nc) nc.textContent=T('nav_contact');
-    // reading (kana) is Japanese-only
-    doc.querySelectorAll('.word-reading').forEach(function(e){ e.style.display=(code==='ja'?'':'none'); });
+    // reading (kana) is now redundant — the concept word itself is translated — so always hidden
+    doc.querySelectorAll('.word-reading').forEach(function(e){ e.style.display='none'; });
     // direction / language / font
     doc.documentElement.setAttribute('dir', d.rtl?'rtl':'ltr');
     doc.body.classList.toggle('lang-egy', code==='egy');
