@@ -989,6 +989,13 @@
     doc.querySelectorAll('[data-i18n]').forEach(function(el){ var v=T(el.getAttribute('data-i18n')); if(v!=null) el.textContent=v; });
     // generic HTML nodes (paragraphs that contain links)
     doc.querySelectorAll('[data-i18n-html]').forEach(function(el){ var v=T(el.getAttribute('data-i18n-html')); if(v!=null) el.innerHTML=v; });
+    // egy: transliterate "data" values (company-table values, copyright) from a romaji source;
+    // restore the original HTML (links / year span) for every other language.
+    doc.querySelectorAll('[data-egy]').forEach(function(el){
+      if(el.getAttribute('data-egyhtml')===null) el.setAttribute('data-egyhtml', el.innerHTML);
+      if(code==='egy') el.textContent=toEgy(el.getAttribute('data-egy'));
+      else el.innerHTML=el.getAttribute('data-egyhtml');
+    });
     // contact lead (two lines)
     doc.querySelectorAll('.contact-lead').forEach(function(p){ p.innerHTML=T('lead1')+'<br />'+T('lead2'); });
     // nav contact link (only when it points to the contact anchor)

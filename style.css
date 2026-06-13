@@ -123,6 +123,10 @@ button.lang-link { background: none; cursor: pointer; font-family: inherit; }
 /* ヒエログリフ表示時は、訳した要素だけ専用フォント（概念語や数字は通常フォントのまま） */
 body.lang-egy .nav a[href*="#contact"], body.lang-egy .section-eyebrow, body.lang-egy .footer-links a,
 body.lang-egy .company-table th, body.lang-egy .contact-lead, body.lang-egy .word-ex-note { font-family: "Noto Sans Egyptian Hieroglyphs", serif; }
+/* hero/ロゴのbombは font-weight:900 で合成ボールドがかかり太りすぎる→egy時は専用フォント＋通常ウェイト＋合成無効で本来の細さに */
+body.lang-egy .hero-title, body.lang-egy .hero-title a, body.lang-egy .logo,
+body.lang-egy .company-table td, body.lang-egy .copyright {
+  font-family: "Noto Sans Egyptian Hieroglyphs", serif; font-weight: 400; font-synthesis: none; }
 .lang-search { display: block; margin: 0 auto 12px; padding: 8px 14px; width: min(70vw, 260px); border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: 0.95rem; color: var(--ink); text-align: center; outline: none; }
 .lang-search:focus { border-color: var(--accent); }
 .wrap { width: 100%; max-width: var(--max); }
