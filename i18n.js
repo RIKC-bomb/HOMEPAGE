@@ -890,7 +890,8 @@
   };
 
   // Hieroglyphs: Latin letters -> uniliteral signs (transliteration)
-  var EGY = {a:'𓄿',b:'𓃀',c:'𓎡',d:'𓂧',e:'𓇋',f:'𓆑',g:'𓎼',h:'𓉔',i:'𓇋',j:'𓆓',k:'𓎡',l:'𓂋',m:'𓅓',n:'𓈖',o:'𓍯',p:'𓊪',q:'𓎤',r:'𓂋',s:'𓋴',t:'𓏏',u:'𓅱',v:'𓆑',w:'𓅱',x:'𓎡𓋴',y:'𓇌',z:'𓊃',' ':' '};
+  var EGY = {a:'𓄿',b:'𓃀',c:'𓎡',d:'𓂧',e:'𓇋',f:'𓆑',g:'𓎼',h:'𓉔',i:'𓇋',j:'𓆓',k:'𓎡',l:'𓂋',m:'𓅓',n:'𓈖',o:'𓍯',p:'𓊪',q:'𓎤',r:'𓂋',s:'𓋴',t:'𓏏',u:'𓅱',v:'𓆑',w:'𓅱',x:'𓎡𓋴',y:'𓇌',z:'𓊃',' ':' ',
+    '0':'𓄤','1':'𓏺','2':'𓏻','3':'𓏼','4':'𓏽','5':'𓏾','6':'𓏿','7':'𓐀','8':'𓐁','9':'𓐂'};
   function toEgy(s){ var o=''; s=String(s).toLowerCase(); for(var i=0;i<s.length;i++){var ch=s[i]; o+=(EGY[ch]!==undefined?EGY[ch]:(/[a-z ]/.test(ch)?'':ch));} return o||String(s); }
   // Transliterate the text but leave HTML tags (and their attributes) untouched, so links survive.
   function toEgyTags(s){ return String(s).replace(/<[^>]*>|[^<]+/g, function(m){ return (m.charAt(0)==='<') ? m : toEgy(m); }); }
