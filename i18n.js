@@ -1265,8 +1265,8 @@
   var SPECIAL_NAME={math:'∑ formula', lisp:'Lisp', py:'Python'};
   // Each concept word's "pathos" as pure symbols (special modes; no English words)
   var CONCEPT={
-    landscape:{math:'ℝ²↦ℝ', lisp:'(λ xy ⇒ z)', py:'z ≔ ƒ⟨x,y⟩'},
-    modeling:{math:'∅ ↠ ℝ³', lisp:'(↦ ∅ ℝ³)', py:'Φ ≔ ℝ³∖∅'},
+    landscape:{math:'ℝ²→ℝ', lisp:'(λ xy ⇒ z)', py:'z ≔ ƒ⟨x,y⟩'},
+    modeling:{math:'ds² = gᵢⱼ dxⁱdxʲ', lisp:'(g dxⁱ dxʲ)', py:'ds² ≔ g⟨dx,dx⟩'},
     sculpting:{math:'Φ ↦ Φ+ε∇', lisp:'(∇ Φ)', py:'Φ ⊕ ε∇'},
     texturing:{math:'Φ ⊗ τ', lisp:'(⊗ Φ τ)', py:'σ ≔ Φ⊗τ'},
     lighting:{math:'L = ∫ ƒᵣ cosθ dω', lisp:'(∫ Lᵢ ∂ω)', py:'L ≔ ∮ Lᵢ'},
@@ -1281,7 +1281,7 @@
     speculation:{math:'◇ Ω', lisp:'(◇ Ω)', py:'Ω′ ≔ ◇Ω'},
     visualization:{math:'D ↠ ℝ²', lisp:'(↦ D 𝐯)', py:'𝐯 ≔ D↦ℝ²'},
     perspective:{math:'x′= ƒX∕Z', lisp:'(π Ω ⊙)', py:'⊙ ∘ Ω'},
-    bomb:{math:'E = mc²', lisp:'(↯ t₀)', py:'↯ ≔ δ(t)'}
+    bomb:{math:'∅ → ℝ³⁺¹', lisp:'(↯ t₀)', py:'↯ ≔ δ(t)'}
   };
   // Concept-word translations per language. "bomb" is intentionally absent -> stays "bomb"
   // in every natural language (only symbol modes / hieroglyphs transform it, via CONCEPT/toEgy).
