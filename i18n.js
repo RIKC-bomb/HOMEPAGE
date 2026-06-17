@@ -961,7 +961,7 @@
   // Concept-word translations per language. "bomb" is intentionally absent -> stays "bomb"
   // in every natural language (only symbol modes / hieroglyphs transform it, via CONCEPT/toEgy).
   var CW={
-    ja:{landscape:'ランドスケープ',modeling:'モデリング',sculpting:'スカルプティング',texturing:'テクスチャリング',lighting:'ライティング',animation:'アニメーション',rendering:'レンダリング',coding:'コーディング',scripting:'スクリプティング',programming:'プログラミング',generation:'生成',calculation:'計算',simulation:'シミュレーション',speculation:'スペキュレーション',visualization:'可視化',perspective:'パースペクティブ'},
+    // ja は概念語を英語表示のまま（その下に .word-reading で小さくカタカナ）＝従来の表記。ゆえに ja は CW に持たない。
     zh:{landscape:'景观',modeling:'建模',sculpting:'雕刻',texturing:'贴图',lighting:'布光',animation:'动画',rendering:'渲染',coding:'编码',scripting:'脚本',programming:'编程',generation:'生成',calculation:'计算',simulation:'模拟',speculation:'思辨',visualization:'可视化',perspective:'透视'},
     es:{landscape:'paisaje',modeling:'modelado',sculpting:'escultura',texturing:'texturizado',lighting:'iluminación',animation:'animación',rendering:'renderizado',coding:'codificación',scripting:'scripting',programming:'programación',generation:'generación',calculation:'cálculo',simulation:'simulación',speculation:'especulación',visualization:'visualización',perspective:'perspectiva'},
     fr:{landscape:'paysage',modeling:'modélisation',sculpting:'sculpture',texturing:'texturage',lighting:'éclairage',animation:'animation',rendering:'rendu',coding:'codage',scripting:'scriptage',programming:'programmation',generation:'génération',calculation:'calcul',simulation:'simulation',speculation:'spéculation',visualization:'visualisation',perspective:'perspective'},
@@ -1005,8 +1005,8 @@
     doc.querySelectorAll('.contact-lead').forEach(function(p){ p.innerHTML=T('lead1')+'<br />'+T('lead2'); });
     // nav contact link (only when it points to the contact anchor)
     var nc=doc.querySelector('.nav a[href="#contact"], .nav a[href$="#contact"]'); if(nc) nc.textContent=T('nav_contact');
-    // reading (kana) is now redundant — the concept word itself is translated — so always hidden
-    doc.querySelectorAll('.word-reading').forEach(function(e){ e.style.display='none'; });
+    // reading (kana) shows under the English concept word — Japanese only (other languages translate the word itself)
+    doc.querySelectorAll('.word-reading').forEach(function(e){ e.style.display=(code==='ja'?'':'none'); });
     // direction / language / font
     doc.documentElement.setAttribute('dir', d.rtl?'rtl':'ltr');
     doc.body.classList.toggle('lang-egy', code==='egy');
