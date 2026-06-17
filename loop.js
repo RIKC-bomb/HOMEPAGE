@@ -165,6 +165,22 @@
     }
   });
 
+  // 矢印キーでもパネル送り（→/↓＝次、←/↑＝前）。最寄りパネルにスナップしてから1枚分スプリング移動。
+  window.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    var dir = 0;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') dir = 1;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') dir = -1;
+    else return;
+    e.preventDefault();
+    var W = window.innerWidth;
+    mode = 'spring'; vel = 0;
+    target = Math.round(pos / W) * W + dir * W;
+    start();
+  });
+
   // 現在のパネルをタブに記憶 → リロードしても同じ位置（トップに戻らない）
   function curOffset() { var u = pos / window.innerWidth; return ((u % setCount) + setCount) % setCount; } // パネル単位の連続値
   function save() { try { sessionStorage.setItem('deckPos', String(curOffset())); } catch (e) {} }
