@@ -24,9 +24,6 @@
       + '<h2 class="word-title">' + w + '</h2>'
       + (LANG === 'ja' ? '<p class="word-reading">' + d.k + '</p>' : '')
       + '<ul class="word-list">' + d.w.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>'
-      + '<div class="word-examples"><p class="section-eyebrow">' + (LANG === 'en' ? 'work' : '作例') + '</p>'
-      + '<div class="word-ex-grid"><div class="word-ex"></div><div class="word-ex"></div><div class="word-ex"></div></div>'
-      + '<p class="word-ex-note">' + (LANG === 'en' ? 'coming soon' : '準備中') + '</p></div>'
       + '</div>';
     deck.insertBefore(sec, after);
   });
