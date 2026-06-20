@@ -1442,7 +1442,7 @@
     speculation:{math:'◇ Ω', lisp:'(◇ Ω)', py:'Ω′ ≔ ◇Ω'},
     visualization:{math:'D ↠ ℝ²', lisp:'(↦ D 𝐯)', py:'𝐯 ≔ D↦ℝ²'},
     perspective:{math:'x′= ƒX∕Z', lisp:'(π Ω ⊙)', py:'⊙ ∘ Ω'},
-    bomb:{math:'∅ → ℝⁿ', lisp:'(↯ t₀)', py:'↯ ≔ δ(t)'}
+    bomb:{math:'∅ → ℝⁿ', lisp:'(↯ ∅ ℝⁿ)', py:'ℝⁿ ≔ ↯(∅)'}
   };
   // Concept-word translations per language. "bomb" is intentionally absent -> stays "bomb"
   // in every natural language (only symbol modes / hieroglyphs transform it, via CONCEPT/toEgy).
