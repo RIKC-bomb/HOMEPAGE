@@ -10,7 +10,7 @@
       works:'works', coming:'coming soon',
       lead1:'We like to imagine things, and to make them.', lead2:'If anything catches your interest, feel free to email us.',
       th_name:'Name', th_founder:'Founder', th_founded:'Founded', th_address:'Address', th_contact:'Contact',
-      co_name:'bomb LLC', co_founder:'Riku Sato', co_address:'4-17-33 Minami-Aoyama, Minato-ku, Tokyo 107-0062, Japan（<a href="https://maps.gsi.go.jp/#16/35.6641775/139.7182328/&base=pale&ls=pale&disp=1" target="_blank" rel="noopener">35°39\'51.0"N 139°43\'05.6"E</a>）',
+      co_name:'bomb LLC', co_founder:'riku sato', co_address:'4-17-33 Minami-Aoyama, Minato-ku, Tokyo 107-0062, Japan（<a href="https://maps.gsi.go.jp/#16/35.6641775/139.7182328/&base=pale&ls=pale&disp=1" target="_blank" rel="noopener">35°39\'51.0"N 139°43\'05.6"E</a>）',
       w_examples:'Examples', w_back:'← back',
       d_modeling:'Building 3D form — constructing the shape of objects and spaces from scratch with polygons or NURBS.',
       d_sculpting:'Shaping a 3D model as if it were clay — ideal for organic, detailed forms (e.g. ZBrush).',
@@ -1435,8 +1435,8 @@
     });
   }
   var ORDER=['en','ja','zh','es','fr','de','ru','ar','ko','eo','pt','it','id','tr','nl','pl','uk','vi','hi','fa','th','la','sv','cs','ro','el','he','ur','bn','ta','grc','sa','lzh','cu','math','lisp','py','egy','phn','got','uga'];
-  var SHORT={en:'EN',ja:'JP',zh:'ZH',es:'ES',fr:'FR',de:'DE',ru:'RU',ar:'AR',ko:'KR',eo:'EO',pt:'PT',it:'IT',id:'ID',tr:'TR',nl:'NL',pl:'PL',uk:'UA',vi:'VI',hi:'HI',fa:'FA',th:'TH',la:'LA',sv:'SV',cs:'CS',ro:'RO',el:'EL',he:'HE',ur:'UR',bn:'BN',ta:'TA',grc:'Ἑλ',sa:'सं',lzh:'文',cu:'Слꙑ',math:'∑',lisp:'( )',py:'PY',egy:'𓂀',phn:'𐤀',got:'𐌲',uga:'𐎀'};
-  var SPECIAL_NAME={math:'∑ formula', lisp:'Lisp', py:'Python'};
+  var SHORT={en:'EN',ja:'JP',zh:'ZH',es:'ES',fr:'FR',de:'DE',ru:'RU',ar:'AR',ko:'KR',eo:'EO',pt:'PT',it:'IT',id:'ID',tr:'TR',nl:'NL',pl:'PL',uk:'UA',vi:'VI',hi:'HI',fa:'FA',th:'TH',la:'LA',sv:'SV',cs:'CS',ro:'RO',el:'EL',he:'HE',ur:'UR',bn:'BN',ta:'TA',grc:'Ἑλ',sa:'सं',lzh:'文',cu:'Слꙑ',math:'∑',lisp:'( )',py:'>>>',egy:'𓂀',phn:'𐤀',got:'𐌲',uga:'𐎀'};
+  var SPECIAL_NAME={math:'∑ formula', lisp:'( ) Lisp', py:'>>> Python'};
   // Each concept word's "pathos" as pure symbols (special modes; no English words)
   var CONCEPT={
     landscape:{math:'ℝ²→ℝ', lisp:'(λ xy ⇒ z)', py:'z ≔ ƒ⟨x,y⟩'},

@@ -7,9 +7,10 @@
   var WORDS = ['modeling','simulation','perspective'];
   // 文章はやめて単語だけで見せる（旧説明文は archive-descriptions.md に退避）
   var DATA = {
-    modeling:{k:'モデリング', w:['rhinoceros','python','sculpting','texturing','lighting','animation','rendering']},
-    simulation:{k:'シミュレーション', w:['scripting','programming','coding','generation','calculation']},
-    perspective:{k:'パースペクティブ', w:['perception','diagramming','visualization']}
+    // 親概念を分解した「子概念」を並べる（道具 rhino/python/grasshopper は modeling の実行手段）
+    modeling:{k:'モデリング', w:['geometry','construction','sculpting','topology','rhinoceros','python','grasshopper']},
+    simulation:{k:'シミュレーション', w:['physics','time','iteration','emergence','generation','calculation']},
+    perspective:{k:'パースペクティブ', w:['projection','viewpoint','framing','perception','visualization']}
   };
 
   // --- 単語パネルを生成し、ヒーローの直後に挿入 ---
