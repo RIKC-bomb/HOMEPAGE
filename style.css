@@ -302,6 +302,10 @@ body.translit .legal h1, body.translit .legal h2, body.translit .legal p, body.t
 /* ===== レスポンシブ ===== */
 /* トップはロゴ無し→ナビを右寄せ。他ページはロゴがスッと現れる */
 .site-header.no-logo { justify-content: flex-end; }
+/* 紋章マークを左上に控えめに（ヒーローの "bomb" が主役なので目立たせない・ホバーで少し濃く） */
+.corner-logo { position: fixed; top: 13px; left: clamp(20px, 5vw, 48px); z-index: 100; line-height: 0; opacity: 0.5; transition: opacity 0.25s; }
+.corner-logo img { width: 24px; height: 24px; display: block; }
+.corner-logo:hover { opacity: 1; }
 .logo { animation: logoIn 0.7s ease both; }
 @keyframes logoIn { from { opacity: 0; } to { opacity: 1; } }
 
