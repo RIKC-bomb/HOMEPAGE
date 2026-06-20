@@ -1372,15 +1372,27 @@
   // Hieroglyphs: Latin letters -> uniliteral signs (transliteration)
   var EGY = {a:'𓄿',b:'𓃀',c:'𓎡',d:'𓂧',e:'𓇋',f:'𓆑',g:'𓎼',h:'𓉔',i:'𓇋',j:'𓆓',k:'𓎡',l:'𓂋',m:'𓅓',n:'𓈖',o:'𓍯',p:'𓊪',q:'𓎤',r:'𓂋',s:'𓋴',t:'𓏏',u:'𓅱',v:'𓆑',w:'𓅱',x:'𓎡𓋴',y:'𓇌',z:'𓊃',' ':' ',
     '0':'𓄤','1':'𓏺','2':'𓏻','3':'𓏼','4':'𓏽','5':'𓏾','6':'𓏿','7':'𓐀','8':'𓐁','9':'𓐂'};
-  function toEgy(s){ var o=''; s=String(s).toLowerCase(); for(var i=0;i<s.length;i++){var ch=s[i]; o+=(EGY[ch]!==undefined?EGY[ch]:(/[a-z ]/.test(ch)?'':ch));} return o||String(s); }
-  // Transliterate the text but leave HTML tags (and their attributes) untouched, so links survive.
-  function toEgyTags(s){ return String(s).replace(/<[^>]*>|[^<]+/g, function(m){ return (m.charAt(0)==='<') ? m : toEgy(m); }); }
+  // Dead-script roots — the ancestors of the alphabet. Latin letter -> each script's sign (transliteration).
+  var PHN = {a:'𐤀',b:'𐤁',c:'𐤊',d:'𐤃',e:'𐤀',f:'𐤐',g:'𐤂',h:'𐤄',i:'𐤉',j:'𐤉',k:'𐤊',l:'𐤋',m:'𐤌',n:'𐤍',o:'𐤏',p:'𐤐',q:'𐤒',r:'𐤓',s:'𐤎',t:'𐤕',u:'𐤅',v:'𐤅',w:'𐤅',x:'𐤊𐤎',y:'𐤉',z:'𐤆',' ':' '};
+  var GOT = {a:'𐌰',b:'𐌱',c:'𐌺',d:'𐌳',e:'𐌴',f:'𐍆',g:'𐌲',h:'𐌷',i:'𐌹',j:'𐌾',k:'𐌺',l:'𐌻',m:'𐌼',n:'𐌽',o:'𐍉',p:'𐍀',q:'𐌵',r:'𐍂',s:'𐍃',t:'𐍄',u:'𐌿',v:'𐍅',w:'𐍅',x:'𐌺𐍃',y:'𐌾',z:'𐌶',' ':' '};
+  var UGA = {a:'𐎀',b:'𐎁',c:'𐎋',d:'𐎄',e:'𐎊',f:'𐎔',g:'𐎂',h:'𐎅',i:'𐎊',j:'𐎊',k:'𐎋',l:'𐎍',m:'𐎎',n:'𐎐',o:'𐎆',p:'𐎔',q:'𐎖',r:'𐎗',s:'𐎒',t:'𐎚',u:'𐎆',v:'𐎆',w:'𐎆',x:'𐎋𐎒',y:'𐎊',z:'𐎇',' ':' '};
+  // Transliteration-script registry (egy + the dead-script roots). bomb/concepts/legal text all map through these.
+  var TRANSLIT = {
+    egy: {name:'𓂀 hieroglyphs', short:'𓂀', map:EGY, css:'"Noto Sans Egyptian Hieroglyphs", serif', font:'Noto Sans Egyptian Hieroglyphs', rtl:false},
+    phn: {name:'𐤐 Phoenician',  short:'𐤀', map:PHN, css:'"Noto Sans Phoenician", serif',        font:'Noto Sans Phoenician', rtl:true},
+    got: {name:'𐌲 Gothic',      short:'𐌲', map:GOT, css:'"Noto Sans Gothic", serif',            font:'Noto Sans Gothic', rtl:false},
+    uga: {name:'𐎀 cuneiform',   short:'𐎀', map:UGA, css:'"Noto Sans Ugaritic", serif',          font:'Noto Sans Ugaritic', rtl:false}
+  };
+  function transliterate(map,s){ var o=''; s=String(s).toLowerCase(); for(var i=0;i<s.length;i++){var ch=s[i]; o+=(map[ch]!==undefined?map[ch]:(/[a-z ]/.test(ch)?'':ch));} return o||String(s); }
+  // transliterate the text but leave HTML tags (and their attributes) untouched, so links survive.
+  function toScriptTags(map,s){ return String(s).replace(/<[^>]*>|[^<]+/g, function(m){ return (m.charAt(0)==='<') ? m : transliterate(map,m); }); }
   function dictFor(code){
-    if(code==='egy'){ var base=DICT.en, d={name:'𓂀 hieroglyphs'}; for(var k in base){ if(k==='name'||k==='rtl') continue; var v=base[k];
-        d[k]=(typeof v==='string' && v.indexOf('<')>=0)? toEgyTags(v) : toEgy(v); } d.rtl=false; return d; }
+    var tr=TRANSLIT[code];
+    if(tr){ var base=DICT.en, d={name:tr.name}; for(var k in base){ if(k==='name'||k==='rtl') continue; var v=base[k];
+        d[k]=(typeof v==='string' && v.indexOf('<')>=0)? toScriptTags(tr.map,v) : transliterate(tr.map,v); } d.rtl=tr.rtl; return d; }
     return DICT[code];
   }
-  function nameOf(code){ return SPECIAL_NAME[code] || (code==='egy'?'𓂀 hieroglyphs':(DICT[code]&&DICT[code].name)||code); }
+  function nameOf(code){ return SPECIAL_NAME[code] || (TRANSLIT[code]?TRANSLIT[code].name:(DICT[code]&&DICT[code].name)||code); }
 
   // Per-language random font (chosen from that script's pool; loaded only when used)
   var baseFont='', loadedF={};
@@ -1410,19 +1422,20 @@
   // natural languages -> CW table; bomb itself is never touched, it is not a concept word).
   function setConcept(code){
     var special=(code==='math'||code==='lisp'||code==='py');
-    var cw=(!special && code && code!=='egy') ? CW[code] : null;
-    // bomb itself (.hero-title / .logo) only transforms in symbol modes and hieroglyphs.
+    var tr=TRANSLIT[code];
+    var cw=(!special && !tr && code) ? CW[code] : null;
+    // bomb itself (.hero-title / .logo) only transforms in symbol modes and transliteration scripts.
     var els=document.querySelectorAll('.hero-title a, .logo, .hero-domain, .hero-row a, .word-title');
     Array.prototype.forEach.call(els,function(el){
       var orig=el.getAttribute('data-orig'); if(orig===null){ orig=el.textContent.trim(); el.setAttribute('data-orig',orig); }
       var key=orig.toLowerCase();
       if(special){ var c=CONCEPT[key]; el.textContent=c?c[code]:orig; }
-      else if(code==='egy'){ el.textContent=toEgy(orig); }
+      else if(tr){ el.textContent=transliterate(tr.map,orig); }
       else { el.textContent=(cw&&cw[key])||orig; }
     });
   }
-  var ORDER=['en','ja','zh','es','fr','de','ru','ar','ko','eo','pt','it','id','tr','nl','pl','uk','vi','hi','fa','th','la','sv','cs','ro','el','he','ur','bn','ta','grc','sa','lzh','cu','math','lisp','py','egy'];
-  var SHORT={en:'EN',ja:'JP',zh:'ZH',es:'ES',fr:'FR',de:'DE',ru:'RU',ar:'AR',ko:'KR',eo:'EO',pt:'PT',it:'IT',id:'ID',tr:'TR',nl:'NL',pl:'PL',uk:'UA',vi:'VI',hi:'HI',fa:'FA',th:'TH',la:'LA',sv:'SV',cs:'CS',ro:'RO',el:'EL',he:'HE',ur:'UR',bn:'BN',ta:'TA',grc:'Ἑλ',sa:'सं',lzh:'文',cu:'Слꙑ',math:'∑',lisp:'( )',py:'PY',egy:'𓂀'};
+  var ORDER=['en','ja','zh','es','fr','de','ru','ar','ko','eo','pt','it','id','tr','nl','pl','uk','vi','hi','fa','th','la','sv','cs','ro','el','he','ur','bn','ta','grc','sa','lzh','cu','math','lisp','py','egy','phn','got','uga'];
+  var SHORT={en:'EN',ja:'JP',zh:'ZH',es:'ES',fr:'FR',de:'DE',ru:'RU',ar:'AR',ko:'KR',eo:'EO',pt:'PT',it:'IT',id:'ID',tr:'TR',nl:'NL',pl:'PL',uk:'UA',vi:'VI',hi:'HI',fa:'FA',th:'TH',la:'LA',sv:'SV',cs:'CS',ro:'RO',el:'EL',he:'HE',ur:'UR',bn:'BN',ta:'TA',grc:'Ἑλ',sa:'सं',lzh:'文',cu:'Слꙑ',math:'∑',lisp:'( )',py:'PY',egy:'𓂀',phn:'𐤀',got:'𐌲',uga:'𐎀'};
   var SPECIAL_NAME={math:'∑ formula', lisp:'Lisp', py:'Python'};
   // Each concept word's "pathos" as pure symbols (special modes; no English words)
   var CONCEPT={
@@ -1445,7 +1458,7 @@
     bomb:{math:'∅ → ℝⁿ', lisp:'(↯ ∅ ℝⁿ)', py:'ℝⁿ ≔ ↯(∅)'}
   };
   // Concept-word translations per language. "bomb" is intentionally absent -> stays "bomb"
-  // in every natural language (only symbol modes / hieroglyphs transform it, via CONCEPT/toEgy).
+  // in every natural language (only symbol modes / transliteration scripts transform it, via CONCEPT/transliterate).
   var CW={
     // ja は概念語を英語表示のまま（その下に .word-reading で小さくカタカナ）＝従来の表記。ゆえに ja は CW に持たない。
     zh:{landscape:'景观',modeling:'建模',sculpting:'雕刻',texturing:'贴图',lighting:'布光',animation:'动画',rendering:'渲染',coding:'编码',scripting:'脚本',programming:'编程',generation:'生成',calculation:'计算',simulation:'模拟',speculation:'思辨',visualization:'可视化',perspective:'透视'},
@@ -1484,6 +1497,7 @@
 
   function apply(code){
     var special=(code==='math'||code==='lisp'||code==='py');
+    var tr=TRANSLIT[code];
     var d=special?DICT.en:(dictFor(code)||DICT.en);
     function T(k){ var v=d[k]; return (v!=null)?v:DICT.en[k]; }
     var doc=document;
@@ -1492,11 +1506,11 @@
     doc.querySelectorAll('[data-i18n]').forEach(function(el){ var v=T(el.getAttribute('data-i18n')); if(v!=null) el.textContent=v; });
     // generic HTML nodes (paragraphs that contain links)
     doc.querySelectorAll('[data-i18n-html]').forEach(function(el){ var v=T(el.getAttribute('data-i18n-html')); if(v!=null) el.innerHTML=v; });
-    // egy: transliterate "data" values (company-table values, copyright) from a romaji source;
+    // transliteration scripts: transliterate "data" values (company-table values, copyright) from a romaji source;
     // restore the original HTML (links / year span) for every other language.
     doc.querySelectorAll('[data-egy]').forEach(function(el){
       if(el.getAttribute('data-egyhtml')===null) el.setAttribute('data-egyhtml', el.innerHTML);
-      if(code==='egy') el.textContent=toEgy(el.getAttribute('data-egy'));
+      if(tr) el.textContent=transliterate(tr.map,el.getAttribute('data-egy'));
       else el.innerHTML=el.getAttribute('data-egyhtml');
     });
     // contact lead (two lines)
@@ -1507,19 +1521,20 @@
     doc.querySelectorAll('.word-reading').forEach(function(e){ e.style.display=(code==='ja'?'':'none'); });
     // direction / language / font
     doc.documentElement.setAttribute('dir', d.rtl?'rtl':'ltr');
-    doc.body.classList.toggle('lang-egy', code==='egy');
+    doc.body.classList.toggle('translit', !!tr);
     pickFont(code);
-    if(code==='egy') ensureEgyFont();
+    if(tr){ doc.documentElement.style.setProperty('--script-font', tr.css); ensureScriptFont(code); }
     try{ localStorage.setItem('lang', code); }catch(e){}
-    var lbl=document.getElementById('langCur'); if(lbl) lbl.textContent=(SHORT[code]||code.toUpperCase());
+    var lbl=document.getElementById('langCur'); if(lbl){ lbl.textContent=(SHORT[code]||code.toUpperCase()); lbl.style.fontFamily=tr?tr.css:''; }
   }
-  var egyLoaded=false;
-  function ensureEgyFont(){ if(egyLoaded) return; egyLoaded=true; var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap'; document.head.appendChild(l); }
+  var loadedScript={};
+  function ensureScriptFont(code){ var tr=TRANSLIT[code]; if(!tr||loadedScript[code]) return; loadedScript[code]=1;
+    var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family='+tr.font.replace(/ /g,'+')+'&display=swap'; document.head.appendChild(l); }
 
   function detect(){
-    try{ var s=localStorage.getItem('lang'); if(s&&(DICT[s]||s==='egy'||SPECIAL_NAME[s])) return s; }catch(e){}
+    try{ var s=localStorage.getItem('lang'); if(s&&(DICT[s]||TRANSLIT[s]||SPECIAL_NAME[s])) return s; }catch(e){}
     var n=(navigator.language||'en').toLowerCase();
-    for(var i=0;i<ORDER.length;i++){ var c=ORDER[i]; if(c!=='egy'&&(n===c||n.indexOf(c+'-')===0||n.split('-')[0]===c)) return c; }
+    for(var i=0;i<ORDER.length;i++){ var c=ORDER[i]; if(!TRANSLIT[c]&&(n===c||n.indexOf(c+'-')===0||n.split('-')[0]===c)) return c; }
     if(n.indexOf('zh')===0) return 'zh';
     return (document.documentElement.lang==='ja')?'ja':'en';
   }
@@ -1536,13 +1551,13 @@
     order.forEach(function(code){
       var it=document.createElement('button'); it.type='button'; it.className='lang-item';
       it.textContent=nameOf(code); it.setAttribute('data-code',code);
-      if(code==='egy') it.style.fontFamily='"Noto Sans Egyptian Hieroglyphs", serif';
+      if(TRANSLIT[code]) it.style.fontFamily=TRANSLIT[code].css;
       it.addEventListener('click',function(){ apply(this.getAttribute('data-code')); ov.style.display='none'; });
       box.appendChild(it);
     });
     ov.appendChild(box);
     ov.addEventListener('click',function(e){ if(e.target===ov) ov.style.display='none'; });
-    btn.addEventListener('click',function(){ ensureEgyFont();
+    btn.addEventListener('click',function(){ for(var c in TRANSLIT) ensureScriptFont(c);
       ov.style.display = (ov.style.display==='none')?'flex':'none'; });
     var nav=document.querySelector('.nav'); if(nav) nav.appendChild(btn);
     document.body.appendChild(ov);

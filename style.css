@@ -120,13 +120,16 @@ button.lang-link { background: none; cursor: pointer; font-family: inherit; }
 .lang-item:hover { color: var(--accent); }
 /* スマホは後で詰める：暫定で2列（横あふれ回避） */
 @media (max-width: 640px) { .lang-list { grid-template-columns: repeat(2, auto); gap: 2px 18px; } .lang-item { font-size: 1rem; } }
-/* ヒエログリフ表示時は、訳した要素だけ専用フォント（概念語や数字は通常フォントのまま） */
-body.lang-egy .nav a[href*="#contact"], body.lang-egy .section-eyebrow, body.lang-egy .footer-links a,
-body.lang-egy .company-table th, body.lang-egy .contact-lead, body.lang-egy .word-ex-note { font-family: "Noto Sans Egyptian Hieroglyphs", serif; }
-/* hero/ロゴのbombは font-weight:900 で合成ボールドがかかり太りすぎる→egy時は専用フォント＋通常ウェイト＋合成無効で本来の細さに */
-body.lang-egy .hero-title, body.lang-egy .hero-title a, body.lang-egy .logo,
-body.lang-egy .company-table td, body.lang-egy .copyright {
-  font-family: "Noto Sans Egyptian Hieroglyphs", serif; font-weight: 400; font-synthesis: none; }
+/* 音訳モード(ヒエログリフ/フェニキア/ゴート/楔形)：音訳された要素だけ専用フォント(--script-font)。
+   メール([data-mail])は機能維持のため除外。font-weight:900の合成ボールドも無効化して本来の細さに。 */
+body.translit .nav a[href*="#contact"], body.translit .section-eyebrow, body.translit .footer-links a,
+body.translit .company-table th, body.translit .company-table td:not([data-mail]),
+body.translit .contact-lead, body.translit .copyright, body.translit .word-ex-note,
+body.translit .hero-title, body.translit .hero-title a, body.translit .logo,
+body.translit .hero-domain, body.translit .hero-row a,
+body.translit .word-title, body.translit .word-reading, body.translit .word-desc, body.translit .word-list li,
+body.translit .legal h1, body.translit .legal h2, body.translit .legal p, body.translit .legal li {
+  font-family: var(--script-font), "Noto Sans Egyptian Hieroglyphs", serif; font-weight: 400; font-synthesis: none; }
 .lang-search { display: block; margin: 0 auto 12px; padding: 8px 14px; width: min(70vw, 260px); border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: 0.95rem; color: var(--ink); text-align: center; outline: none; }
 .lang-search:focus { border-color: var(--accent); }
 .wrap { width: 100%; max-width: var(--max); }
