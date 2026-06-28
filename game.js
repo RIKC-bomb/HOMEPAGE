@@ -4,6 +4,10 @@
   var words = document.querySelectorAll('.hero-words span');
   if (!words.length) return;
 
+  // モバイルでは出さない（軽量化）／モーション低減設定も尊重
+  if (window.matchMedia &&
+      (matchMedia('(pointer: coarse)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+
   var APPEAR_RATE = 0.1; // 出現確率（0.1 = 10回に1回くらい・唐突なイースターエッグ）
   if (Math.random() > APPEAR_RATE) return;
 

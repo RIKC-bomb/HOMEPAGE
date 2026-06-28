@@ -42,8 +42,12 @@
     })();
   </script>
 
-  <!-- π100万桁（資本金969,696番目を会社の座標に） -->
-  <script defer src="pi.js"></script>
+  <!-- π100万桁（資本金969,696番目を会社の座標に）。スマホは1MB節約のため読み込まない（fonts.jsは内蔵πにフォールバック） -->
+  <script>
+    if (!window.matchMedia || !matchMedia('(pointer: coarse)').matches) {
+      document.write('<script defer src="pi.js"><\/script>');
+    }
+  </script>
   <!-- 発見済みの物理方程式の集成。動きと光はここから構成する -->
   <script defer src="physics.js"></script>
   <!-- リロードごとにランダムフォント（全候補は fonts.js） -->

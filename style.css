@@ -108,7 +108,7 @@ a { color: inherit; text-decoration: none; }
   .panel { width: 100%; min-height: 100svh; height: auto; flex: none; overflow: visible; }
   .deck-light { display: none; }
   /* モバイルは重いSVGの代わりに軽いラスター画像(PNG)で等高線を描く */
-  .panel-alt::before { display: block; left: 0; right: 0; background-image: url("contour.png"); }
+  .panel-alt::before { display: block; left: 0; right: 0; background-image: url("contour.jpg?v=2"); }
   .to-top { display: block; }
 }
 /* 最下部のトップ戻り（モバイルのみ表示・PCは横巻物が循環するので不要） */
@@ -122,7 +122,8 @@ button.lang-link { background: none; cursor: pointer; font-family: inherit; }
 .lang-item { background: none; border: 0; padding: 6px 8px; font-size: 1.02rem; line-height: 1.25; color: var(--muted); cursor: pointer; letter-spacing: 0.02em; white-space: nowrap; }
 .lang-item:hover { color: var(--accent); }
 /* スマホは後で詰める：暫定で2列（横あふれ回避） */
-@media (max-width: 640px) { .lang-list { grid-template-columns: repeat(2, auto); gap: 2px 18px; } .lang-item { font-size: 1rem; } }
+@media (max-width: 640px) { .lang-list { grid-template-columns: repeat(3, auto); gap: 4px 16px; padding: 16px; } .lang-item { font-size: 0.95rem; padding: 7px 6px; } }
+@media (max-width: 380px) { .lang-list { grid-template-columns: repeat(2, auto); } }
 /* 音訳モード(ヒエログリフ/フェニキア/ゴート/楔形)：音訳された要素だけ専用フォント(--script-font)。
    メール([data-mail])は機能維持のため除外。font-weight:900の合成ボールドも無効化して本来の細さに。 */
 body.translit .nav a[href*="#contact"], body.translit .section-eyebrow, body.translit .footer-links a,
@@ -317,8 +318,11 @@ body.translit .legal h1, body.translit .legal h2, body.translit .legal p, body.t
   .deck-arrow { display: none; }
   .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .card { padding: 16px 14px; }
-  .company-table th { width: 36%; }
-  .panel { padding: 80px 18px 70px; }
+  .company-table th { width: 34%; }
+  .panel { padding: 76px 18px 64px; }
+  .site-header { padding: 12px 18px; }
+  .logo-mark img { height: 24px; }
+  .hero .wrap { gap: 16px; }
 }
 
 /* ===== 法務ページ：1画面に自動フィット（スクロール無し） ===== */

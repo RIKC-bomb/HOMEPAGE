@@ -38,8 +38,12 @@
     })();
   </script>
 
-  <!-- 1,000,000 digits of pi (capital 969,696th = company's coordinate) -->
-  <script defer src="../pi.js"></script>
+  <!-- 1,000,000 digits of pi (capital 969,696th = company's coordinate). Skipped on mobile to save 1MB (fonts.js falls back to a built-in pi) -->
+  <script>
+    if (!window.matchMedia || !matchMedia('(pointer: coarse)').matches) {
+      document.write('<script defer src="../pi.js"><\/script>');
+    }
+  </script>
   <!-- The discovered laws of physics. Motion and light are composed from here. -->
   <script defer src="../physics.js"></script>
   <!-- Random handwriting font on every reload (full pool in fonts.js) -->
