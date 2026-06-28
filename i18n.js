@@ -1433,6 +1433,12 @@
       else if(tr){ el.textContent=transliterate(tr.map,orig); }
       else { el.textContent=(cw&&cw[key])||orig; }
     });
+    // 単語パネル内の子概念リスト（geometry/sculpting…）：古代文字モードのみ字訳。
+    // 通常言語では原語を保持（rhinoceros/python/grasshopper は製品名なので訳さない）。
+    Array.prototype.forEach.call(document.querySelectorAll('.word-list li'),function(el){
+      var o=el.getAttribute('data-orig'); if(o===null){ o=el.textContent.trim(); el.setAttribute('data-orig',o); }
+      el.textContent = tr ? transliterate(tr.map,o) : o;
+    });
   }
   var ORDER=['en','ja','zh','es','fr','de','ru','ar','ko','eo','pt','it','id','tr','nl','pl','uk','vi','hi','fa','th','la','sv','cs','ro','el','he','ur','bn','ta','grc','sa','lzh','cu','math','lisp','py','egy','phn','got','uga'];
   var SHORT={en:'EN',ja:'JP',zh:'ZH',es:'ES',fr:'FR',de:'DE',ru:'RU',ar:'AR',ko:'KR',eo:'EO',pt:'PT',it:'IT',id:'ID',tr:'TR',nl:'NL',pl:'PL',uk:'UA',vi:'VI',hi:'HI',fa:'FA',th:'TH',la:'LA',sv:'SV',cs:'CS',ro:'RO',el:'EL',he:'HE',ur:'UR',bn:'BN',ta:'TA',grc:'Ἑλ',sa:'सं',lzh:'文',cu:'Слꙑ',math:'∑',lisp:'( )',py:'>>>',egy:'𓂀',phn:'𐤀',got:'𐌲',uga:'𐎀'};
