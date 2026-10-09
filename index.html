@@ -42,16 +42,10 @@
     })();
   </script>
 
-  <!-- π100万桁（資本金969,696番目を会社の座標に）。スマホは1MB節約のため読み込まない（fonts.jsは内蔵πにフォールバック） -->
-  <script>
-    if (!window.matchMedia || !matchMedia('(pointer: coarse)').matches) {
-      document.write('<script defer src="pi.js"><\/script>');
-    }
-  </script>
   <!-- 発見済みの物理方程式の集成。動きと光はここから構成する -->
   <script defer src="physics.js"></script>
   <!-- リロードごとにランダムフォント（全候補は fonts.js） -->
-  <script defer src="fonts.js"></script>
+  <script defer src="fonts.js?v=20261009d"></script>
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSG4890EV9"></script>
