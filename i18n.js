@@ -51,7 +51,7 @@
       works:'作例', coming:'準備中',
       lead1:'何かを想像したり、それを作ったりすることが好きです。', lead2:'気になることがあれば、自由にメールしてください。',
       th_name:'商号', th_corpno:'法人番号', th_founder:'代表社員', th_founded:'設立', th_address:'所在地', th_contact:'連絡先',
-      co_name:'合同会社bomb（bomb LLC）', co_founder:'佐藤陸 (RIKU SATO)', co_address:'107-0062 東京都<a href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E5%8D%97%E9%9D%92%E5%B1%B14-17-33" target="_blank" rel="noopener">港区南青山4-17-33</a>（<a href="https://maps.gsi.go.jp/#16/35.6641775/139.7182328/&base=pale&ls=pale&disp=1" target="_blank" rel="noopener">35°39\'51.0"N 139°43\'05.6"E</a>）',
+      co_name:'合同会社bomb (bomb LLC)', co_founder:'佐藤陸 (RIKU SATO)', co_address:'107-0062 東京都<a href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E5%8D%97%E9%9D%92%E5%B1%B14-17-33" target="_blank" rel="noopener">港区南青山4-17-33</a>（<a href="https://maps.gsi.go.jp/#16/35.6641775/139.7182328/&base=pale&ls=pale&disp=1" target="_blank" rel="noopener">35°39\'51.0"N 139°43\'05.6"E</a>）',
       w_examples:'実例', w_back:'← 戻る',
       d_modeling:'3DCGで「形」を作る工程。ポリゴンやNURBSで、物体や空間のかたちを一から構築する。',
       d_sculpting:'粘土をこねるように3Dモデルを彫り込む手法。有機的で繊細な造形に向く（ZBrush 等）。',
