@@ -1527,6 +1527,7 @@
     doc.querySelectorAll('.word-reading').forEach(function(e){ e.style.display=(code==='ja'?'':'none'); });
     // direction / language / font
     doc.documentElement.setAttribute('dir', d.rtl?'rtl':'ltr');
+    doc.documentElement.setAttribute('lang', (special||tr)?'en':code);
     doc.body.classList.toggle('translit', !!tr);
     pickFont(code);
     if(tr){ doc.documentElement.style.setProperty('--script-font', tr.css); ensureScriptFont(code); }

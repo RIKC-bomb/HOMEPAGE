@@ -83,6 +83,11 @@ a { color: inherit; text-decoration: none; }
 .deck::-webkit-scrollbar { display: none; }
 /* RTL言語：トラックの並びはLTR固定のまま、各パネル内のテキストだけ本来のRTLに戻す */
 html[dir="rtl"] .deck-track > .panel { direction: rtl; }
+/* RTL: letter-spacing breaks Arabic-script joining; Latin values (address, copyright) keep their own order */
+html[dir="rtl"] .hero-eyebrow, html[dir="rtl"] .hero-domain, html[dir="rtl"] .hero-words, html[dir="rtl"] .section-eyebrow,
+html[dir="rtl"] .word-reading, html[dir="rtl"] .word-list li, html[dir="rtl"] .to-top, html[dir="rtl"] .lang-item { letter-spacing: 0; }
+html[dir="rtl"] .company-table td { unicode-bidi: plaintext; }
+html[dir="rtl"] .copyright { direction: ltr; text-align: right; }
 .deck-light { position: absolute; inset: 0; z-index: 5; pointer-events: none; mix-blend-mode: multiply; }
 .panel {
   flex: 0 0 100vw;
@@ -125,8 +130,8 @@ button.lang-link { background: none; cursor: pointer; font-family: inherit; }
 .lang-item { background: none; border: 0; padding: 6px 8px; font-size: 1.02rem; line-height: 1.25; color: var(--muted); cursor: pointer; letter-spacing: 0.02em; white-space: nowrap; }
 .lang-item:hover { color: var(--accent); }
 /* スマホは後で詰める：暫定で2列（横あふれ回避） */
-@media (max-width: 640px) { .lang-list { grid-template-columns: repeat(3, auto); gap: 4px 16px; padding: 16px; } .lang-item { font-size: 0.95rem; padding: 7px 6px; } }
-@media (max-width: 380px) { .lang-list { grid-template-columns: repeat(2, auto); } }
+@media (max-width: 640px) { .lang-list { grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; gap: 4px 16px; padding: 16px; } .lang-item { font-size: 0.95rem; padding: 7px 6px; white-space: normal; overflow-wrap: break-word; } }
+@media (max-width: 380px) { .lang-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 /* 音訳モード(ヒエログリフ/フェニキア/ゴート/楔形)：音訳された要素だけ専用フォント(--script-font)。
    メール([data-mail])は機能維持のため除外。font-weight:900の合成ボールドも無効化して本来の細さに。 */
 body.translit .nav a[href*="#contact"], body.translit .section-eyebrow, body.translit .footer-links a,
@@ -231,13 +236,6 @@ body.translit .legal h1, body.translit .legal h2, body.translit .legal p, body.t
   transition: color 0.2s;
 }
 .contact-mail:hover { color: var(--accent); }
-.contact-copy {
-  background: none; border: 0; padding: 4px 0;
-  color: var(--muted); font-size: 0.82rem; letter-spacing: 0.12em;
-  cursor: pointer; font-family: inherit;
-}
-.contact-copy:hover { color: var(--ink); }
-.contact-copy.copied { color: var(--accent); }
 
 /* ===== フッター ===== */
 .site-footer { text-align: center; }
@@ -287,7 +285,7 @@ body.translit .legal h1, body.translit .legal h2, body.translit .legal p, body.t
 .lang-link:hover { border-color: var(--ink); color: var(--ink); }
 .footer-links { display: flex; justify-content: center; align-items: center; gap: 0; flex-wrap: wrap; margin-bottom: 16px; }
 .footer-links a { color: var(--muted); font-size: 0.85rem; transition: color 0.2s; padding: 0 14px; }
-.footer-links a + a { border-left: 1px solid var(--line); } /* Privacy Policy等の間の区切り */
+.footer-links a + a { border-inline-start: 1px solid var(--line); } /* Privacy Policy等の間の区切り */
 .footer-links a:hover { color: var(--ink); }
 .lang-switch { font-size: 0.85rem; color: var(--muted); margin-bottom: 14px; }
 .lang-switch .lang-active { color: var(--ink); font-weight: 700; }
@@ -299,7 +297,7 @@ body.translit .legal h1, body.translit .legal h2, body.translit .legal p, body.t
 .legal h1 { font-size: clamp(1.7rem, 4.5vw, 2.4rem); font-weight: 900; margin-bottom: 24px; }
 .legal h2 { font-size: 1.15rem; font-weight: 700; margin: 36px 0 10px; }
 .legal p, .legal li { color: #333; font-size: 0.98rem; }
-.legal ul { padding-left: 1.3em; }
+.legal ul { padding-inline-start: 1.3em; }
 .legal li { margin-bottom: 6px; }
 .legal a { color: var(--accent); text-decoration: none; }
 .legal-lead { color: var(--muted) !important; margin-bottom: 8px; }
